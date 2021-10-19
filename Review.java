@@ -6,7 +6,7 @@ public class Review {
     private User reviewer;
 
     public Review(int rating, String review, User reviewer) {
-
+        
     }
 
     public String toString() {

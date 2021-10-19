@@ -8,13 +8,13 @@ import java.util.ArrayList;
     private String postedDate;
     private String expirationDate;
     private ArrayList<String> desiredSkills;
-    private JobType jobType; //TODO create JobType class
+    private JobType jobType;
     private String location;
     private int jobPay;
-    private ArrayList<Student> applicants; //TODO create Student class
-    private Employer employer; //TODO create Employer class
+    private ArrayList<Student> applicants;
+    private Employer employer; 
 
-    public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, String location, int jobPay, Employer employer) {
+    public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<Student> applicants, String location, int jobPay, Employer employer) {
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
         this.desiredSkills = desiredSkills;
@@ -42,7 +42,7 @@ import java.util.ArrayList;
     }
 
     public ArrayList<Student> sortApplicants(ApplicantSortType sortType) {
-
+        
     }
 
     public ArrayList<Student> viewApplicants() {

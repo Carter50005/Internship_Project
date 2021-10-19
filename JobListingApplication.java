@@ -7,7 +7,7 @@ public class JobListingApplication {
     }
 
     public User createAccount() {
-
+        
     }
 
     public boolean logIn() {
