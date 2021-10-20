@@ -3,8 +3,16 @@ import java.util.ArrayList;
 public class UserList {
     private ArrayList<User> users;
 
-    public UserList() {
-        
+    private UserList(ArrayList<User> users) {
+        this.users = users; // TODO call dataloader.. this will NOT be in finished product. 
+    }
+
+    private UserList() {
+        //users = DataLoader.getUsers; this WILL be in finished product
+    }
+
+    public static UserList getInstance() {
+        return new UserList();
     }
     public User MakeAccount() {
         return null;
@@ -12,19 +20,12 @@ public class UserList {
     public User login(String username) {
         return null;
     }
-    public boolean logout() {
-        return true;
-    }
     public User findUser(String username) {
+        for(int i=0;i<users.size();i++) {
+            if(users.get(i).getUsername() == username) {
+                return users.get(i);
+            }
+        }
         return null;
-    }
-    public void EditRating(Review review, Privaledges privaledges) {
-
-    }
-    public boolean BanUser(User user, Privaledges privaledges) {
-        return true;
-    }
-    public boolean setPriveledges(User user, Privaledges privaledges) {
-        return true;
     }
 }

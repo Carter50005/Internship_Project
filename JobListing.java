@@ -26,7 +26,7 @@ import java.util.ArrayList;
     }
 
     public void apply(Student student) {
-
+        applicants.add(student);
     }
 
     public String toString() {

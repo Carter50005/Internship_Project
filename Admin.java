@@ -1,15 +1,20 @@
-public class Admin implements User {
-    private String username;
-    private String password;
-    private Char type;
+public class Admin extends User {
 
     public Admin(String username, String password) {
-
+        super(username, password, 'a');
     }
-    public void editReview(Review review) {
-
+    public void editReview(Review review, Review editedReview) {
+        review = editedReview;
     }
-    public void deleteStudent(Student student) {
+    public void deleteUser(User user) {
         
+    }
+
+    public void deleteReview(Review review) {
+
+    }
+
+    public void editUser(User user, User editedUser) {
+        user = editedUser;
     }
 }

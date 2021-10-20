@@ -2,29 +2,30 @@ public class User {
     
     private String username;
     private String password;
-    private Privaledges privaledges;
     private char type;
 
-    public User(String username, String password, char type, Privaledges privaledges) {
+    public User(String username, String password, char type) {
         this. username = username;
         this.password = password;
-        this.privaledges = privaledges;
         this.type = type;
     }
 
-    public boolean verifyUsername() {
-        return username();
-    }
-
-    private boolean username() {
+    public boolean verifyUsername(String username) {
+        if(this.username == username) {
+            return true;
+        }
         return false;
     }
 
-    public boolean verifyPassowrd() {
-        return password();
+    public String getUsername() {
+        return this.username;
     }
 
-    private boolean password() {
+    public boolean verifyPassowrd(String password) {
+        if(this.password == password) {
+            return true;
+        }
         return false;
     }
+
 }
