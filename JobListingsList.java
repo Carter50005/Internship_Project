@@ -25,7 +25,7 @@ public class JobListingsList {
     }
 
     public ArrayList<JobListing> sortListings(SortType sortType) {
-
+        
     }
 
     public boolean contains(JobListing jobListing) {
@@ -42,5 +42,9 @@ public class JobListingsList {
             return true;
         }
         return false;
+    }
+
+    public void deleteListing(JobListing jobListing) {
+        jobListings.remove(jobListing);
     }
 }

@@ -1,8 +1,8 @@
 public class User {
     
-    private String username;
-    private String password;
-    private char type;
+    protected String username;
+    protected String password;
+    protected char type;
 
     public User(String username, String password, char type) {
         this. username = username;
@@ -26,6 +26,10 @@ public class User {
             return true;
         }
         return false;
+    }
+
+    public char getType() {
+        return this.type;
     }
 
 }

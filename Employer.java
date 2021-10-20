@@ -14,6 +14,7 @@ public class Employer extends User{
         this.companyDescription = aDescription;
         this.companyLocation = aLocation;
         this.companyRating = aRating;
+        this.companyListings = new ArrayList<JobListing>();
     }
 
     public Employer(String username, String password, String aName, String aDescription, String aLocation, int aRating, ArrayList<JobListing> aListings) {
