@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Resume {
+    private Student student;
     private String school;
     private int classYear;
     private String major;
@@ -10,10 +11,11 @@ public class Resume {
     private ArrayList<Experience> workExperiences;
     private ArrayList<Experience> extraCurriculars;
 
-    public Resume() {
+    public Resume(Student student, String school, int classYear, String major, double gpa, ArrayList<String> skills, ArrayList<Experience> workExperiences, private ArrayList<Experience> extraCurriculars) {
         skills = new ArrayList<String>();
         workExperiences = new ArrayList<Experience>();
         extraCurriculars = new ArrayList<Experience>();
+        this.student = student;
     }
 
     public String getSchool() {
@@ -29,7 +31,7 @@ public class Resume {
     }
 
     public String getMinor() {
-        return this.minor
+        return this.minor;
     }
 
     public double getGpa() {
@@ -54,6 +56,10 @@ public class Resume {
 
     public void addExtraCurricular(Experience experience) {
         extraCurriculars.add(experience);
+    }
+
+    public String toString() {
+        return "";
     }
 
 }
