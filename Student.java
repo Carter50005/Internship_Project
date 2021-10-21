@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Student extends User {
 
-    private String uUID;
     private String firstName;
     private String lastName;
     private String email;
@@ -12,7 +11,6 @@ public class Student extends User {
 
     public Student(String username, String password, String studentID, String firstName, String lastName, String email) {
         super(username, password, 's', studentID);
-        this.uUID = studentID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -23,7 +21,6 @@ public class Student extends User {
 
     public Student(String username, String password, String studentID, String firstName, String lastName, String email, ArrayList<Resume> resumes, ArrayList<Review> reviews, ArrayList<JobListing> wishList)  {
         super(username, password, 's', studentID);
-        this.studentID = studentID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

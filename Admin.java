@@ -1,14 +1,19 @@
-public class Admin extends User {
+import java.util.UUID;
 
-    public String uUID;
+public class Admin extends User {
 
     public Admin(String username, String password) {
         super(username, password, 'a');
-        this.uUID = super.uUID;
     }
+
+    public Admin(String username, String password, String uUID) {
+        super(username, password, 'a', uUID);
+    }
+
     public void editReview(Review review, Review editedReview) {
         review = editedReview;
     }
+
     public void deleteUser(User user) {
         
     }
