@@ -1,20 +1,35 @@
 import java.util.ArrayList;
 
-public class Student {
+public class Student extends User {
 
-    private String studentID;
+    private String uUID;
     private String firstName;
     private String lastName;
-    private ArrayList<String> resumes;
-    private ArrayList<Review> review;
-    private ArrayList<Experience> workExperience;
-    private ArrayList<Experience> extraCurriculars;
+    private String email;
+    private ArrayList<JobListing> wishList;
+    private ArrayList<Resume> resumes;
+    private ArrayList<Review> reviews;
 
-    public Student(String username, String password) {
-        resumes = new ArrayList<String>();
-        review = new ArrayList<Review>();
-        workExperience = new ArrayList<Experience>();
-        extraCurriculars = new ArrayList<Experience>();
+    public Student(String username, String password, String studentID, String firstName, String lastName, String email) {
+        super(username, password, 's', studentID);
+        this.uUID = studentID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.resumes = new ArrayList<Resume>();
+        this.reviews = new ArrayList<Review>();
+        this.wishList = new ArrayList<JobListing>();
+    }
+
+    public Student(String username, String password, String studentID, String firstName, String lastName, String email, ArrayList<Resume> resumes, ArrayList<Review> reviews, ArrayList<JobListing> wishList)  {
+        super(username, password, 's', studentID);
+        this.studentID = studentID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.resumes = resumes;
+        this.reviews = reviews;
+        this.wishList = wishList;
     }
 
     public void editAccount() {
@@ -29,16 +44,23 @@ public class Student {
 
     }
 
-    public void addToWishList() {
-
+    public void addToWishList(JobListing jobListing) {
+        if(wishList.contains(jobListing)) {
+            return;
+        }
+        wishList.add(jobListing);
     }
 
     public boolean removeFromWishList() {
         return true;
     }
+    
+    public void removeFromWishList(JobListing jobListing) {
+        wishList.remove(jobListing);
+    }
 
-    public void reviewEmployer() {
-
+    public void reviewEmployer(int rating, String review, User reviewee) {
+        new Review(rating, review, this, reviewee);
     }
 
     public String toString() {

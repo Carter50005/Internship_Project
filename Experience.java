@@ -10,7 +10,10 @@ public class Experience {
         this.startdate = startdate;
         this.endDate = endDate;
         this.description = description;
-        
+    }
+
+    public String toString() {
+        return title+"\nStart Date: "+startdate+"\nEnd Date: "+endDate+"\nDescription: "+description;
     }
     
 }

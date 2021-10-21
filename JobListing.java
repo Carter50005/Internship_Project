@@ -26,7 +26,7 @@ import java.util.ArrayList;
     }
 
     public void apply(Student student) {
-
+        applicants.add(student);
     }
 
     public String toString() {
@@ -37,19 +37,20 @@ import java.util.ArrayList;
 
     }
 
-    public void deleteListing() {
-
-    }
-
-    public ArrayList<Student> sortApplicants(ApplicantSortType sortType) {
+    public void sortApplicants(ApplicantSortType sortType) {
         
     }
 
-    public ArrayList<Student> viewApplicants() {
-
+    public ArrayList<Student> getApplicants() {
+        return this.applicants;
     }
 
     public String viewApplicant(Student student) {
-        
+        for(int i=0; i<applicants.size();i++) {
+            if(applicants.get(i) == student) {
+                return student.toString();
+            }
+        }
+        return "Not an applicant";
     }
  }

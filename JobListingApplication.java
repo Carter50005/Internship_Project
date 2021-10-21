@@ -10,8 +10,8 @@ public class JobListingApplication {
         
     }
 
-    public boolean logIn() {
-        return false;
+    public User logIn() {
+        
     }
 
     public void mainMenu() {

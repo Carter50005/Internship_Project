@@ -1,30 +1,60 @@
+import java.util.Random;
+
 public class User {
     
-    private String username;
-    private String password;
-    private Privaledges privaledges;
-    private char type;
+    protected String username;
+    protected String password;
+    protected char type;
+    protected String uUID;
+    private Random random = new Random();
 
-    public User(String username, String password, char type, Privaledges privaledges) {
+    public User(String username, String password, char type) {
         this. username = username;
         this.password = password;
-        this.privaledges = privaledges;
         this.type = type;
+        this.uUID = createUUID();
     }
 
-    public boolean verifyUsername() {
-        return username();
+    public User(String username, String password, char type, String uUID) {
+        this. username = username;
+        this.password = password;
+        this.type = type;
+        this.uUID = uUID;
     }
 
-    private boolean username() {
+    public boolean verifyUsername(String username) {
+        if(this.username == username) {
+            return true;
+        }
         return false;
     }
 
-    public boolean verifyPassowrd() {
-        return password();
+    public String getUsername() {
+        return this.username;
     }
 
-    private boolean password() {
+    public boolean verifyPassowrd(String password) {
+        if(this.password == password) {
+            return true;
+        }
         return false;
     }
+
+    public char getType() {
+        return this.type;
+    }
+
+    public String createUUID() {
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        return String.valueOf(alphabet.charAt(random.nextInt(alphabet.length())))+uUIDNumbers();
+    }
+
+    private String uUIDNumbers() {
+        String ret = "";
+        for(int i=0;i<6;i++) {
+            ret += random.nextInt(9);
+        }
+        return ret;
+    }
+
 }
