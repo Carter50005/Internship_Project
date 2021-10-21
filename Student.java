@@ -33,10 +33,6 @@ public class Student extends User {
 
     }
 
-    public String generateResume() {
-        return firstName + " " + lastName + "\n";
-    }
-
     public void applyForJob() {
 
     }
@@ -51,7 +47,7 @@ public class Student extends User {
     public boolean removeFromWishList() {
         return true;
     }
-    
+
     public void removeFromWishList(JobListing jobListing) {
         wishList.remove(jobListing);
     }
@@ -68,12 +64,4 @@ public class Student extends User {
         return this.firstName;
     }
 
-    public void addWorkExperience(Experience experience) {
-        workExperience.add(experience);
-    }
-
-    public void addExtraCurricular(Experience experience) {
-        extraCurriculars.add(experience);
-    }
- 
 }
