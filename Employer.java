@@ -44,13 +44,13 @@ public class Employer extends User{
     public String getCompanyLocation() {
         return this.companyLocation;
     }
-    public int companyRating() {
+    public int getCompanyRating() {
         return this.companyRating;
     }
     public ArrayList<JobListing> getCompanyListings() {
         return this.companyListings;
     }
-    public ArrayList<Review> reviews() {
+    public ArrayList<Review> getReviews() {
         return this.reviews;
     }
 }
