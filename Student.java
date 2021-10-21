@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Student extends User {
@@ -67,8 +68,20 @@ public class Student extends User {
         return this.lastName;
     }
 
-    private String getEmail() {
-        return this.
+    public String getEmail() {
+        return this.email;
+    }
+
+    public ArrayList<JobListing> getWishList() {
+        return this.wishList;
+    }
+
+    public ArrayList<Resume> getResumes() {
+        return this.resumes;
+    }
+
+    public ArrayList<Review> getReviews() {
+        return this.reviews;
     }
  
 }
