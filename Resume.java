@@ -11,7 +11,7 @@ public class Resume {
     private ArrayList<Experience> workExperiences;
     private ArrayList<Experience> extraCurriculars;
 
-    public Resume(Student student, String school, int classYear, String major, double gpa, ArrayList<String> skills, ArrayList<Experience> workExperiences, private ArrayList<Experience> extraCurriculars) {
+    public Resume(Student student, String school, int classYear, String major, double gpa, ArrayList<String> skills, ArrayList<Experience> workExperiences, ArrayList<Experience> extraCurriculars) {
         skills = new ArrayList<String>();
         workExperiences = new ArrayList<Experience>();
         extraCurriculars = new ArrayList<Experience>();
