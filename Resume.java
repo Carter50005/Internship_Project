@@ -29,7 +29,7 @@ public class Resume {
     }
 
     public String getMinor() {
-        return this.minor
+        return this.minor;
     }
 
     public double getGpa() {

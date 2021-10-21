@@ -28,10 +28,6 @@ public class Employer extends User{
         this.reviews = aReviews;
     }
 
-    //Getters
-    public String getUUID() {
-        return this.uUID;
-    }
     public String getCompanyName() {
         return this.companyName;
     }
