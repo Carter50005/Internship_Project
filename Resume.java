@@ -2,40 +2,21 @@ import java.util.ArrayList;
 
 public class Resume {
     private Student student;
-    private String school;
-    private int classYear;
-    private String major;
-    private String minor;
-    private double gpa;
+    private ArrayList<Education> educations;
     private ArrayList<String> skills;
     private ArrayList<Experience> workExperiences;
     private ArrayList<Experience> extraCurriculars;
 
     public Resume(Student student, String school, int classYear, String major, double gpa, ArrayList<String> skills, ArrayList<Experience> workExperiences, ArrayList<Experience> extraCurriculars) {
+        educations = new ArrayList<Education>();
         skills = new ArrayList<String>();
         workExperiences = new ArrayList<Experience>();
         extraCurriculars = new ArrayList<Experience>();
         this.student = student;
     }
 
-    public String getSchool() {
-        return this.school;
-    }
-
-    public int getClassYear() {
-        return this.classYear;
-    }
-
-    public String getMajor() {
-        return this.major;
-    }
-
-    public String getMinor() {
-        return this.minor;
-    }
-
-    public double getGpa() {
-        return this.gpa;
+    public ArrayList<Education> getEducations() {
+        return this.educations;
     }
 
     public ArrayList<String> getSkills() {
@@ -58,8 +39,35 @@ public class Resume {
         extraCurriculars.add(experience);
     }
 
-    public String toString() {
-        return "";
+    public void addEducation(Education education) {
+        educations.add(education);
     }
+
+    public String toString() {
+        return student.getFirstName() + " " + student.getLastName() + "\n" + student.getEmail() + " " + 
+        student.getPhoneNumber() + "\nEducation:\n" + printEducation() + "Work Experience:\n" + 
+        printExperiences(workExperiences) + "Extra Curriculars:\n" + printExperiences(extraCurriculars);
+    }
+
+    private String printEducation() {
+        String educationSection = "";
+
+        for(int i = 0; i < educations.size(); i++) {
+            educationSection = educationSection + educations.get(i).toString() + "\n";
+        }
+
+        return educationSection;
+    }
+
+    private String printExperiences(ArrayList<Experience> experiences) {
+        String experienceSection = "";
+
+        for(int i = 0; i < experiences.size(); i++) {
+            experienceSection = experienceSection + experiences.get(i).toString() + "\n";
+        }
+
+        return experienceSection;
+    }
+
 
 }

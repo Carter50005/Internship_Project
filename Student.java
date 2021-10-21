@@ -5,6 +5,7 @@ public class Student extends User {
     private String firstName;
     private String lastName;
     private String email;
+    private String phoneNumber;
     private ArrayList<JobListing> wishList;
     private ArrayList<Resume> resumes;
     private ArrayList<Review> reviews;
@@ -70,6 +71,10 @@ public class Student extends User {
 
     public String getEmail() {
         return this.email;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
     }
 
     public ArrayList<JobListing> getWishList() {
