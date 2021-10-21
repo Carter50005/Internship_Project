@@ -2,6 +2,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Student extends User {
+<<<<<<< HEAD
+
+=======
+>>>>>>> a6d4225094d3ce7fa273116d9aa04e28443301f3
     private String firstName;
     private String lastName;
     private String email;
@@ -47,7 +51,7 @@ public class Student extends User {
     public boolean removeFromWishList() {
         return true;
     }
-    
+
     public void removeFromWishList(JobListing jobListing) {
         wishList.remove(jobListing);
     }
@@ -64,6 +68,8 @@ public class Student extends User {
         return this.firstName;
     }
 
+<<<<<<< HEAD
+=======
     public String getLastName() {
         return this.lastName;
     }
@@ -84,4 +90,5 @@ public class Student extends User {
         return this.reviews;
     }
  
+>>>>>>> a6d4225094d3ce7fa273116d9aa04e28443301f3
 }
