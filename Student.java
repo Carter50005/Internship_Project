@@ -23,7 +23,7 @@ public class Student extends User {
 
     public Student(String username, String password, String studentID, String firstName, String lastName, String email, ArrayList<Resume> resumes, ArrayList<Review> reviews, ArrayList<JobListing> wishList)  {
         super(username, password, 's', studentID);
-        this.studentID = studentID;
+        this.uUID = studentID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -34,10 +34,6 @@ public class Student extends User {
 
     public void editAccount() {
 
-    }
-
-    public String generateResume() {
-        return "";
     }
 
     public void applyForJob() {
@@ -51,6 +47,10 @@ public class Student extends User {
         wishList.add(jobListing);
     }
 
+    public boolean removeFromWishList() {
+        return true;
+    }
+    
     public void removeFromWishList(JobListing jobListing) {
         wishList.remove(jobListing);
     }
@@ -61,6 +61,10 @@ public class Student extends User {
 
     public String toString() {
         return "";
+    }
+
+    public String getFirstName() {
+        return this.firstName;
     }
  
 }
