@@ -1,7 +1,10 @@
 public class Admin extends User {
 
+    public String uUID;
+
     public Admin(String username, String password) {
         super(username, password, 'a');
+        this.uUID = super.uUID;
     }
     public void editReview(Review review, Review editedReview) {
         review = editedReview;
