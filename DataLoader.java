@@ -25,17 +25,10 @@ public class DataLoader extends DataConstants{
 				char userType = (char)personJSON.get(USER_TYPE);
 				String uUID = (String)personJSON.get(USER_UUID);
 				if(userType == 's') {
-					String firstName = (String)personJSON.get(STUDENT_FIRST_NAME);
-					String lastName = (String)personJSON.get(STUDENT_LAST_NAME);
-					String email = (String)personJSON.get(STUDENT_EMAIL);
-					users.add(new Student(username, password, uUID, firstName, lastName, email));
+					users.add(getStudent(i, username, password, uUID, personJSON));
 				}
 				else if(userType == 'e') {
-					String name = (String)personJSON.get(EMPLOYER_NAME);
-					String description = (String)personJSON.get(EMPLOYER_DESCRIPTION);
-					String location = (String)personJSON.get(EMPLOYER_LOCATION);
-					int rating = (int)personJSON.get(EMPLOYER_RATING);
-					users.add(new Employer(username, password, name, description, location, rating));
+					users.add(getEmployer(i, username, password, uUID, personJSON));
 				}
 				else if(userType == 'a') {
 					users.add(new Admin(username, password, uUID));
@@ -59,5 +52,20 @@ public class DataLoader extends DataConstants{
 		
 		return null;
     }
+
+	private static Student getStudent(int i, String username, String password, String uUID, JSONObject personJSON) {
+		String firstName = (String)personJSON.get(STUDENT_FIRST_NAME);
+		String lastName = (String)personJSON.get(STUDENT_LAST_NAME);
+		String email = (String)personJSON.get(STUDENT_EMAIL);
+		return new Student(username, password, uUID, firstName, lastName, email);
+	} 
+
+	private static Employer getEmployer(int i, String username, String password, String uUID, JSONObject personJSON) {
+		String name = (String)personJSON.get(EMPLOYER_NAME);
+		String description = (String)personJSON.get(EMPLOYER_DESCRIPTION);
+		String location = (String)personJSON.get(EMPLOYER_LOCATION);
+		int rating = (int)personJSON.get(EMPLOYER_RATING);
+		return new Employer(username, password, name, description, location, rating);
+} 
 
 }
