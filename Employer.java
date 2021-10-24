@@ -18,6 +18,16 @@ public class Employer extends User{
         this.companyListings = new ArrayList<JobListing>();
     }
 
+    public Employer(String uUID, String username, String password, String aName, String aDescription, String aLocation, int aRating) {
+        super(username, password, 'e', uUID);
+        this.companyName = aName;
+        this.companyDescription = aDescription;
+        this.companyLocation = aLocation;
+        this.companyRating = aRating;
+        this.companyListings = new ArrayList<JobListing>();
+        this.reviews = new ArrayList<Review>();
+    }
+
     public Employer(String uUID, String username, String password, String aName, String aDescription, String aLocation, int aRating, ArrayList<JobListing> aListings, ArrayList<Review> aReviews) {
         super(username, password, 'e', uUID);
         this.companyName = aName;

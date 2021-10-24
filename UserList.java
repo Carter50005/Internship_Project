@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 
 public class UserList {
+    private static UserList userList;
     private ArrayList<User> users;
 
-    private UserList(ArrayList<User> users) {
-        this.users = users; // TODO call dataloader.. this will NOT be in finished product. 
-    }
-
     private UserList() {
-        //users = DataLoader.getUsers; this WILL be in finished product
+        users = DataLoader.getUsers();
     }
 
     public static UserList getInstance() {
-        return new UserList();
+        if(userList == null) {
+            return new UserList();
+        }
+        return userList;
     }
     public User MakeAccount() {
         return null;

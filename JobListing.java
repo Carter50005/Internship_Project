@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.Random;
 /**
  * Class that creates objects for job listings
  */
 
  public class JobListing {
 
+    private String id;
     private String postedDate;
     private String expirationDate;
     private ArrayList<String> desiredSkills;
@@ -15,6 +17,19 @@ import java.util.ArrayList;
     private Employer employer; 
 
     public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<Student> applicants, String location, int jobPay, Employer employer) {
+        this.id = createID();
+        this.postedDate = postedDate;
+        this.expirationDate = expirationDate;
+        this.desiredSkills = desiredSkills;
+        this.jobType = jobType;
+        this.location = location;
+        this.jobPay = jobPay;
+        this.applicants = applicants;
+        this.employer = employer;
+    }
+
+    public JobListing(String id, String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<Student> applicants, String location, int jobPay, Employer employer) {
+        this.id = id;
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
         this.desiredSkills = desiredSkills;
@@ -52,5 +67,20 @@ import java.util.ArrayList;
             }
         }
         return "Not an applicant";
+    }
+
+    public String createID() {
+        Random random = new Random();
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        return String.valueOf(alphabet.charAt(random.nextInt(alphabet.length())))+uUIDNumbers();
+    }
+
+    private String uUIDNumbers() {
+        Random random = new Random();
+        String ret = "";
+        for(int i=0;i<6;i++) {
+            ret += random.nextInt(9);
+        }
+        return ret;
     }
  }
