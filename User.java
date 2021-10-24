@@ -29,6 +29,10 @@ public class User {
         return false;
     }
 
+    public String getUUID() {
+        return this.uUID;
+    }
+
     public String getUsername() {
         return this.username;
     }

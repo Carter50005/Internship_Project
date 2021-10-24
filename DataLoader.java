@@ -10,11 +10,9 @@ public class DataLoader extends DataConstants{
     
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<User>();
-		ArrayList<JobListing> listings = new ArrayList<JobListing>();
 
         try {
 			FileReader reader = new FileReader(USER_FILE_NAME);
-			FileReader reader2 = new FileReader(LISTING_FILE_NAME);
 			JSONParser parser = new JSONParser();	
 			JSONArray peopleJSON = (JSONArray)new JSONParser().parse(reader);
 			
@@ -66,6 +64,6 @@ public class DataLoader extends DataConstants{
 		String location = (String)personJSON.get(EMPLOYER_LOCATION);
 		int rating = (int)personJSON.get(EMPLOYER_RATING);
 		return new Employer(username, password, name, description, location, rating);
-} 
+	} 
 
 }

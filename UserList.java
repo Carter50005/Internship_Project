@@ -20,9 +20,9 @@ public class UserList {
     public User login(String username) {
         return null;
     }
-    public User findUser(String username) {
+    public User findUser(String uUID) {
         for(int i=0;i<users.size();i++) {
-            if(users.get(i).getUsername() == username) {
+            if(users.get(i).getUUID() == uUID) {
                 return users.get(i);
             }
         }
