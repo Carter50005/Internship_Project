@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 public class JobListingsList {
-    Enumeration SortType;
     
     private ArrayList<JobListing> jobListings;
 
@@ -27,7 +26,7 @@ public class JobListingsList {
     }
 
     public ArrayList<JobListing> sortListings(SortType sortType) {
-      for (Enumeration<E> e =   
+       
         
     }
 
