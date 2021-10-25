@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class User {
+public abstract class User {
     
     protected String username;
     protected String password;

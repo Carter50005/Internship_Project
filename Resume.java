@@ -7,12 +7,13 @@ public class Resume {
     private ArrayList<Experience> workExperiences;
     private ArrayList<Experience> extraCurriculars;
 
-    public Resume(Student student, String school, int classYear, String major, double gpa, ArrayList<String> skills, ArrayList<Experience> workExperiences, ArrayList<Experience> extraCurriculars) {
+    public Resume(Student student, ArrayList<Education> educations, ArrayList<String> skills, ArrayList<Experience> workExperiences, ArrayList<Experience> extraCurriculars) {
         educations = new ArrayList<Education>();
         skills = new ArrayList<String>();
         workExperiences = new ArrayList<Experience>();
         extraCurriculars = new ArrayList<Experience>();
         this.student = student;
+        addResume();
     }
 
     public ArrayList<Education> getEducations() {
@@ -69,5 +70,7 @@ public class Resume {
         return experienceSection;
     }
 
-
+    private void addResume() {
+        student.addResume(this);
+    }
 }

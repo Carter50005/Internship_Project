@@ -1,6 +1,5 @@
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,7 +13,7 @@ public class DataLoader extends DataConstants{
         try {
 			FileReader reader = new FileReader(USER_FILE_NAME);
 			JSONParser parser = new JSONParser();	
-			JSONArray peopleJSON = (JSONArray)new JSONParser().parse(reader);
+			JSONArray peopleJSON = (JSONArray)parser.parse(reader);
 			
 			for(int i=0; i < peopleJSON.size(); i++) {
 				JSONObject personJSON = (JSONObject)peopleJSON.get(i);
@@ -23,10 +22,10 @@ public class DataLoader extends DataConstants{
 				char userType = (char)personJSON.get(USER_TYPE);
 				String uUID = (String)personJSON.get(USER_UUID);
 				if(userType == 's') {
-					users.add(getStudent(i, username, password, uUID, personJSON));
+					users.add(loadStudent(username, password, uUID, personJSON));
 				}
 				else if(userType == 'e') {
-					users.add(getEmployer(i, username, password, uUID, personJSON));
+					users.add(loadEmployer(username, password, uUID, personJSON));
 				}
 				else if(userType == 'a') {
 					users.add(new Admin(username, password, uUID));
@@ -51,19 +50,86 @@ public class DataLoader extends DataConstants{
 		return null;
     }
 
-	private static Student getStudent(int i, String username, String password, String uUID, JSONObject personJSON) {
+	/**
+	 * retuens student 
+	 * @param username 
+	 * @param password
+	 * @param uUID
+	 * @param personJSON array of users
+	 * @return instance of student 
+	 */
+	private static Student loadStudent(String username, String password, String uUID, JSONObject personJSON) {
 		String firstName = (String)personJSON.get(STUDENT_FIRST_NAME);
 		String lastName = (String)personJSON.get(STUDENT_LAST_NAME);
 		String email = (String)personJSON.get(STUDENT_EMAIL);
+		loadResumes(personJSON, new Student(username, password, uUID, firstName, lastName, email));
 		return new Student(username, password, uUID, firstName, lastName, email);
 	} 
 
-	private static Employer getEmployer(int i, String username, String password, String uUID, JSONObject personJSON) {
+	private static Employer loadEmployer(String username, String password, String uUID, JSONObject personJSON) {
 		String name = (String)personJSON.get(EMPLOYER_NAME);
 		String description = (String)personJSON.get(EMPLOYER_DESCRIPTION);
 		String location = (String)personJSON.get(EMPLOYER_LOCATION);
 		int rating = (int)personJSON.get(EMPLOYER_RATING);
 		return new Employer(username, password, name, description, location, rating);
 	} 
+
+	/**
+	 * Loads resumes
+	 * @param personJSON person whos resumes are being loaded
+	 * @param student student who resumes should be added to
+	 * @return ArrayList of type resume
+	 */
+	private static ArrayList<Resume> loadResumes(JSONObject personJSON, Student student) {
+		ArrayList<Resume> ret = new ArrayList<Resume>();
+		JSONArray resumes = (JSONArray)personJSON.get(STUDENT_RESUMES);
+		for(int i=0;i<resumes.size();i++) {
+			JSONObject resume = (JSONObject)resumes.get(i);
+
+			JSONArray educationsArray = (JSONArray)resume.get(RESUME_EDUCATIONS);
+			ArrayList<Education> educations = new ArrayList<Education>();
+			for(int j=0;j<educationsArray.size();j++) {
+				JSONObject education = (JSONObject)educationsArray.get(j);
+				String school = (String)education.get(EDUCATIONS_SCHOOL);
+				int classYear = (int)education.get(EDUCATIONS_YEAR);
+				String major = (String)education.get(EDUCATIONS_MAJOR);
+				String minor = (String)education.get(EDUCATIONS_MINOR);
+				double gpa = (double)education.get(EDUCATIONS_GPA);
+				educations.add(new Education(school, classYear, major, minor, gpa));
+			}
+
+			ArrayList<String> skills = new ArrayList<String>();
+			JSONArray skillsArray = (JSONArray)resume.get(RESUME_SKILLS);
+			for(int k=0;k<skillsArray.size();k++) {
+				JSONObject skill = (JSONObject)skillsArray.get(k);
+				skills.add((String)skill.get(SKILLS_SKILL));
+			}
+
+			ArrayList<Experience> workExperiences = new ArrayList<Experience>();
+			JSONArray workArray = (JSONArray)resume.get(RESUME_WORK);
+			for(int k=0;k<workArray.size();k++) {
+					JSONObject experience = (JSONObject)workArray.get(k);
+					String title = (String)experience.get(EXPERIENCE_TITLE);
+					String startDate = (String)experience.get(EXPERIENCE_START);
+					String endDate = (String)experience.get(EXPERIENCE_END);
+					String description = (String)experience.get(EXPERIENCE_DESCRIPTION);
+					workExperiences.add(new Experience(title, startDate, endDate, description));
+			}
+
+			ArrayList<Experience> extraCurriculars = new ArrayList<Experience>();
+			JSONArray extraArray = (JSONArray)resume.get(RESUME_EXTRACURRICULARS);
+			for(int k=0;k<extraArray.size();k++) {
+					JSONObject experience = (JSONObject)extraArray.get(k);
+					String title = (String)experience.get(EXPERIENCE_TITLE);
+					String startDate = (String)experience.get(EXPERIENCE_START);
+					String endDate = (String)experience.get(EXPERIENCE_END);
+					String description = (String)experience.get(EXPERIENCE_DESCRIPTION);
+					workExperiences.add(new Experience(title, startDate, endDate, description));
+			}
+
+			ret.add(new Resume(student, educations, skills, workExperiences, extraCurriculars);
+		}
+		return ret;
+	}
 
 }

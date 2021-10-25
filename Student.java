@@ -88,5 +88,13 @@ public class Student extends User {
     public ArrayList<Review> getReviews() {
         return this.reviews;
     }
+
+    public void addReview(Review review) {
+        reviews.add(review);
+    }
+
+    public void addResume(Resume resume) {
+        resumes.add(resume);
+    }
  
 }

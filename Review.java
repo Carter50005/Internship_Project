@@ -24,4 +24,8 @@ public class Review {
     public User getReviewee() {
         return this.reviewee;
     }
+
+    public void addReview() {
+        
+    }
 }
