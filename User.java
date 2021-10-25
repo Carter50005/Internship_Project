@@ -9,14 +9,14 @@ public class User {
     private Random random = new Random();
 
     public User(String username, String password, char type) {
-        this. username = username;
+        this.username = username;
         this.password = password;
         this.type = type;
         this.uUID = createUUID();
     }
 
     public User(String username, String password, char type, String uUID) {
-        this. username = username;
+        this.username = username;
         this.password = password;
         this.type = type;
         this.uUID = uUID;

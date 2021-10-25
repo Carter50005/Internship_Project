@@ -26,6 +26,7 @@ public class JobListingsList {
 
     public ArrayList<JobListing> sortListings(SortType sortType) {
         
+        
     }
 
     public boolean contains(JobListing jobListing) {
