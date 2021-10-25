@@ -16,6 +16,7 @@ import java.util.Random;
     private ArrayList<Student> applicants;
     private Employer employer; 
 
+    //Constructors
     public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<Student> applicants, String location, int jobPay, Employer employer) {
         this.id = createID();
         this.postedDate = postedDate;
@@ -27,7 +28,6 @@ import java.util.Random;
         this.applicants = applicants;
         this.employer = employer;
     }
-
     public JobListing(String id, String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<Student> applicants, String location, int jobPay, Employer employer) {
         this.id = id;
         this.postedDate = postedDate;
@@ -38,6 +38,35 @@ import java.util.Random;
         this.jobPay = jobPay;
         this.applicants = applicants;
         this.employer = employer;
+    }
+
+    //Getters
+    public String getId() {
+        return this.id;
+    }
+    public String getPostedDate() {
+        return this.getPostedDate();
+    }
+    public String getExpirationDate() {
+        return this.expirationDate;
+    }
+    public ArrayList<String> getDesiredSkills() {
+        return this.desiredSkills;
+    }
+    public JobType getJobType() {
+        return this.jobType;
+    }
+    public String getLocation() {
+        return this.location;
+    }
+    public int getJobPay() {
+        return this.jobPay;
+    }
+    public ArrayList<Student> getApplicants() {
+        return this.applicants;
+    }
+    public Employer getEmployer() {
+        return this.employer;
     }
 
     public void apply(Student student) {
@@ -54,10 +83,6 @@ import java.util.Random;
 
     public void sortApplicants(ApplicantSortType sortType) {
         
-    }
-
-    public ArrayList<Student> getApplicants() {
-        return this.applicants;
     }
 
     public String viewApplicant(Student student) {
