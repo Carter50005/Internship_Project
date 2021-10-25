@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 public class JobListingsList {
     
@@ -25,6 +26,7 @@ public class JobListingsList {
     }
 
     public ArrayList<JobListing> sortListings(SortType sortType) {
+       
         
     }
 
