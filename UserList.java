@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class UserList extends User {
 public class UserList {
     private static UserList userList;
     private ArrayList<User> users;
@@ -23,7 +22,7 @@ public class UserList {
         User.getUsername =  username;
         User.getPassword = password;
         String userUsername = keybaord.nextLine();
-        if(this.username == userUsersame) {
+        if(this.username == username) {
             return true;
             System.out.print("Enter Password");
         }
