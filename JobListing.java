@@ -41,6 +41,11 @@ import java.util.Random;
         this.employer = employer;
     }
 
+    //Setter
+    public void setEmployer(Employer aEmployer) {
+        this.employer = aEmployer;
+    }
+
     //Getters
     public String getId() {
         return this.id;

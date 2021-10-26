@@ -56,4 +56,40 @@ public class Employer extends User{
     public ArrayList<Review> getReviews() {
         return this.reviews;
     }
+
+    public void editAccount(String username, String password, String aName, String aDescription, String aLocation, int aRating) {
+        if(username.length()>0) {
+            super.username = username;
+        }
+        if(password.length()>0) {
+            super.password = password;
+        }
+        if(aName.length()>0) {
+            this.companyName = aName;
+        }
+        if(aDescription.length()>0) {
+            this.Description = aDescription;
+        }
+        if(aLocation.length()>0) {
+            this.companyLocation = aLocation;
+        }
+    }
+    public void addListing(JobListing listing) {
+        listing.setEmployer(this);
+        companyListings.add(listing);
+        JobListingList.getInstance().addListing(listing);
+    }
+    public void removeListing(JobListing listing) {
+        if(companyListings.contains(listing)) {
+            companyListings.remove(listing);
+        }
+        if(JobListingList.getInstance().contains(listing)) {
+            JobListingList.getInstance().remove(listing);
+        }
+        for(int i = 0; i<UserList.getInstance.getUsers().length; i++) {
+            if(UserList.getInstance.getUsers().get(i).getType=='s' && UserList.getInstance.getUsers().get(i).getWishList.contains(listing)) {
+                UserList.getInstance.getUsers().get(i).removeFromWishList(listing);
+            }
+        }
+    }
 }
