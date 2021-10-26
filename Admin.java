@@ -14,11 +14,29 @@ public class Admin extends User {
     }
 
     public void deleteUser(User user) {
-        
+        UserList.getInstance().getUsers().remove(User);
+        JobListingsList listings = JobListingsList.getInstance();
+        if(user.getType()=='s') {
+            for(int i = 0; i<listings.getJobListings().size(); i++) {
+                for (int j = 0; j<listings.getJobListings().get(i).getApplicants().size(); j++)
+                if(listings.getJobListings().get(i).getApplicants().get(j).getStudent().equals(user)) {
+                    listings.getJobListings().get(i).removeApplicant(listings.getJobListings().get(i).getApplicants().get(j));
+                }
+            }
+        }
+        else if(user.getType()=='e') {
+            for(int i = 0; i<user.getCompanyListings().size(); i++) {
+                user.removeListing(user.getCompanyListings().get(i));
+            }
+        }
     }
 
-    public void deleteReview(Review review) {
-
+    public void deleteReview(User user, Review review) {
+        if(user.getType()=='s' || user.getType()=='e') {
+            if(user.getReviews().contains(review)) {
+                user.removeReview(review);
+            }
+        }
     }
 
     public void editUser(User user, User editedUser) {

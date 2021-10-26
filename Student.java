@@ -109,4 +109,7 @@ public class Student extends User {
         this.wishListIDS = listingIDS;
     }
  
+    public void removeReview(Review review) {
+        reviews.remove(review);
+    }
 }

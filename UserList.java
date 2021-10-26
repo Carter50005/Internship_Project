@@ -49,5 +49,8 @@ public class UserList {
         }
         return null;
     }
-}
+
+    public ArrayList<User> getUsers() {
+        return this.users;
+    }
 }
