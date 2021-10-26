@@ -44,6 +44,10 @@ public abstract class User {
         return false;
     }
 
+    public String getPassword() {
+        return this.password;
+    }
+
     public char getType() {
         return this.type;
     }
