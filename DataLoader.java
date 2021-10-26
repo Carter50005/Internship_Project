@@ -12,7 +12,7 @@ public class DataLoader extends DataConstants{
 
         try {
 			FileReader reader = new FileReader(USER_FILE_NAME);
-			JSONParser parser = new JSONParser();	
+			JSONParser parser = new JSONParser();
 			JSONArray peopleJSON = (JSONArray)parser.parse(reader);
 			
 			for(int i=0; i < peopleJSON.size(); i++) {
@@ -22,7 +22,18 @@ public class DataLoader extends DataConstants{
 				char userType = (char)personJSON.get(USER_TYPE);
 				String uUID = (String)personJSON.get(USER_UUID);
 				if(userType == 's') {
-					users.add(loadStudent(username, password, uUID, personJSON));
+					Student student = loadStudent(username, password, uUID, personJSON);
+					student.setResumes(loadResumes(personJSON, student));
+					student.setReviews(loadReviews(personJSON));
+					ArrayList<String> wishlist = new ArrayList<String>();
+					JSONArray wishlistArray = (JSONArray)personJSON.get(STUDENT_WISHLIST);
+					for(int k=0;k<wishlistArray.size();k++) {
+						JSONObject listing = (JSONObject)wishlistArray.get(k);
+						String wishlistID = (String)listing.get(WISHLIST_ID);
+						wishlist.add(wishlistID);
+					}
+					student.setWishlist(wishlist);
+					users.add(student);
 				}
 				else if(userType == 'e') {
 					users.add(loadEmployer(username, password, uUID, personJSON));
@@ -40,6 +51,12 @@ public class DataLoader extends DataConstants{
 		
 		return null;
     }
+
+	public static ArrayList<JobListing> getJobListings() {
+		ArrayList<JobListing> ret = new ArrayList<JobListing>();
+		
+		return ret;
+	}
 
 	/**
 	 * retuens student 
@@ -118,7 +135,21 @@ public class DataLoader extends DataConstants{
 					workExperiences.add(new Experience(title, startDate, endDate, description));
 			}
 
-			ret.add(new Resume(student, educations, skills, workExperiences, extraCurriculars);
+			ret.add(new Resume(student, educations, skills, workExperiences, extraCurriculars));
+		}
+		return ret;
+	}
+
+	private static ArrayList<Review> loadReviews(JSONObject personJSON) {
+		ArrayList<Review> ret = new ArrayList<Review>();
+		JSONArray reviewsArray = (JSONArray)personJSON.get(USER_REVIEWS);
+		for(int i=0;i<reviewsArray.size();i++) {
+			JSONObject review = (JSONObject)reviewsArray.get(i);
+			int rating = (int)review.get(REVIEW_RATING);
+			String reviewDes = (String)review.get(REVIEW_REVIEW);
+			String revieweeID = (String)review.get(REVIEW_REVIEWEE);
+			String reviewerID = (String)review.get(REVIEW_REVIEWER);
+			ret.add(new Review(rating, reviewDes, reviewerID, revieweeID));
 		}
 		return ret;
 	}

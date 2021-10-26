@@ -3,26 +3,26 @@ public class Review {
     
     private int rating;
     private String review;
-    private User reviewer;
-    private User reviewee;
+    private String reviewerID;
+    private String revieweeID;
 
-    public Review(int rating, String review, User reviewer, User reviewee) {
+    public Review(int rating, String review, String reviewer, String reviewee) {
         this.rating = rating;
         this.review = review;
-        this.reviewer = reviewer;
-        this.reviewee = reviewee;
+        this.reviewerID = reviewer;
+        this.revieweeID = reviewee;
     }
 
     public String toString() {
         return "Rating: "+rating+"\nReview: "+review;
     }
 
-    public User getReviewer() {
-        return this.reviewer;
+    public String getReviewerID() {
+        return this.reviewerID;
     }
 
-    public User getReviewee() {
-        return this.reviewee;
+    public String getRevieweeID() {
+        return this.revieweeID;
     }
 
     public void addReview() {

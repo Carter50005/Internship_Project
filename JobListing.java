@@ -13,12 +13,13 @@ import java.util.Random;
     private JobType jobType;
     private String location;
     private int jobPay;
-    private ArrayList<Applicant> applicants;
-    private ArrayList<String> additionalMaterial;
+    private ArrayList<Student> applicants;
+    private ArrayList<String> applicantIDS;
+    private String employerID;
     private Employer employer;
 
     //Constructors
-    public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<Applicant> applicants, String location, int jobPay, Employer employer) {
+    public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
         this.id = createID();
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
@@ -26,10 +27,11 @@ import java.util.Random;
         this.jobType = jobType;
         this.location = location;
         this.jobPay = jobPay;
-        this.applicants = applicants;
-        this.employer = employer;
+        this.applicantIDS = applicantIDS;
+        this.employerID = employerID;
     }
-    public JobListing(String id, String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<Applicant> applicants, String location, int jobPay, Employer employer) {
+
+    public JobListing(String id, String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
         this.id = id;
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
@@ -37,8 +39,8 @@ import java.util.Random;
         this.jobType = jobType;
         this.location = location;
         this.jobPay = jobPay;
-        this.applicants = applicants;
-        this.employer = employer;
+        this.applicantIDS = applicantIDS;
+        this.employerID = employerID;
     }
 
     //Setter
@@ -76,9 +78,10 @@ import java.util.Random;
     }
 
     public void apply(Student student) {
-        if(student!=null) {
-            Applicant applicant = new Applicant(student);
-            applicants.add(applicant);
+
+        if(student!=null && !(applicants.contains(student))) {
+          applicants.add(student);
+          applicantIDS.add(student.getUUID());
         }
     }
 
@@ -95,7 +98,7 @@ import java.util.Random;
 
     public void uploadMaterial(String material, Student student) {
         for(int i=0; i<applicants.size();i++) {
-            if(applicants.get(i).getStudent() == student) {
+            if(applicants.get(i) == student) {
                 applicants.get(i).addAdditionalMaterial(material);
                 return;
             }
@@ -112,7 +115,11 @@ import java.util.Random;
         return applicants;
     }
 
-    public void removeApplicant(Applicant applicant) {
+    public ArrayList<String> getApplicantIDS() {
+        return this.applicantIDS;
+    }
+
+    public void removeApplicant(Student applicant) {
         applicants.remove(applicant);
     }
 
@@ -172,5 +179,9 @@ import java.util.Random;
                 }
             }
         }
+    }
+
+    public String getUUID() {
+        return this.id;
     }
  }

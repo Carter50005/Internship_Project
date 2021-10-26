@@ -9,6 +9,7 @@ public class DataConstants {
     protected static final String STUDENT_LAST_NAME = "lastName";
     protected static final String STUDENT_EMAIL = "email";
     protected static final String STUDENT_WISHLIST = "wishList";
+    protected static final String WISHLIST_ID = "jobListingID";
     protected static final String STUDENT_RESUMES = "resumes";
     protected static final String RESUME_EDUCATIONS = "educations";
     protected static final String EDUCATIONS_SCHOOL = "school";
@@ -24,7 +25,11 @@ public class DataConstants {
     protected static final String EXPERIENCE_START = "startDate";
     protected static final String EXPERIENCE_END = "endDate";
     protected static final String EXPERIENCE_DESCRIPTION = "description";
-    protected static final String STUDENT_REVIEWS = "reviews";
+    protected static final String USER_REVIEWS = "reviews";
+    protected static final String REVIEW_RATING = "rating";
+    protected static final String REVIEW_REVIEW = "review";
+    protected static final String REVIEW_REVIEWER = "reviewer";
+    protected static final String REVIEW_REVIEWEE = "reviewee";
     protected static final String EMPLOYER_NAME = "companyName";
     protected static final String EMPLOYER_DESCRIPTION = "companyDescription";
     protected static final String EMPLOYER_LOCATION = "companyLocation";

@@ -6,7 +6,7 @@ public class Student extends User {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private ArrayList<JobListing> wishList;
+    private ArrayList<String> wishListIDS;
     private ArrayList<Resume> resumes;
     private ArrayList<Review> reviews;
 
@@ -17,17 +17,17 @@ public class Student extends User {
         this.email = email;
         this.resumes = new ArrayList<Resume>();
         this.reviews = new ArrayList<Review>();
-        this.wishList = new ArrayList<JobListing>();
+        this.wishListIDS = new ArrayList<String>();
     }
 
-    public Student(String username, String password, String studentID, String firstName, String lastName, String email, ArrayList<Resume> resumes, ArrayList<Review> reviews, ArrayList<JobListing> wishList)  {
+    public Student(String username, String password, String studentID, String firstName, String lastName, String email, ArrayList<Resume> resumes, ArrayList<Review> reviews, ArrayList<String> wishList)  {
         super(username, password, 's', studentID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.resumes = resumes;
         this.reviews = reviews;
-        this.wishList = wishList;
+        this.wishListIDS = wishList;
     }
 
     public void editAccount() {
@@ -39,10 +39,10 @@ public class Student extends User {
     }
 
     public void addToWishList(JobListing jobListing) {
-        if(wishList.contains(jobListing)) {
+        if(wishListIDS.contains(jobListing.getUUID())) {
             return;
         }
-        wishList.add(jobListing);
+        wishListIDS.add(jobListing.getUUID());
     }
 
     public boolean removeFromWishList() {
@@ -50,11 +50,11 @@ public class Student extends User {
     }
 
     public void removeFromWishList(JobListing jobListing) {
-        wishList.remove(jobListing);
+        wishListIDS.remove(jobListing.getUUID());
     }
 
     public void reviewEmployer(int rating, String review, User reviewee) {
-        new Review(rating, review, this, reviewee);
+        new Review(rating, review, this.getUUID(), reviewee.getUUID());
     }
 
     public String toString() {
@@ -77,8 +77,8 @@ public class Student extends User {
         return this.phoneNumber;
     }
 
-    public ArrayList<JobListing> getWishList() {
-        return this.wishList;
+    public ArrayList<String> getWishList() {
+        return this.wishListIDS;
     }
 
     public ArrayList<Resume> getResumes() {
@@ -95,6 +95,18 @@ public class Student extends User {
 
     public void addResume(Resume resume) {
         resumes.add(resume);
+    }
+
+    public void setResumes(ArrayList<Resume> resumes) {
+        this.resumes = resumes;
+    }
+
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
+    } 
+
+    public void setWishlist(ArrayList<String> listingIDS) {
+        this.wishListIDS = listingIDS;
     }
  
     public void removeReview(Review review) {
