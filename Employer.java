@@ -68,7 +68,7 @@ public class Employer extends User{
             this.companyName = aName;
         }
         if(aDescription.length()>0) {
-            this.Description = aDescription;
+            this.companyDescription = aDescription;
         }
         if(aLocation.length()>0) {
             this.companyLocation = aLocation;
@@ -83,12 +83,12 @@ public class Employer extends User{
         if(companyListings.contains(listing)) {
             companyListings.remove(listing);
         }
-        if(JobListingList.getInstance().contains(listing)) {
-            JobListingList.getInstance().remove(listing);
+        if(JobListingsList.getInstance().contains(listing)) {
+            JobListingsList.getInstance().remove(listing);
         }
-        for(int i = 0; i<UserList.getInstance.getUsers().length; i++) {
-            if(UserList.getInstance.getUsers().get(i).getType=='s' && UserList.getInstance.getUsers().get(i).getWishList.contains(listing)) {
-                UserList.getInstance.getUsers().get(i).removeFromWishList(listing);
+        for(int i = 0; i<UserList.getInstance().getUsers().size(); i++) {
+            if(UserList.getInstance().getUsers().get(i).getType()=='s' && UserList.getInstance().getUsers().get(i).getWishList().contains(listing)) {
+                UserList.getInstance().getUsers().get(i).removeFromWishList(listing);
             }
         }
     }
