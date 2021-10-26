@@ -13,10 +13,10 @@ import java.util.Random;
     private JobType jobType;
     private String location;
     private int jobPay;
-    private ArrayList<Student> applicants;
-    private Employer employer; 
+    private ArrayList<String> applicantIDS;
+    private String employerID; 
 
-    public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<Student> applicants, String location, int jobPay, Employer employer) {
+    public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
         this.id = createID();
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
@@ -24,11 +24,11 @@ import java.util.Random;
         this.jobType = jobType;
         this.location = location;
         this.jobPay = jobPay;
-        this.applicants = applicants;
-        this.employer = employer;
+        this.applicantIDS = applicantIDS;
+        this.employerID = employerID;
     }
 
-    public JobListing(String id, String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<Student> applicants, String location, int jobPay, Employer employer) {
+    public JobListing(String id, String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
         this.id = id;
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
@@ -36,12 +36,12 @@ import java.util.Random;
         this.jobType = jobType;
         this.location = location;
         this.jobPay = jobPay;
-        this.applicants = applicants;
-        this.employer = employer;
+        this.applicantIDS = applicantIDS;
+        this.employerID = employerID;
     }
 
     public void apply(Student student) {
-        applicants.add(student);
+        applicantIDS.add(student.getUUID());
     }
 
     public String toString() {
@@ -56,13 +56,13 @@ import java.util.Random;
         
     }
 
-    public ArrayList<Student> getApplicants() {
-        return this.applicants;
+    public ArrayList<String> getApplicants() {
+        return this.applicantIDS;
     }
 
     public String viewApplicant(Student student) {
-        for(int i=0; i<applicants.size();i++) {
-            if(applicants.get(i) == student) {
+        for(int i=0; i<applicantIDS.size();i++) {
+            if(applicantIDS.get(i) == student.getUUID()) {
                 return student.toString();
             }
         }
@@ -82,5 +82,9 @@ import java.util.Random;
             ret += random.nextInt(9);
         }
         return ret;
+    }
+
+    public String getUUID() {
+        return this.id;
     }
  }

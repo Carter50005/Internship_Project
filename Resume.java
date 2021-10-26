@@ -13,7 +13,6 @@ public class Resume {
         workExperiences = new ArrayList<Experience>();
         extraCurriculars = new ArrayList<Experience>();
         this.student = student;
-        addResume();
     }
 
     public ArrayList<Education> getEducations() {
@@ -70,7 +69,4 @@ public class Resume {
         return experienceSection;
     }
 
-    private void addResume() {
-        student.addResume(this);
-    }
 }
