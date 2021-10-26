@@ -18,28 +18,15 @@ public class UserList {
     public User MakeAccount() {
         return null;
     }
-    public User login(String username, String password) {
+    public boolean login(String username, String password) {
         User.getUsername =  username;
         User.getPassword = password;
-        String userUsername = keybaord.nextLine();
-        if(this.username == username) {
+        if(this.username == username && this.password == password) {
             return true;
-            System.out.print("Enter Password");
         }
         else {
             return false;
-            System.out.println("Wrong password");
         }
-        String userPassword = keybaord.nextLine();
-        if(this.password == userPassword) {
-            return true;
-            System.out.print("Welcome");
-        }
-        else {
-            return false;
-            System.out.println("Wrong password");
-        }
- 
     }
     public User findUser(String uUID) {
         for(int i=0;i<users.size();i++) {
