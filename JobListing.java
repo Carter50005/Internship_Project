@@ -112,6 +112,10 @@ import java.util.Random;
         return applicants;
     }
 
+    public void removeApplicant(Applicant applicant) {
+        applicants.remove(applicant);
+    }
+
     public String viewApplicants() {
         String applicantsString = "";
         for(int i = 0; i < applicants.size(); i++) {

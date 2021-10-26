@@ -92,4 +92,8 @@ public class Employer extends User{
             }
         }
     }
+
+    public void removeReview(Review review) {
+        reviews.remove(review);
+    }
 }

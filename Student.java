@@ -97,4 +97,7 @@ public class Student extends User {
         resumes.add(resume);
     }
  
+    public void removeReview(Review review) {
+        reviews.remove(review);
+    }
 }

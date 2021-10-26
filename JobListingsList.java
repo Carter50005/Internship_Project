@@ -13,6 +13,9 @@ public class JobListingsList {
     public static JobListingList getInstance() {
         return jobListingList;
     }
+    public ArrayList<JobListing> getJobListings() {
+        return this.jobListings;
+    }
 
     public void addListing(JobListing jobListing) {
         if(!contains(jobListing)) {
