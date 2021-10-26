@@ -45,11 +45,12 @@ public class applicationUI {
         System.out.println();
         System.out.print("Enter your password: ");
         String password = scanner.nextLine();
-        System.out.print.ln()
+        System.out.println();
         if(application.login(username,password)) {
-            System.out.println("---Loging In---")
+            System.out.println("---Loging In---");
+            if(application.)
         } else {
-            System.out.println("Wong Password")
+            System.out.println("Wong Password");
             login();
         }
     }
@@ -62,6 +63,7 @@ public class applicationUI {
         System.out.println("Are you a (S)tudent or (E)mployer")
         String account = scanner.nextLine();
         char type =  account.charAt(0);
+        application.createAccount(username, password, type);
 
     }
 

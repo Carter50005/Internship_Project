@@ -8,8 +8,10 @@ public class JobListingApplication {
         jobs = JobListingsList.getInstance();
     }
 
-    public boolean createAccount(String username, String Password, char type) {
-        if(!findUser)
+    public boolean createAccount(String username, String password, char type) {
+        if(!findUser(username,password)) {
+            users.createAccount();
+        }
     }
 
     public boolean login(String username, String password) {
@@ -20,7 +22,7 @@ public class JobListingApplication {
         }
     }
 
-    public void mainMenu() {
-        
+    public char findAccountType() {
+        users.
     }
 }
