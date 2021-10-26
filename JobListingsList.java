@@ -4,13 +4,16 @@ import java.util.Enumeration;
 public class JobListingsList {
     
     private ArrayList<JobListing> jobListings;
-    private static JobListingList jobListingList = new JobListingsList();
+    private static JobListingsList jobListingList = new JobListingsList();
 
     public JobListingsList() {
-        //jobListings = DataLoader.getJobListings();
+        jobListings = DataLoader.getJobListings();
     }
 
-    public static JobListingList getInstance() {
+    public static JobListingsList getInstance() {
+        if(jobListingList == null) {
+            return new JobListingsList();
+        }
         return jobListingList;
     }
     public ArrayList<JobListing> getJobListings() {

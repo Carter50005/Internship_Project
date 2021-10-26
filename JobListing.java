@@ -98,7 +98,7 @@ import java.util.Random;
 
     public void uploadMaterial(String material, Student student) {
         for(int i=0; i<applicants.size();i++) {
-            if(applicants.get(i).getStudent() == student) {
+            if(applicants.get(i) == student) {
                 applicants.get(i).addAdditionalMaterial(material);
                 return;
             }
