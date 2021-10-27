@@ -18,16 +18,15 @@ public class UserList {
     public User MakeAccount() {
         return null;
     }
-    public boolean login(String username, String password) {
-        User.getUsername =  username;
-        User.getPassword = password;
-        if(this.username == username && this.password == password) {
-            return true;
+    public User login(String username, String password) {
+        for(int i=0;i<users.size();i++) {
+            if(users.get(i).getUsername() == username && users.get(i).getPassword() == password) {
+                return users.get(i);
+            }
         }
-        else {
-            return false;
-        }
+        return null;
     }
+
     public User findUser(String uUID) {
         for(int i=0;i<users.size();i++) {
             if(users.get(i).getUUID() == uUID) {
@@ -35,6 +34,15 @@ public class UserList {
             }
         }
         return null;
+    }
+
+    public boolean containsUser(String username) {
+        for(int i=0;i<users.size();i++) {
+            if(users.get(i).getUsername() == username) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<User> getUsers() {

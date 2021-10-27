@@ -2,6 +2,7 @@ public class JobListingApplication {
     
     private UserList users;
     private JobListingsList jobs;
+    private User user;
 
     public JobListingApplication() {
         users  = UserList.getInstance();
@@ -9,17 +10,17 @@ public class JobListingApplication {
     }
 
     public boolean createAccount(String username, String password, char type) {
-        if(!findUser(username,password)) {
+        if(!users.findUser(username,password)) {
             users.createAccount();
         }
     }
 
     public boolean login(String username, String password) {
-        if(!users.login(username, password)){
+        if(users.login(username, password) == null) {
             return false;
-        } else {
-            return true;
         }
+        user = users.login(username, password);
+        return true;
     }
 
     public char findAccountType() {
