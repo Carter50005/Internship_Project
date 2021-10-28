@@ -9,16 +9,8 @@ public class JobListingApplication {
         jobs = JobListingsList.getInstance();
     }
 
-<<<<<<< HEAD
-    public UserList createAccount() {
-        
-    }
-
-    public UserList logIn() {
-        return null;   
-=======
     public boolean createAccount(String username, String password, char type) {
-        if(!users.containsUser(username)) {
+        if(!users.findUser(username,password)) {
             users.createAccount();
         }
     }
@@ -29,7 +21,6 @@ public class JobListingApplication {
         }
         user = users.login(username, password);
         return true;
->>>>>>> main
     }
 
     public char findAccountType() {

@@ -22,28 +22,12 @@ public class UserList {
             if(users.get(i).username == userUsername) {
                 return User.Username;
             }
-
+            else{
+                return null;
+            }
+        }  
     }
-    /*public static boolean login(String username, String password) {
-        Scanner keyboard = new Scanner(System.in);
-        String User.Username =  username;
-        String User.Password = password;
-        String User.getUsername =  username;
-        String User.getPassword = password;
-        String userUsername = keyboard.nextLine();
-        if(userUsername == username) {
-            return true;
-        }
-        else {
-            return false;
-        }
-        String userPassword = keyboard.nextLine();
-        if(userPassword == Password) {
-            return true;
-        }
-        else {
-          return false;
-        */ 
+ 
 
     public User login(String username, String password) {
         for(int i=0;i<users.size();i++) {

@@ -82,7 +82,7 @@ public class Employer extends User{
     public void addListing(JobListing listing) {
         listing.setEmployer(this);
         companyListings.add(listing);
-        JobListingList.getInstance().addListing(listing);
+        JobListingsList.getInstance().addListing(listing);
     }
     public void removeListing(JobListing listing) {
         if(companyListings.contains(listing)) {
@@ -92,8 +92,8 @@ public class Employer extends User{
             JobListingsList.getInstance().remove(listing);
         }
         for(int i = 0; i<UserList.getInstance().getUsers().size(); i++) {
-            if(UserList.getInstance().getUsers().get(i).getType()=='s' && UserList.getInstance().getUsers().get(i).getWishList().contains(listing)) {
-                UserList.getInstance().getUsers().get(i).removeFromWishList(listing);
+            if(UserList.getInstance().getUsers().get(i).getType()=='s' && UserList.getInstance().getUsers().get(i).contains(listing)) {
+                UserList.getInstance().getUsers().get(i);
             }
         }
     }

@@ -60,7 +60,7 @@ public class applicationUI {
         String username = scanner.nextLine();
         System.out.println("Enter Password: ");
         String password = scanner.nextLine();
-        System.out.println("Are you a (S)tudent or (E)mployer")
+        System.out.println("Are you a (S)tudent or (E)mployer");
         String account = scanner.nextLine();
         char type =  account.charAt(0);
         application.createAccount(username, password, type);
