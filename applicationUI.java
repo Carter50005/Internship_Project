@@ -48,7 +48,7 @@ public class applicationUI {
         System.out.println();
         if(application.login(username,password)) {
             System.out.println("---Loging In---");
-            
+            displayMainMenu(userOptions);
         } else {
             System.out.println("Wong Password");
             login();

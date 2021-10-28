@@ -65,4 +65,9 @@ public abstract class User {
         return ret;
     }
 
+    //TODO DELETE THIS
+    public String toString() {
+        return "";
+    }
+
 }

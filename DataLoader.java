@@ -7,6 +7,8 @@ import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants{
     
+	private static ArrayList<Student> students = new ArrayList<Student>();
+
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<User>();
 
@@ -14,32 +16,32 @@ public class DataLoader extends DataConstants{
 			FileReader reader = new FileReader(USER_FILE_NAME);
 			JSONParser parser = new JSONParser();
 			JSONArray peopleJSON = (JSONArray)parser.parse(reader);
-			
-			for(int i=0; i < peopleJSON.size(); i++) {
+
+			for(int i=0;i<peopleJSON.size();i++) {
 				JSONObject personJSON = (JSONObject)peopleJSON.get(i);
 				String username = (String)personJSON.get(USER_USERNAME);
 				String password = (String)personJSON.get(USER_PASSWORD);
-				char userType = (char)personJSON.get(USER_TYPE);
+				String userType = (String)personJSON.get(USER_TYPE);
 				String uUID = (String)personJSON.get(USER_UUID);
-				if(userType == 's') {
+				if(userType.equalsIgnoreCase("s")) {
 					Student student = loadStudent(username, password, uUID, personJSON);
 					student.setResumes(loadResumes(personJSON, student));
 					student.setReviews(loadReviews(personJSON));
-					ArrayList<String> wishlist = new ArrayList<String>();
-					JSONArray wishlistArray = (JSONArray)personJSON.get(STUDENT_WISHLIST);
-					for(int k=0;k<wishlistArray.size();k++) {
-						JSONObject listing = (JSONObject)wishlistArray.get(k);
-						String wishlistID = (String)listing.get(WISHLIST_ID);
-						wishlist.add(wishlistID);
-					}
 					users.add(student);
+					students.add(student);
 				}
-				else if(userType == 'e') {
+				else if(userType.equalsIgnoreCase("e")) {
 					Employer employer = loadEmployer(username, password, uUID, personJSON);
 					employer.setListingIDS(getListingIDS(personJSON, employer));
+					ArrayList<JobListing> listings = getJobListings();
+					for(int j=0;j<listings.size();j++) {
+						if(listings.get(j).getEmployerID() == employer.getUUID()) {
+							employer.addListing(listings.get(j));
+						}
+					}
 					users.add(employer);
 				}
-				else if(userType == 'a') {
+				else if(userType.equalsIgnoreCase("a")) {
 					users.add(new Admin(username, password, uUID));
 				}
 			}
@@ -90,6 +92,13 @@ public class DataLoader extends DataConstants{
 				}
 				listing.setApplicantIDS(applicantIDS);
 
+				for(int j=0;j<applicantIDS.size();j++) {
+					for(int k=0;k<students.size();k++) {
+						if(students.get(k).getUUID() == applicantIDS.get(j)) {
+							listing.apply(students.get(k));
+						}
+					}
+				}
 				listings.add(listing);
 			}
 
@@ -114,7 +123,6 @@ public class DataLoader extends DataConstants{
 		String firstName = (String)personJSON.get(STUDENT_FIRST_NAME);
 		String lastName = (String)personJSON.get(STUDENT_LAST_NAME);
 		String email = (String)personJSON.get(STUDENT_EMAIL);
-		loadResumes(personJSON, new Student(username, password, uUID, firstName, lastName, email));
 		return new Student(username, password, uUID, firstName, lastName, email);
 	} 
 
@@ -154,10 +162,10 @@ public class DataLoader extends DataConstants{
 			for(int j=0;j<educationsArray.size();j++) {
 				JSONObject education = (JSONObject)educationsArray.get(j);
 				String school = (String)education.get(EDUCATIONS_SCHOOL);
-				int classYear = (int)education.get(EDUCATIONS_YEAR);
+				int classYear = Integer.parseInt((String)education.get(EDUCATIONS_YEAR));
 				String major = (String)education.get(EDUCATIONS_MAJOR);
 				String minor = (String)education.get(EDUCATIONS_MINOR);
-				double gpa = (double)education.get(EDUCATIONS_GPA);
+				double gpa = Double.parseDouble((String)education.get(EDUCATIONS_GPA));
 				educations.add(new Education(school, classYear, major, minor, gpa));
 			}
 
@@ -187,7 +195,7 @@ public class DataLoader extends DataConstants{
 					String startDate = (String)experience.get(EXPERIENCE_START);
 					String endDate = (String)experience.get(EXPERIENCE_END);
 					String description = (String)experience.get(EXPERIENCE_DESCRIPTION);
-					workExperiences.add(new Experience(title, startDate, endDate, description));
+					extraCurriculars.add(new Experience(title, startDate, endDate, description));
 			}
 
 			ret.add(new Resume(student, educations, skills, workExperiences, extraCurriculars));
@@ -200,7 +208,7 @@ public class DataLoader extends DataConstants{
 		JSONArray reviewsArray = (JSONArray)personJSON.get(USER_REVIEWS);
 		for(int i=0;i<reviewsArray.size();i++) {
 			JSONObject review = (JSONObject)reviewsArray.get(i);
-			int rating = (int)review.get(REVIEW_RATING);
+			int rating = Integer.parseInt((String)review.get(REVIEW_RATING));
 			String reviewDes = (String)review.get(REVIEW_REVIEW);
 			String revieweeID = (String)review.get(REVIEW_REVIEWEE);
 			String reviewerID = (String)review.get(REVIEW_REVIEWER);
