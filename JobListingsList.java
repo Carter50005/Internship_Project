@@ -36,10 +36,7 @@ public class JobListingsList {
         return ret;
     }
 
-    public ArrayList<JobListing> sortListings(SortType sortType) {
-       
-        
-    }
+    //public ArrayList<JobListing> sortListings(SortType sortType) {}
 
     public boolean contains(JobListing jobListing) {
         for(int i=0;i<jobListings.size();i++) {
@@ -57,7 +54,9 @@ public class JobListingsList {
         return false;
     }
 
-    public void deleteListing(JobListing jobListing) {
+    public void remove(JobListing jobListing) {
         jobListings.remove(jobListing);
     }
+
+    
 }

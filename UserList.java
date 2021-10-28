@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UserList {
     private static UserList userList;
@@ -7,8 +6,6 @@ public class UserList {
     private ArrayList<Student> students;
     private ArrayList<Employer> employers;
     private ArrayList<Admin> admins;
-    private String userUsername;
-    private String userPassword;
 
     private UserList() {
         users = DataLoader.getUsers();
@@ -23,33 +20,11 @@ public class UserList {
         }
         return userList;
     }
-    public User MakeAccount() {
-        for(int i=0;i<users.size();i++) {
-            if(users.get(i).username == userUsername) {
-                return User.Username;
-            }
 
+    public void createAccount(String username, String password, char type) {
+        users.add(new User(username, password, type));
     }
-    /*public static boolean login(String username, String password) {
-        Scanner keyboard = new Scanner(System.in);
-        String User.Username =  username;
-        String User.Password = password;
-        String User.getUsername =  username;
-        String User.getPassword = password;
-        String userUsername = keyboard.nextLine();
-        if(userUsername == username) {
-            return true;
-        }
-        else {
-            return false;
-        }
-        String userPassword = keyboard.nextLine();
-        if(userPassword == Password) {
-            return true;
-        }
-        else {
-          return false;
-        */ 
+
 
     public User login(String username, String password) {
         for(int i=0;i<users.size();i++) {
@@ -69,6 +44,14 @@ public class UserList {
         return null;
     }
 
+    public boolean findAccount(String username, String password) {
+        for (int i = 0; i < users.size(); i++) {
+            if(users.get(i).getUsername() == username && users.get(i).getPassword() == password) {
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean containsUser(String username) {
         for(int i=0;i<users.size();i++) {
             if(users.get(i).getUsername() == username) {

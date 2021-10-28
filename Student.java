@@ -81,8 +81,8 @@ public class Student extends User {
 
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
-    } 
- 
+    }
+
     public void removeReview(Review review) {
         reviews.remove(review);
     }
