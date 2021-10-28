@@ -70,7 +70,7 @@ import java.util.Random;
     public int getJobPay() {
         return this.jobPay;
     }
-    public ArrayList<Applicant> getApplicants() {
+    public ArrayList<Student> getApplicants() {
         return this.applicants;
     }
     public Employer getEmployer() {
@@ -128,10 +128,11 @@ import java.util.Random;
         for(int i = 0; i < applicants.size(); i++) {
             applicantsString+=applicants.get(i).getFirstName()+" "+applicants.get(i).getLastName()+"\n";
         }
+        return applicantsString;
     }
     public String viewApplicant(Student student) {
         for(int i=0; i<applicants.size();i++) {
-            if(applicants.get(i).getStudent() == student) {
+            if(applicants.get(i) == student) {
                 return student.toString();
             }
         }

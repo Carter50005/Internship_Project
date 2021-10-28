@@ -14,7 +14,7 @@ public class Admin extends User {
     }
 
     public void deleteUser(User user) {
-        UserList.getInstance().getUsers().remove(User);
+        UserList.getInstance().getUsers().remove(user);
         JobListingsList listings = JobListingsList.getInstance();
         if(user.getType()=='s') {
             for(int i = 0; i<listings.getJobListings().size(); i++) {

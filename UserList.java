@@ -22,7 +22,6 @@ public class UserList {
     }
     public boolean login(String username, String password) {
         Scanner keyboard = new Scanner(System.in);
-
         String User.getUsername =  username;
         String User.getPassword = password;
         String userUsername = keyboard.nextLine();
@@ -38,9 +37,15 @@ public class UserList {
         }
         else {
             return false;
+    public User login(String username, String password) {
+        for(int i=0;i<users.size();i++) {
+            if(users.get(i).getUsername() == username && users.get(i).getPassword() == password) {
+                return users.get(i);
+            }
         }
- 
+        return null;
     }
+
     public User findUser(String uUID) {
         for(int i=0;i<users.size();i++) {
             if(users.get(i).getUUID() == uUID) {
@@ -48,6 +53,15 @@ public class UserList {
             }
         }
         return null;
+    }
+
+    public boolean containsUser(String username) {
+        for(int i=0;i<users.size();i++) {
+            if(users.get(i).getUsername() == username) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<User> getUsers() {

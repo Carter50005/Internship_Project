@@ -6,7 +6,6 @@ public class Student extends User {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private ArrayList<String> wishListIDS;
     private ArrayList<Resume> resumes;
     private ArrayList<Review> reviews;
 
@@ -17,40 +16,23 @@ public class Student extends User {
         this.email = email;
         this.resumes = new ArrayList<Resume>();
         this.reviews = new ArrayList<Review>();
-        this.wishListIDS = new ArrayList<String>();
     }
 
-    public Student(String username, String password, String studentID, String firstName, String lastName, String email, ArrayList<Resume> resumes, ArrayList<Review> reviews, ArrayList<String> wishList)  {
+    public Student(String username, String password, String studentID, String firstName, String lastName, String email, ArrayList<Resume> resumes, ArrayList<Review> reviews)  {
         super(username, password, 's', studentID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.resumes = resumes;
         this.reviews = reviews;
-        this.wishListIDS = wishList;
     }
 
     public void editAccount() {
 
     }
 
-    public void applyForJob() {
-
-    }
-
-    public void addToWishList(JobListing jobListing) {
-        if(wishListIDS.contains(jobListing.getUUID())) {
-            return;
-        }
-        wishListIDS.add(jobListing.getUUID());
-    }
-
-    public boolean removeFromWishList() {
-        return true;
-    }
-
-    public void removeFromWishList(JobListing jobListing) {
-        wishListIDS.remove(jobListing.getUUID());
+    public void applyForJob(JobListing jobListing) {
+        jobListing.apply(this);
     }
 
     public void reviewEmployer(int rating, String review, User reviewee) {
@@ -77,10 +59,6 @@ public class Student extends User {
         return this.phoneNumber;
     }
 
-    public ArrayList<String> getWishList() {
-        return this.wishListIDS;
-    }
-
     public ArrayList<Resume> getResumes() {
         return this.resumes;
     }
@@ -104,10 +82,6 @@ public class Student extends User {
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
     } 
-
-    public void setWishlist(ArrayList<String> listingIDS) {
-        this.wishListIDS = listingIDS;
-    }
  
     public void removeReview(Review review) {
         reviews.remove(review);

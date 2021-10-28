@@ -32,7 +32,6 @@ public class DataLoader extends DataConstants{
 						String wishlistID = (String)listing.get(WISHLIST_ID);
 						wishlist.add(wishlistID);
 					}
-					student.setWishlist(wishlist);
 					users.add(student);
 				}
 				else if(userType == 'e') {
