@@ -10,8 +10,11 @@ public class JobListingApplication {
     }
 
     public boolean createAccount(String username, String password, char type) {
-        if(!users.findUser(username,password)) {
-            users.createAccount();
+        if(!users.findAccount(username,password)) {
+            users.createAccount(username,password,type);
+            return true;
+        } else {
+            return false;
         }
     }
 

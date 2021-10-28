@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class UserList {
     private static UserList userList;
-    private ArrayList<User> users;
+    private ArrayList<User> users = new ArrayList<User>();
     private String userUsername;
     private String userPassword;
 
@@ -17,15 +17,9 @@ public class UserList {
         }
         return userList;
     }
-    public User MakeAccount() {
-        for(int i=0;i<users.size();i++) {
-            if(users.get(i).username == userUsername) {
-                return User.Username;
-            }
-            else{
-                return null;
-            }
-        }  
+
+    public void createAccount(String username, String password, char type) {
+        users.add(new User(username, password, type));
     }
  
 
@@ -47,6 +41,14 @@ public class UserList {
         return null;
     }
 
+    public boolean findAccount(String username, String password) {
+        for (int i = 0; i < users.size(); i++) {
+            if(users.get(i).getUsername() == username && users.get(i).getPassword() == password) {
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean containsUser(String username) {
         for(int i=0;i<users.size();i++) {
             if(users.get(i).getUsername() == username) {
