@@ -10,7 +10,6 @@ import java.util.Random;
     private String postedDate;
     private String expirationDate;
     private ArrayList<String> desiredSkills;
-    private JobType jobType;
     private String location;
     private int jobPay;
     private ArrayList<Student> applicants;
@@ -42,7 +41,7 @@ import java.util.Random;
         this.employerID = employerID;
     }
 
-    public JobListing(String id, String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
+    public JobListing(String id, String postedDate, String expirationDate, ArrayList<String> desiredSkills, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
         this.id = id;
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
