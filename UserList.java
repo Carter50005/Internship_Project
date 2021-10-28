@@ -1,11 +1,8 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UserList {
     private static UserList userList;
     private ArrayList<User> users = new ArrayList<User>();
-    private String userUsername;
-    private String userPassword;
 
     private UserList() {
         users = DataLoader.getUsers();
