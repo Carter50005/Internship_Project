@@ -35,7 +35,9 @@ public class DataLoader extends DataConstants{
 					users.add(student);
 				}
 				else if(userType == 'e') {
-					users.add(loadEmployer(username, password, uUID, personJSON));
+					Employer employer = loadEmployer(username, password, uUID, personJSON);
+					employer.setListingIDS(getListingIDS(personJSON, employer));
+					users.add(employer);
 				}
 				else if(userType == 'a') {
 					users.add(new Admin(username, password, uUID));
@@ -52,9 +54,52 @@ public class DataLoader extends DataConstants{
     }
 
 	public static ArrayList<JobListing> getJobListings() {
-		ArrayList<JobListing> ret = new ArrayList<JobListing>();
+		ArrayList<JobListing> listings = new ArrayList<JobListing>();
 		
-		return ret;
+		try {
+			FileReader reader = new FileReader(LISTING_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONArray listingsJSON = (JSONArray)parser.parse(reader);
+			for(int i=0;i<listingsJSON.size();i++) {
+				JSONObject listingJSON = (JSONObject)listingsJSON.get(i);
+				String listingID = (String)listingJSON.get(JOB_LISTING_ID);
+				String postedDate = (String)listingJSON.get(JOB_POSTED_DATE);
+				String expirationDate = (String)listingJSON.get(JOB_EXPIRATION_DATE);
+				String location = (String)listingJSON.get(JOB_LOCATION);
+				int pay = (int)listingJSON.get(JOB_PAY);
+				String employerID = (String)listingJSON.get(JOB_EMPLOYER_ID);
+				JobListing listing = new JobListing(listingID, postedDate, expirationDate, location, pay, employerID);
+
+				//gets desired skills
+				ArrayList<String> desiredSkills = new ArrayList<String>();
+				JSONArray skillsArray = (JSONArray)listingJSON.get(JOB_DESIRED_SKILLS);
+				for(int j=0;j<skillsArray.size();j++) {
+					JSONObject skillJSON = (JSONObject)skillsArray.get(j);
+					String skill = (String)skillJSON.get(SKILLS_SKILL);
+					desiredSkills.add(skill);
+				}
+				listing.setDesiredSkills(desiredSkills);
+
+				//gets applicant ids
+				ArrayList<String> applicantIDS = new ArrayList<String>();
+				JSONArray applicantIDArray = (JSONArray)listingJSON.get(JOB_APPLICANT_IDS);
+				for(int j=0;j<applicantIDArray.size();j++) {
+					JSONObject applicantIDJSON = (JSONObject)applicantIDArray.get(j);
+					String applicantID = (String)applicantIDJSON.get(APPLICANT_ID);
+					applicantIDS.add(applicantID);
+				}
+				listing.setApplicantIDS(applicantIDS);
+
+				listings.add(listing);
+			}
+
+			return listings;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	/**
@@ -80,6 +125,17 @@ public class DataLoader extends DataConstants{
 		int rating = (int)personJSON.get(EMPLOYER_RATING);
 		return new Employer(username, password, name, description, location, rating);
 	} 
+
+	private static ArrayList<String> getListingIDS(JSONObject personJSON, Employer employer) {
+		JSONArray jobListingIDS = (JSONArray)personJSON.get(EMPLOYER_LISTINGS);
+		ArrayList<String> listingsIDS = new ArrayList<String>();
+		for(int i=0;i<jobListingIDS.size();i++) {
+			JSONObject listingID = (JSONObject)jobListingIDS.get(i);
+			String ID = (String)listingID.get(LISTING_ID);
+			listingsIDS.add(ID);
+		}
+		return listingsIDS;
+	}
 
 	/**
 	 * Loads resumes

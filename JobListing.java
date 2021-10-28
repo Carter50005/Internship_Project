@@ -19,6 +19,18 @@ import java.util.Random;
     private Employer employer;
 
     //Constructors
+    public JobListing(String id, String postedDate, String expirationDate, String location, int jobPay, String employerID) {
+        this.id = id;
+        this.postedDate = postedDate;
+        this.expirationDate = expirationDate;
+        this.location = location;
+        this.jobPay = jobPay;
+        this.employerID = employerID;
+        desiredSkills = new ArrayList<String>();
+        applicants = new ArrayList<Student>();
+        applicantIDS = new ArrayList<String>();
+    }
+
     public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
         this.id = createID();
         this.postedDate = postedDate;
@@ -94,15 +106,6 @@ import java.util.Random;
             }
         }
         return "Employer: "+this.employer.getCompanyName()+"\nJob Type: "+this.jobType+"\nLocation: "+this.location+"Job Pay: "+this.jobPay+"\nExpiration Date: "+this.expirationDate+"\nPosted Date: "+this.postedDate+"Desired Skills: "+desiredSkillsString;
-    }
-
-    public void uploadMaterial(String material, Student student) {
-        for(int i=0; i<applicants.size();i++) {
-            if(applicants.get(i) == student) {
-                applicants.get(i).addAdditionalMaterial(material);
-                return;
-            }
-        }
     }
 
     public ArrayList<Applicant> sortApplicants(ApplicantSortType sortType) {
@@ -184,5 +187,13 @@ import java.util.Random;
 
     public String getUUID() {
         return this.id;
+    }
+
+    public void setDesiredSkills(ArrayList<String> desiredSkills) {
+        this.desiredSkills = desiredSkills;
+    }
+
+    public void setApplicantIDS(ArrayList<String> applicantIDS) {
+        this.applicantIDS = applicantIDS;
     }
  }

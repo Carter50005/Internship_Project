@@ -7,6 +7,7 @@ public class Employer extends User{
     private String companyLocation;
     private int companyRating;
     private ArrayList<JobListing> companyListings;
+    private ArrayList<String> listingIDS;
     private ArrayList<Review> reviews;
 
     public Employer(String username, String password, String aName, String aDescription, String aLocation, int aRating) {
@@ -55,6 +56,10 @@ public class Employer extends User{
     }
     public ArrayList<Review> getReviews() {
         return this.reviews;
+    }
+
+    public void setListingIDS(ArrayList<String> listingIDS) {
+        this.listingIDS = listingIDS;
     }
 
     public void editAccount(String username, String password, String aName, String aDescription, String aLocation, int aRating) {
