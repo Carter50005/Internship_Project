@@ -18,20 +18,18 @@ public class UserList {
         return userList;
     }
     public User MakeAccount() {
-        Scanner keyboard = new Scanner(System.in);
-<<<<<<< HEAD
-        String User.Username = keyboard.nextLine();
-        String User.Password = keyboard.nextLine();
+        for(int i=0;i<users.size();i++) {
+            if(users.get(i).username == userUsername) {
+                return User.Username;
+            }
 
     }
-    public static boolean login(String username, String password) {
+    /*public static boolean login(String username, String password) {
         Scanner keyboard = new Scanner(System.in);
         String User.Username =  username;
         String User.Password = password;
-=======
         String User.getUsername =  username;
         String User.getPassword = password;
->>>>>>> main
         String userUsername = keyboard.nextLine();
         if(userUsername == username) {
             return true;
@@ -44,7 +42,9 @@ public class UserList {
             return true;
         }
         else {
-            return false;
+          return false;
+        */ 
+
     public User login(String username, String password) {
         for(int i=0;i<users.size();i++) {
             if(users.get(i).getUsername() == username && users.get(i).getPassword() == password) {
