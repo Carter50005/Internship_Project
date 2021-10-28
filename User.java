@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public abstract class User {
-    
+
     protected String username;
     protected String password;
     protected char type;
@@ -45,7 +45,7 @@ public abstract class User {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public char getType() {

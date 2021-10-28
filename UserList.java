@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class UserList {
     private static UserList userList;
     private ArrayList<User> users;
+    private String userUsername;
+    private String userPassword;
 
     private UserList() {
         users = DataLoader.getUsers();
@@ -16,8 +18,33 @@ public class UserList {
         return userList;
     }
     public User MakeAccount() {
-        return null;
+        for(int i=0;i<users.size();i++) {
+            if(users.get(i).username == userUsername) {
+                return User.Username;
+            }
+
     }
+    /*public static boolean login(String username, String password) {
+        Scanner keyboard = new Scanner(System.in);
+        String User.Username =  username;
+        String User.Password = password;
+        String User.getUsername =  username;
+        String User.getPassword = password;
+        String userUsername = keyboard.nextLine();
+        if(userUsername == username) {
+            return true;
+        }
+        else {
+            return false;
+        }
+        String userPassword = keyboard.nextLine();
+        if(userPassword == Password) {
+            return true;
+        }
+        else {
+          return false;
+        */ 
+
     public User login(String username, String password) {
         for(int i=0;i<users.size();i++) {
             if(users.get(i).getUsername() == username && users.get(i).getPassword() == password) {
