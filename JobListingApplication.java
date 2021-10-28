@@ -26,4 +26,6 @@ public class JobListingApplication {
     public char findAccountType() {
         users.
     }
+
+    
 }

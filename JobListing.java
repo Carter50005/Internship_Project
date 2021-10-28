@@ -31,12 +31,11 @@ import java.util.Random;
         applicantIDS = new ArrayList<String>();
     }
 
-    public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, JobType jobType, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
+    public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
         this.id = createID();
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
         this.desiredSkills = desiredSkills;
-        this.jobType = jobType;
         this.location = location;
         this.jobPay = jobPay;
         this.applicantIDS = applicantIDS;
@@ -48,7 +47,6 @@ import java.util.Random;
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
         this.desiredSkills = desiredSkills;
-        this.jobType = jobType;
         this.location = location;
         this.jobPay = jobPay;
         this.applicantIDS = applicantIDS;
@@ -72,9 +70,6 @@ import java.util.Random;
     }
     public ArrayList<String> getDesiredSkills() {
         return this.desiredSkills;
-    }
-    public JobType getJobType() {
-        return this.jobType;
     }
     public String getLocation() {
         return this.location;
@@ -105,14 +100,14 @@ import java.util.Random;
                 desiredSkillsString+=", ";
             }
         }
-        return "Employer: "+this.employer.getCompanyName()+"\nJob Type: "+this.jobType+"\nLocation: "+this.location+"Job Pay: "+this.jobPay+"\nExpiration Date: "+this.expirationDate+"\nPosted Date: "+this.postedDate+"Desired Skills: "+desiredSkillsString;
+        return "Employer: "+this.employer.getCompanyName()+"\nLocation: "+this.location+"Job Pay: "+this.jobPay+"\nExpiration Date: "+this.expirationDate+"\nPosted Date: "+this.postedDate+"Desired Skills: "+desiredSkillsString;
     }
 
-    public ArrayList<Applicant> sortApplicants(ApplicantSortType sortType) {
-        if(sortType=="nameAToZ") {
+    public ArrayList<Student> sortApplicants(ApplicantSortType sortType) {
+        if(sortType.equals("nameAToZ")) {
             applicants = sortAToZHelper(applicants);
         }
-        else if (sortType=="nameZToA") {
+        else if (sortType.equals("nameZToA")) {
             applicants = sortZToAHelper(applicants);
         }
         return applicants;
@@ -158,26 +153,26 @@ import java.util.Random;
         }
         return ret;
     }
-    private ArrayList<Applicant> sortAToZHelper(ArrayList<Applicant> applicants) {
+    private ArrayList<Student> sortAToZHelper(ArrayList<Student> applicants) {
         boolean sorted = false;
         while(!sorted) {
             sorted = true;
             for(int i = 0; i<applicants.size()-1; i++) {
-                if(applicants.get(i).getStudent.getLastName().compareTo(applicants.get(i+1).getStudent().getLastName())>0) {
-                    Applicant temp = applicants.get(i+1);
+                if(applicants.get(i).getLastName().compareTo(applicants.get(i+1).getStudent().getLastName())>0) {
+                    Student temp = applicants.get(i+1);
                     applicants.set(i+1,applicants.get(i));
                     applicants.set(i,temp);
                 }
             }
         }
     }
-    private ArrayList<Applicant> sortZToAHelper(ArrayList<Applicant> applicants) {
+    private ArrayList<Student> sortZToAHelper(ArrayList<Student> applicants) {
         boolean sorted = false;
         while(!sorted) {
             sorted = true;
             for(int i = 0; i>applicants.size()-1; i++) {
-                if(applicants.get(i).getStudent().getLastName().compareTo(applicants.get(i+1).getStudent().getLastName())>0) {
-                    Applicant temp = applicants.get(i+1);
+                if(applicants.get(i).getLastName().compareTo(applicants.get(i+1).getStudent().getLastName())>0) {
+                    Student temp = applicants.get(i+1);
                     applicants.set(i+1,applicants.get(i));
                     applicants.set(i,temp);
                 }

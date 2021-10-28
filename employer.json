@@ -7,7 +7,7 @@
         "postedDate" : "10/17/2021",
         "expirationDate" : "12/24/2021",
         "Desired Skills" : ["Experience in Object Oriented Programing",
-            "Able to think on your feet" 
+            "Able to think on your feet", "JavaScript" 
         ],
         "jobType" : "internship",
         "jobPay" : "$20/hr" 
@@ -54,7 +54,7 @@
         "postedDate" : "10/19/2021",
         "expirationDate" : "12/26/2021",
         "Desired Skills" : ["Experience in Object Oriented Programing",
-            "Experience in Lunix fundementals" 
+            "Experience in Lunix fundementals", "JavaScript" 
         ],
         "jobType" : "internship",
         "jobPay" : "$25/hr"

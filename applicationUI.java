@@ -39,6 +39,19 @@ public class applicationUI {
         System.out.println("\n");
     }
 
+    private void choices() {     
+        String choices = scanner.nextLine();
+        if(choices.equalsIgnoreCase("s")){
+          
+        } else if(choices.equalsIgnoreCase("E")){
+            
+        } else if(choices.equalsIgnoreCase("C")){
+
+        } else if(choices.equalsIgnoreCase("A")){
+            
+        } 
+    }
+
     private void login() {
         System.out.print("Enter your username: ");
         String username = scanner.nextLine();

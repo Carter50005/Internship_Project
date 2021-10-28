@@ -17,15 +17,11 @@ public class UserList {
         }
         return userList;
     }
-    public User MakeAccount() {
+    public User createAccount() {
         for(int i=0;i<users.size();i++) {
-            if(users.get(i).username == userUsername) {
-                return User.Username;
-            }
-            else{
-                return null;
-            }
-        }  
+        return null; 
+        }
+        return null;    
     }
  
 
@@ -44,6 +40,10 @@ public class UserList {
                 return users.get(i);
             }
         }
+        return null;
+    }
+
+    public User findType() {
         return null;
     }
 
