@@ -6,12 +6,12 @@ public class JobListingApplication {
 
     }
 
-    public User createAccount() {
+    public UserList createAccount() {
         
     }
 
-    public User logIn() {
-        
+    public UserList logIn() {
+        return null;   
     }
 
     public void mainMenu() {

@@ -18,22 +18,24 @@ public class UserList {
         return userList;
     }
     public User MakeAccount() {
-        return null;
-    }
-    public boolean login(String username, String password) {
         Scanner keyboard = new Scanner(System.in);
+        String User.Username = keyboard.nextLine();
+        String User.Password = keyboard.nextLine();
 
-        String User.getUsername =  username;
-        String User.getPassword = password;
+    }
+    public static boolean login(String username, String password) {
+        Scanner keyboard = new Scanner(System.in);
+        String User.Username =  username;
+        String User.Password = password;
         String userUsername = keyboard.nextLine();
-        if(this.userUsername == username) {
+        if(userUsername == username) {
             return true;
         }
         else {
             return false;
         }
         String userPassword = keyboard.nextLine();
-        if(this.userPassword == userPassword) {
+        if(userPassword == Password) {
             return true;
         }
         else {
