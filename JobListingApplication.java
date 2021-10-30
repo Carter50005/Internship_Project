@@ -6,7 +6,7 @@ public class JobListingApplication {
 
     public JobListingApplication() {
         users  = UserList.getInstance();
-        //jobs = JobListingsList.getInstance();
+        jobs = JobListingsList.getInstance();
     }
 
     public boolean createAccount(String username, String password, char type) {
