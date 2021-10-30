@@ -32,8 +32,6 @@ public class DataConstants {
     protected static final String EMPLOYER_DESCRIPTION = "companyDescription";
     protected static final String EMPLOYER_LOCATION = "companyLocation";
     protected static final String EMPLOYER_RATING = "companyRating";
-    protected static final String EMPLOYER_LISTINGS = "companyListings";
-    protected static final String LISTING_ID = "listingID";
 
     protected static final String LISTING_FILE_NAME = "listings.json";
     protected static final String JOB_LISTING_ID = "id";

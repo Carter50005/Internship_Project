@@ -32,7 +32,6 @@ public class DataLoader extends DataConstants{
 				}
 				else if(userType.equalsIgnoreCase("e")) {
 					Employer employer = loadEmployer(username, password, uUID, personJSON);
-					employer.setListingIDS(getListingIDS(personJSON, employer));
 					ArrayList<JobListing> listings = getJobListings();
 					for(int j=0;j<listings.size();j++) {
 						if(listings.get(j).getEmployerID() == employer.getUUID()) {
@@ -68,7 +67,7 @@ public class DataLoader extends DataConstants{
 				String postedDate = (String)listingJSON.get(JOB_POSTED_DATE);
 				String expirationDate = (String)listingJSON.get(JOB_EXPIRATION_DATE);
 				String location = (String)listingJSON.get(JOB_LOCATION);
-				int pay = (int)listingJSON.get(JOB_PAY);
+				int pay = Integer.parseInt((String)listingJSON.get(JOB_PAY));
 				String employerID = (String)listingJSON.get(JOB_EMPLOYER_ID);
 				JobListing listing = new JobListing(listingID, postedDate, expirationDate, location, pay, employerID);
 
@@ -130,20 +129,9 @@ public class DataLoader extends DataConstants{
 		String name = (String)personJSON.get(EMPLOYER_NAME);
 		String description = (String)personJSON.get(EMPLOYER_DESCRIPTION);
 		String location = (String)personJSON.get(EMPLOYER_LOCATION);
-		int rating = (int)personJSON.get(EMPLOYER_RATING);
+		int rating = Integer.parseInt((String)personJSON.get(EMPLOYER_RATING));
 		return new Employer(username, password, name, description, location, rating);
 	} 
-
-	private static ArrayList<String> getListingIDS(JSONObject personJSON, Employer employer) {
-		JSONArray jobListingIDS = (JSONArray)personJSON.get(EMPLOYER_LISTINGS);
-		ArrayList<String> listingsIDS = new ArrayList<String>();
-		for(int i=0;i<jobListingIDS.size();i++) {
-			JSONObject listingID = (JSONObject)jobListingIDS.get(i);
-			String ID = (String)listingID.get(LISTING_ID);
-			listingsIDS.add(ID);
-		}
-		return listingsIDS;
-	}
 
 	/**
 	 * Loads resumes
