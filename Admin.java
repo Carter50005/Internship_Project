@@ -19,7 +19,7 @@ public class Admin extends User {
         if(user.getType()=='s') {
             for(int i = 0; i<listings.getJobListings().size(); i++) {
                 for (int j = 0; j<listings.getJobListings().get(i).getApplicants().size(); j++)
-                if(listings.getJobListings().get(i).getApplicants().get(j).getStudent().equals(user)) {
+                if(listings.getJobListings().get(i).getApplicants().get(j).equals(user)) {
                     listings.getJobListings().get(i).removeApplicant(listings.getJobListings().get(i).getApplicants().get(j));
                 }
             }

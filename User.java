@@ -65,4 +65,8 @@ public class User {
         return ret;
     }
 
+    public boolean contains(JobListing listing) {
+        return false;
+    }
+
 }
