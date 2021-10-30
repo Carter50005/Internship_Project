@@ -7,7 +7,6 @@ public class Employer extends User{
     private String companyLocation;
     private int companyRating;
     private ArrayList<JobListing> companyListings;
-    private ArrayList<String> listingIDS;
     private ArrayList<Review> reviews;
 
     public Employer(String username, String password, String aName, String aDescription, String aLocation, int aRating) {
@@ -58,10 +57,6 @@ public class Employer extends User{
         return this.reviews;
     }
 
-    public void setListingIDS(ArrayList<String> listingIDS) {
-        this.listingIDS = listingIDS;
-    }
-
     public void editAccount(String username, String password, String aName, String aDescription, String aLocation, int aRating) {
         if(username.length()>0) {
             super.username = username;
@@ -91,14 +86,13 @@ public class Employer extends User{
         if(JobListingsList.getInstance().contains(listing)) {
             JobListingsList.getInstance().remove(listing);
         }
-        for(int i = 0; i<UserList.getInstance().getUsers().size(); i++) {
-            if(UserList.getInstance().getUsers().get(i).getType()=='s' && UserList.getInstance().getUsers().get(i).contains(listing)) {
-                UserList.getInstance().getUsers().get(i);
-            }
-        }
     }
 
     public void removeReview(Review review) {
         reviews.remove(review);
+    }
+
+    public String getUUID() {
+        return this.uUID;
     }
 }

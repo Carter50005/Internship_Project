@@ -1,0 +1,26 @@
+[
+    {
+        "id" : "Y9876567",
+        "postedDate" : "10/30/2021",
+        "expirationDate" : "10/31/2021",
+        "desiredSkills" : [
+            {
+                "skill" : "Java"
+            },
+            {
+                "skill" : "html" 
+            },
+            {
+                "skill" : "CSS"
+            }
+        ],
+        "location" : "everywhere",
+        "jobPay" : "12",
+        "applicantIDS" : [
+            {
+                "applicantID" : "Y997854"
+            }
+        ],
+        "employerID" : "Y997855"
+    }
+]

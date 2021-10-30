@@ -1,5 +1,5 @@
 public class JobListingApplication {
-    
+
     private UserList users;
     private JobListingsList jobs;
     private User user;
@@ -27,8 +27,8 @@ public class JobListingApplication {
     }
 
     public char findAccountType() {
-        
+        return user.getType();
     }
 
-    
+
 }

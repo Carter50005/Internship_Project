@@ -190,4 +190,8 @@ import java.util.Random;
     public void setApplicantIDS(ArrayList<String> applicantIDS) {
         this.applicantIDS = applicantIDS;
     }
+
+    public String getEmployerID() {
+        return this.employerID;
+    }
  }

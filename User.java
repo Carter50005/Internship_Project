@@ -67,6 +67,9 @@ public class User {
 
     public boolean contains(JobListing listing) {
         return false;
+    //TODO DELETE THIS
+    public String toString() {
+        return "";
     }
 
 }

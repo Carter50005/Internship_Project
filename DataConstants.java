@@ -8,8 +8,6 @@ public class DataConstants {
     protected static final String STUDENT_FIRST_NAME = "firstName";
     protected static final String STUDENT_LAST_NAME = "lastName";
     protected static final String STUDENT_EMAIL = "email";
-    protected static final String STUDENT_WISHLIST = "wishList";
-    protected static final String WISHLIST_ID = "jobListingID";
     protected static final String STUDENT_RESUMES = "resumes";
     protected static final String RESUME_EDUCATIONS = "educations";
     protected static final String EDUCATIONS_SCHOOL = "school";
@@ -34,8 +32,6 @@ public class DataConstants {
     protected static final String EMPLOYER_DESCRIPTION = "companyDescription";
     protected static final String EMPLOYER_LOCATION = "companyLocation";
     protected static final String EMPLOYER_RATING = "companyRating";
-    protected static final String EMPLOYER_LISTINGS = "companyListings";
-    protected static final String LISTING_ID = "listingID";
 
     protected static final String LISTING_FILE_NAME = "listings.json";
     protected static final String JOB_LISTING_ID = "id";

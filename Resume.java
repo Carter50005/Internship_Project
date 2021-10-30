@@ -8,10 +8,10 @@ public class Resume {
     private ArrayList<Experience> extraCurriculars;
 
     public Resume(Student student, ArrayList<Education> educations, ArrayList<String> skills, ArrayList<Experience> workExperiences, ArrayList<Experience> extraCurriculars) {
-        educations = new ArrayList<Education>();
-        skills = new ArrayList<String>();
-        workExperiences = new ArrayList<Experience>();
-        extraCurriculars = new ArrayList<Experience>();
+        this.educations = educations;
+        this.skills = skills;
+        this.workExperiences = workExperiences;
+        this.extraCurriculars = extraCurriculars;
         this.student = student;
     }
 
@@ -53,7 +53,7 @@ public class Resume {
         String educationSection = "";
 
         for(int i = 0; i < educations.size(); i++) {
-            educationSection = educationSection + educations.get(i).toString() + "\n";
+            educationSection += educations.get(i).toString() + "\n";
         }
 
         return educationSection;

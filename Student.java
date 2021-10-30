@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Student extends User {
@@ -27,8 +26,11 @@ public class Student extends User {
         this.reviews = reviews;
     }
 
-    public void editAccount() {
-
+    public void editAccount(Student student) {
+        this.firstName = student.getFirstName();
+        this.lastName = student.getLastName();
+        this.email = student.getEmail();
+        this.phoneNumber = student.getPhoneNumber();
     }
 
     public void applyForJob(JobListing jobListing) {
@@ -81,9 +83,13 @@ public class Student extends User {
 
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
-    } 
- 
+    }
+
     public void removeReview(Review review) {
         reviews.remove(review);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 733e2445ec725e0531039947244d88747e9602ba
 }
