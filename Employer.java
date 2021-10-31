@@ -9,12 +9,12 @@ public class Employer extends User{
     private ArrayList<JobListing> companyListings;
     private ArrayList<Review> reviews;
 
-    public Employer(String username, String password, String aName, String aDescription, String aLocation, int aRating) {
+    public Employer(String username, String password, String aName, String aDescription, String aLocation) {
         super(username, password, "e");
         this.companyName = aName;
         this.companyDescription = aDescription;
         this.companyLocation = aLocation;
-        this.companyRating = aRating;
+        this.companyRating = 0;
         this.companyListings = new ArrayList<JobListing>();
     }
 

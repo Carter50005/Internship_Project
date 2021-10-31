@@ -8,10 +8,36 @@ public class UserList {
     private ArrayList<Admin> admins;
 
     private UserList() {
-        users = DataLoader.getUsers();
-        students = new ArrayList<Student>();
-        employers = new ArrayList<Employer>();
-        admins = new ArrayList<Admin>();
+        if(DataLoader.getUsers() != null) {
+            users = DataLoader.getUsers();
+        }
+        else {
+            users = new ArrayList<User>();
+        }
+        students = setStudents();
+        employers = setEmployers();
+        admins = setAdmins();
+    }
+
+    private ArrayList<Student> setStudents() {
+        if(DataLoader.getStudents() == null) {
+            return new ArrayList<Student>();
+        }
+        return DataLoader.getStudents();
+    }
+
+    private ArrayList<Employer> setEmployers() {
+        if(DataLoader.getEmployers() == null) {
+            return new ArrayList<Employer>();
+        }
+        return DataLoader.getEmployers();
+    }
+
+    private ArrayList<Admin> setAdmins() {
+        if(DataLoader.getAdmins() == null) {
+            return new ArrayList<Admin>();
+        }
+        return DataLoader.getAdmins();
     }
 
     public static UserList getInstance() {
@@ -20,11 +46,6 @@ public class UserList {
         }
         return userList;
     }
-
-    public void createAccount(String username, String password, String type) {
-        users.add(new User(username, password, type));
-    }
-
 
     public User login(String username, String password) {
         for(int i=0;i<users.size();i++) {
@@ -79,6 +100,16 @@ public class UserList {
 
     public ArrayList<Admin> getAdmins() {
         return this.admins;
+    }
+
+    public void addStudent(Student student) {
+        this.users.add(student);
+        this.students.add(student);
+    }
+
+    public void addEmployer(Employer employer) {
+        this.users.add(employer);
+        this.employers.add(employer);
     }
 
 }

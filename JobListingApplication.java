@@ -15,9 +15,21 @@ public class JobListingApplication {
         jobs = JobListingsList.getInstance();
     }
 
-    public boolean createAccount(String username, String password, String type) {
+    public boolean createStudentAccount(String username, String password, String studentID, String firstName, String lastName, String email) {
         if(!users.findAccount(username,password)) {
-            users.createAccount(username,password,type);
+            users.addStudent(new Student(username, password, studentID, firstName, lastName, email));
+            for(User user : users.getUsers()) {
+                System.out.println(user);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean createEmployerAccount(String username, String password, String aName, String aDescription, String aLocation) {
+        if(!users.findAccount(username,password)) {
+            users.addEmployer(new Employer(username, password, aName, aDescription, aLocation));
             return true;
         } else {
             return false;

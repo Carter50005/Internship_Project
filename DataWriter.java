@@ -22,7 +22,6 @@ public class DataWriter extends DataConstants {
         for(User user : users) {
             if(user.getType().equalsIgnoreCase("s")) {
                 jsonUsers.add(getStudentJSON(user));
-                
             }
             else if(user.getType().equalsIgnoreCase("e")) {
                 jsonUsers.add(getEmployerJSON(user));
@@ -44,7 +43,7 @@ public class DataWriter extends DataConstants {
 
     private static Student getStudent(User user) {
         for(int i=0;i<students.size();i++) {
-            if(students.get(i).getUUID() == user.getUUID()) {
+            if(students.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
                 return students.get(i);
             }
         }
@@ -53,7 +52,7 @@ public class DataWriter extends DataConstants {
 
     private static Employer getEmployer(User user) {
         for(int i=0;i<employers.size();i++) {
-            if(employers.get(i).getUUID() == user.getUUID()) {
+            if(employers.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
                 return employers.get(i);
             }
         }
@@ -62,7 +61,7 @@ public class DataWriter extends DataConstants {
 
     private static Admin getAdmin(User user) {
         for(int i=0;i<admins.size();i++) {
-            if(admins.get(i).getUUID() == user.getUUID()) {
+            if(admins.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
                 return admins.get(i);
             }
         }
@@ -164,7 +163,6 @@ public class DataWriter extends DataConstants {
         employerJSON.put(EMPLOYER_NAME, employer.getCompanyName().toString());
         employerJSON.put(EMPLOYER_DESCRIPTION, employer.getCompanyDescription().toString());
         employerJSON.put(EMPLOYER_LOCATION, employer.getCompanyLocation().toString());
-        employerJSON.put(EMPLOYER_RATING, String.valueOf(employer.getCompanyRating()));
         employerJSON.put(USER_REVIEWS, getEmployerReviews(employer));
         return employerJSON;
     }

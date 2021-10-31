@@ -8,6 +8,8 @@ import org.json.simple.parser.JSONParser;
 public class DataLoader extends DataConstants{
     
 	private static ArrayList<Student> students = new ArrayList<Student>();
+	private static ArrayList<Employer> employers = new ArrayList<Employer>();
+	private static ArrayList<Admin> admins = new ArrayList<Admin>();
 
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<User>();
@@ -39,9 +41,12 @@ public class DataLoader extends DataConstants{
 						}
 					}
 					users.add(employer);
+					employers.add(employer);
 				}
 				else if(userType.equalsIgnoreCase("a")) {
-					users.add(new Admin(username, password, uUID));
+					Admin admin = new Admin(username, password, uUID);
+					users.add(admin);
+					admins.add(admin);
 				}
 			}
 			
@@ -53,6 +58,18 @@ public class DataLoader extends DataConstants{
 		
 		return null;
     }
+
+	public static ArrayList<Student> getStudents() {
+		return students;
+	}
+
+	public static ArrayList<Employer> getEmployers() {
+		return employers;
+	}
+
+	public static ArrayList<Admin> getAdmins() {
+		return admins;
+	}
 
 	public static ArrayList<JobListing> getJobListings() {
 		ArrayList<JobListing> listings = new ArrayList<JobListing>();
@@ -129,8 +146,7 @@ public class DataLoader extends DataConstants{
 		String name = (String)personJSON.get(EMPLOYER_NAME);
 		String description = (String)personJSON.get(EMPLOYER_DESCRIPTION);
 		String location = (String)personJSON.get(EMPLOYER_LOCATION);
-		int rating = Integer.parseInt((String)personJSON.get(EMPLOYER_RATING));
-		return new Employer(username, password, name, description, location, rating);
+		return new Employer(username, password, name, description, location);
 	} 
 
 	/**
