@@ -22,20 +22,28 @@ public class DataWriter extends DataConstants {
         for(User user : users) {
             if(user.getType().equalsIgnoreCase("s")) {
                 jsonUsers.add(getStudentJSON(user));
-                
             }
             else if(user.getType().equalsIgnoreCase("e")) {
-                Employer employer = getEmployer(user);
+                jsonUsers.add(getEmployerJSON(user));
             }
             else if(user.getType().equalsIgnoreCase("a")) {
-                Admin admin = getAdmin(user);
+                jsonUsers.add(getAdminJSON(user));
+            }
+
+            try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
+ 
+                file.write(jsonUsers.toJSONString());
+                file.flush();
+     
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
 
     private static Student getStudent(User user) {
         for(int i=0;i<students.size();i++) {
-            if(students.get(i).getUUID() == user.getUUID()) {
+            if(students.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
                 return students.get(i);
             }
         }
@@ -44,7 +52,7 @@ public class DataWriter extends DataConstants {
 
     private static Employer getEmployer(User user) {
         for(int i=0;i<employers.size();i++) {
-            if(employers.get(i).getUUID() == user.getUUID()) {
+            if(employers.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
                 return employers.get(i);
             }
         }
@@ -53,7 +61,7 @@ public class DataWriter extends DataConstants {
 
     private static Admin getAdmin(User user) {
         for(int i=0;i<admins.size();i++) {
-            if(admins.get(i).getUUID() == user.getUUID()) {
+            if(admins.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
                 return admins.get(i);
             }
         }
@@ -144,5 +152,42 @@ public class DataWriter extends DataConstants {
         }
         return reviewsJSON;
     }
+
+    private static JSONObject getEmployerJSON(User user) {
+        JSONObject employerJSON = new JSONObject();
+        Employer employer = getEmployer(user);
+        employerJSON.put(USER_USERNAME, employer.getUsername().toString());
+        employerJSON.put(USER_PASSWORD, employer.getPassword().toString());
+        employerJSON.put(USER_TYPE, employer.getType().toString());
+        employerJSON.put(USER_UUID, employer.getUUID().toString());
+        employerJSON.put(EMPLOYER_NAME, employer.getCompanyName().toString());
+        employerJSON.put(EMPLOYER_DESCRIPTION, employer.getCompanyDescription().toString());
+        employerJSON.put(EMPLOYER_LOCATION, employer.getCompanyLocation().toString());
+        employerJSON.put(USER_REVIEWS, getEmployerReviews(employer));
+        return employerJSON;
+    }
     
+    private static JSONArray getEmployerReviews(Employer employer) {
+        JSONArray reviewsJSON = new JSONArray();
+        for(int i=0;i<employer.getReviews().size();i++) {
+            JSONObject reviewJSON = new JSONObject();
+            Review review = employer.getReviews().get(i);
+            reviewJSON.put(REVIEW_RATING, String.valueOf(review.getRating()));
+            reviewJSON.put(REVIEW_REVIEW, review.getReview());
+            reviewJSON.put(REVIEW_REVIEWEE, review.getRevieweeID());
+            reviewJSON.put(REVIEW_REVIEWER, review.getReviewerID());
+            reviewsJSON.add(reviewJSON);
+        }
+        return reviewsJSON;
+    }
+
+    private static JSONObject getAdminJSON(User user) {
+        JSONObject adminJSON = new JSONObject();
+        Admin admin = getAdmin(user);
+        adminJSON.put(USER_USERNAME, admin.getUsername().toString());
+        adminJSON.put(USER_PASSWORD, admin.getPassword().toString());
+        adminJSON.put(USER_TYPE, admin.getType().toString());
+        adminJSON.put(USER_UUID, admin.getUUID().toString());
+        return adminJSON;
+    }
 }

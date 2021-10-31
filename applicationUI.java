@@ -62,48 +62,51 @@ public class applicationUI {
     private void mainMenu() {
         if(application.findAccountType().equalsIgnoreCase("s")) {
             displayMainMenu(studentOptions);
+            int option = selectOption();
             if(selectOption() == 1){
                 editAccount();
-            } else if(selectOption() == 2) {
+            } else if(option == 2) {
                 applyForJob();
-            } else if(selectOption() == 3) {
+            } else if(option == 3) {
                 createResume();
-            } else if(selectOption() == 4) {
+            } else if(option == 4) {
                 addReveiw();
-            } else if(selectOption() == 5) {
+            } else if(option == 5) {
                 searchJobs();
-            } else if(selectOption() == 6) {
-                System.exit(0);
+            } else if(option == 6) {
+                logout();
             }else {
-                System.exit(0);
+                mainMenu();
             }
         } if(application.findAccountType().equalsIgnoreCase("a")) {
             displayMainMenu(adminOptions);
-            if(selectOption() == 1){
+            int option = selectOption();
+            if(option == 1){
 
-            } else if(selectOption() == 2) {
+            } else if(option == 2) {
 
-            } else if(selectOption() == 3) {
+            } else if(option == 3) {
 
-            } else if(selectOption() == 4) {
-                System.exit(0);
+            } else if(option == 4) {
+                logout();
             }else {
-                System.exit(0);
+                mainMenu();
             }
         } if(application.findAccountType().equalsIgnoreCase("e")) {
             displayMainMenu(employerOptions);
-            if(selectOption() == 1){
+            int option = selectOption();
+            if(option == 1){
 
-            } else if(selectOption() == 2) {
+            } else if(option == 2) {
 
-            } else if(selectOption() == 3) {
+            } else if(option == 3) {
 
-            } else if(selectOption() == 4) {
+            } else if(option == 4) {
 
-            } else if(selectOption() == 5) {
-                System.exit(0);
+            } else if(option == 5) {
+                logout();
             }else {
-                System.exit(0);
+                mainMenu();
             }
         }
     }
@@ -289,7 +292,33 @@ public class applicationUI {
         System.out.println("Are you a (S)tudent or (E)mployer");
         String account = scanner.nextLine();
         String type = String.valueOf(account.charAt(0));
-        application.createAccount(username, password, type);
+        if(type.equalsIgnoreCase("s")) {
+            System.out.println("Enter student ID:");
+            String id = scanner.nextLine();
+            System.out.println("Enter first name:");
+            String firstName = scanner.nextLine();
+            System.out.println("Enter last name:");
+            String lastName = scanner.nextLine();
+            System.out.println("Enter email");
+            String email = scanner.nextLine();
+            application.createStudentAccount(username, password, id, firstName, lastName, email);
+        }
+        else if(type.equalsIgnoreCase("e")) {
+            System.out.println("Enter company name:");
+            String aName = scanner.nextLine();
+            System.out.println("Enter company description:");
+            String aDescription = scanner.nextLine();
+            System.out.println("Enter company location:");
+            String aLocation = scanner.nextLine();
+            application.createEmployerAccount(username, password, aName, aDescription, aLocation);
+        }
+        application.login(username, password);
+        mainMenu();
+    }
+
+    private void logout() {
+        DataWriter.saveUsers();
+        System.exit(0);
     }
 
     public static void main(String[] args) {

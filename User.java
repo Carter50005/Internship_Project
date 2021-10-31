@@ -68,4 +68,8 @@ public class User {
     public boolean contains(JobListing listing) {
         return false;
     } 
+
+    public String toString() {
+        return "Username"+this.username+"\nPassword"+this.password+"\nuUID"+this.uUID;
+    }
 }
