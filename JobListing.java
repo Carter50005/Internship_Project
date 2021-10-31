@@ -107,7 +107,7 @@ import java.util.Random;
             applicants = sortAToZHelper(applicants);
         }
         else if (sortType.equals("nameZToA")) {
-            applicants = sortZToAHelper(applicants);
+            applicants = sortAToZHelper(applicants);
         }
         return applicants;
     }
@@ -142,8 +142,6 @@ import java.util.Random;
         return String.valueOf(alphabet.charAt(random.nextInt(alphabet.length())))+uUIDNumbers();
     }
 
-
-
     private String uUIDNumbers() {
         Random random = new Random();
         String ret = "";
@@ -157,26 +155,28 @@ import java.util.Random;
         while(!sorted) {
             sorted = true;
             for(int i = 0; i<applicants.size()-1; i++) {
-                if(applicants.get(i).getLastName().compareTo(applicants.get(i+1).getStudent().getLastName())>0) {
+                if(applicants.get(i).getLastName().compareTo(applicants.get(i+1).getLastName())>0) {
                     Student temp = applicants.get(i+1);
                     applicants.set(i+1,applicants.get(i));
                     applicants.set(i,temp);
                 }
             }
         }
+        return applicants;
     }
     private ArrayList<Student> sortZToAHelper(ArrayList<Student> applicants) {
         boolean sorted = false;
         while(!sorted) {
             sorted = true;
             for(int i = 0; i>applicants.size()-1; i++) {
-                if(applicants.get(i).getLastName().compareTo(applicants.get(i+1).getStudent().getLastName())>0) {
+                if(applicants.get(i).getLastName().compareTo(applicants.get(i+1).getLastName())>0) {
                     Student temp = applicants.get(i+1);
                     applicants.set(i+1,applicants.get(i));
                     applicants.set(i,temp);
                 }
             }
         }
+        return applicants;
     }
 
     public String getUUID() {

@@ -26,9 +26,11 @@ public class JobListingApplication {
         return true;
     }
 
+
     public char findAccountType() {
         return user.getType();
     }
+
 
 
 }

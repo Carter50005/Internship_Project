@@ -85,11 +85,11 @@ public class Student extends User {
         this.reviews = reviews;
     }
 
-    public void removeReview(Review review) {
-        reviews.remove(review);
+    public void remove(Student review) {
+        review.remove(review);
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 733e2445ec725e0531039947244d88747e9602ba
+    public static void remove(Review review) {
+        review.remove(review);
+    }
 }

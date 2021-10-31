@@ -1,4 +1,3 @@
-
 public class Review {
     
     private int rating;
@@ -25,7 +24,27 @@ public class Review {
         return this.revieweeID;
     }
 
+    public int getRating() {
+        return this.rating;
+    }
+
+    public String getReview() {
+        return this.review;
+    }
+
     public void addReview() {
         
+    }
+
+    public void removeReview(Student review) {
+        review.remove(review);
+    }
+
+    public void removeReview(Employer review) {
+        review.remove(review);
+    }
+
+    public void remove(Review review) {
+        review.remove(review);
     }
 }

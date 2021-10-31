@@ -42,19 +42,6 @@ public class applicationUI {
         System.out.println("\n");
     }
 
-    private void choices() {     
-        String choices = scanner.nextLine();
-        if(choices.equalsIgnoreCase("s")){
-          
-        } else if(choices.equalsIgnoreCase("E")){
-            
-        } else if(choices.equalsIgnoreCase("C")){
-
-        } else if(choices.equalsIgnoreCase("A")){
-            
-        } 
-    }
-
     private void login() {
         System.out.print("Enter your username: ");
         String username = scanner.nextLine();
@@ -77,7 +64,8 @@ public class applicationUI {
                 } else if(selectOption() == 5) {
 
                 } else if(selectOption() == 6) {
-                    System.exit(0);
+                    System.out.println("---Logged Out---");
+                    run();
                 }else {
                     System.exit(0);
                 }
@@ -132,8 +120,6 @@ public class applicationUI {
         char type =  account.charAt(0);
         application.createAccount(username, password, type);
     }
-
-
 
     public static void main(String[] args) {
         applicationUI start = new applicationUI();
