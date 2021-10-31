@@ -11,11 +11,11 @@ public class applicationUI {
 
     applicationUI() {
         scanner = new Scanner(System.in);
-        application = new JobListingApplication();
+        application = JobListingApplication.getInstance();
     }
 
     public void run() {
-        
+
         while(true) {
             System.out.println(WELCOME_MESSAGE);
             System.out.println("(L)og In, (C)reate Account, (Q)uit:");
@@ -32,7 +32,7 @@ public class applicationUI {
                 break;
             }
         }
-        
+
     }
 
     private void login() {
@@ -288,15 +288,13 @@ public class applicationUI {
         String password = scanner.nextLine();
         System.out.println("Are you a (S)tudent or (E)mployer");
         String account = scanner.nextLine();
-        char type =  account.charAt(0);
-        application.createAccount(username, password, type);    
+        String type = String.valueOf(account.charAt(0));
+        application.createAccount(username, password, type);
     }
 
-
-    
     public static void main(String[] args) {
         applicationUI start = new applicationUI();
         start.run();
     }
-    
+
 }

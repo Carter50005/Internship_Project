@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Student extends User {
@@ -10,7 +9,7 @@ public class Student extends User {
     private ArrayList<Review> reviews;
 
     public Student(String username, String password, String studentID, String firstName, String lastName, String email) {
-        super(username, password, 's', studentID);
+        super(username, password, "s", studentID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -19,7 +18,7 @@ public class Student extends User {
     }
 
     public Student(String username, String password, String studentID, String firstName, String lastName, String email, ArrayList<Resume> resumes, ArrayList<Review> reviews)  {
-        super(username, password, 's', studentID);
+        super(username, password, "s", studentID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -27,8 +26,11 @@ public class Student extends User {
         this.reviews = reviews;
     }
 
-    public void editAccount() {
-
+    public void editAccount(Student student) {
+        this.firstName = student.getFirstName();
+        this.lastName = student.getLastName();
+        this.email = student.getEmail();
+        this.phoneNumber = student.getPhoneNumber();
     }
 
     public void applyForJob(JobListing jobListing) {
@@ -81,13 +83,13 @@ public class Student extends User {
 
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
-    } 
- 
-    public void removeReview(Review review) {
-        reviews.remove(review);
     }
 
-    public Object getStudent() {
-        return this.tudent;
+    public void remove(Student review) {
+        review.remove(review);
+    }
+
+    public static void remove(Review review) {
+        review.remove(review);
     }
 }

@@ -1,0 +1,82 @@
+[
+  {
+    "username" : "mjpc815",
+    "password" : "password",
+    "type" : "s",
+    "uUID" : "Y997854",
+    "firstName" : "Mitchell",
+    "lastName" : "Carroll",
+    "email" : "mjpc815@email.com",
+    "resumes" : [
+    {
+      "educations" : [
+        {
+          "school" : "UofSC",
+          "classYear" : "2024",
+          "major" : "Computer Info. Systems",
+          "minor" : "none",
+          "gpa" : "4.00"
+        }
+      ],
+      "skills" : [
+        {
+          "skill" : "Java"
+        },
+        {
+          "skill" : "HTML"
+        },
+        {
+          "skill" : "CSS"
+        }
+      ],
+      "workExperiences" : [
+        {
+          "title" : "Lifeguard",
+          "startDate" : "12/30/1992",
+          "endDate" : "12/30/2050",
+          "description" : "fun"
+        },
+        {
+          "title" : "Lifeguard",
+          "startDate" : "12/30/2050",
+          "endDate" : "12/30/3000",
+          "description" : "fun"
+        }
+      ],
+      "extraCurriculars" : [
+        {
+          "title" : "Lifeguard",
+          "startDate" : "12/30/1992",
+          "endDate" : "12/30/2050",
+          "description" : "fun"
+        }
+      ] 
+    }],
+    "reviews" : [
+      {
+        "rating" : "5",
+        "review" : "the best to ever do it ever",
+        "reviewerID" : "Y678765",
+        "revieweeID" : "Y997854"
+      }
+    ]
+  },
+  {
+    "username" : "amazon",
+    "password" : "password",
+    "type" : "e",
+    "uUID" : "Y997855",
+    "companyName" : "amazon",
+    "companyDescription" : "here to help people (by people, we mean jeff bezos)",
+    "companyLocation" : "everywhere",
+    "companyRating" : "5",
+    "reviews" : [
+      {
+        "rating" : "5",
+        "review" : "the best to ever do it ever",
+        "reviewerID" : "Y678765",
+        "revieweeID" : "Y997855"
+      }
+    ]
+  }
+]

@@ -4,18 +4,18 @@ public class User {
 
     protected String username;
     protected String password;
-    protected char type;
+    protected String type;
     protected String uUID;
     private Random random = new Random();
 
-    public User(String username, String password, char type) {
+    public User(String username, String password, String type) {
         this.username = username;
         this.password = password;
         this.type = type;
         this.uUID = createUUID();
     }
 
-    public User(String username, String password, char type, String uUID) {
+    public User(String username, String password, String type, String uUID) {
         this.username = username;
         this.password = password;
         this.type = type;
@@ -48,9 +48,9 @@ public class User {
         return this.password;
     }
 
-    public char getType() {
+    public String getType() {
         return this.type;
-    }
+    }    
 
     public String createUUID() {
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -65,4 +65,7 @@ public class User {
         return ret;
     }
 
+    public boolean contains(JobListing listing) {
+        return false;
+    } 
 }
