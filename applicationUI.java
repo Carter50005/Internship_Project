@@ -60,7 +60,7 @@ public class applicationUI {
     }
 
     private void mainMenu() {
-        if(application.findAccountType() == 's') {
+        if(application.findAccountType().equalsIgnoreCase("s")) {
             displayMainMenu(studentOptions);
             if(selectOption() == 1){
                 editAccount();
@@ -77,7 +77,7 @@ public class applicationUI {
             }else {
                 System.exit(0);
             }
-        } if(application.findAccountType() == 'a') {
+        } if(application.findAccountType().equalsIgnoreCase("a")) {
             displayMainMenu(adminOptions);
             if(selectOption() == 1){
 
@@ -90,7 +90,7 @@ public class applicationUI {
             }else {
                 System.exit(0);
             }
-        } if(application.findAccountType() == 'e') {
+        } if(application.findAccountType().equalsIgnoreCase("e")) {
             displayMainMenu(employerOptions);
             if(selectOption() == 1){
 
