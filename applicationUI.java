@@ -10,7 +10,7 @@ public class applicationUI {
 
     applicationUI() {
         scanner = new Scanner(System.in);
-        application = new JobListingApplication();
+        application = JobListingApplication.getInstance();
     }
 
     public void run() {
@@ -51,7 +51,7 @@ public class applicationUI {
         System.out.println();
         if(application.login(username,password)) {
             System.out.println("---Loging In---");
-            if(application.findAccountType() == 's') {
+            if(application.findAccountType().equalsIgnoreCase("s")) {
                 displayMainMenu(studentOptions);
                 if(selectOption() == 1){
 
@@ -69,7 +69,7 @@ public class applicationUI {
                 }else {
                     System.exit(0);
                 }
-            } if(application.findAccountType() == 'a') {
+            } if(application.findAccountType().equalsIgnoreCase("a")) {
                 displayMainMenu(adminOptions);
                 if(selectOption() == 1){
 
@@ -82,7 +82,7 @@ public class applicationUI {
                 }else {
                     System.exit(0);
                 }
-            } if(application.findAccountType() == 'e') {
+            } if(application.findAccountType().equalsIgnoreCase("e")) {
                 displayMainMenu(employerOptions);
                 if(selectOption() == 1){
 
@@ -117,7 +117,7 @@ public class applicationUI {
         String password = scanner.nextLine();
         System.out.println("Are you a (S)tudent or (E)mployer");
         String account = scanner.nextLine();
-        char type =  account.charAt(0);
+        String type = String.valueOf(account.charAt(0));
         application.createAccount(username, password, type);
     }
 

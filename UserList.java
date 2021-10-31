@@ -21,7 +21,7 @@ public class UserList {
         return userList;
     }
 
-    public void createAccount(String username, String password, char type) {
+    public void createAccount(String username, String password, String type) {
         users.add(new User(username, password, type));
     }
 
