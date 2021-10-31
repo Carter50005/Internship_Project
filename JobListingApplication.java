@@ -33,4 +33,8 @@ public class JobListingApplication {
         user = users.login(username, password);
         return true;
     }
+
+    public String findAccountType() {
+        return user.getType();
+    }
 }
