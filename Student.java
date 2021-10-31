@@ -9,7 +9,7 @@ public class Student extends User {
     private ArrayList<Review> reviews;
 
     public Student(String username, String password, String studentID, String firstName, String lastName, String email) {
-        super(username, password, 's', studentID);
+        super(username, password, "s", studentID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -18,7 +18,7 @@ public class Student extends User {
     }
 
     public Student(String username, String password, String studentID, String firstName, String lastName, String email, ArrayList<Resume> resumes, ArrayList<Review> reviews)  {
-        super(username, password, 's', studentID);
+        super(username, password, "s", studentID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

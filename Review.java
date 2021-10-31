@@ -28,4 +28,12 @@ public class Review {
     public void addReview() {
         
     }
+
+    public int getRating() {
+        return this.rating;
+    }
+
+    public String getReview() {
+        return this.review;
+    }
 }
