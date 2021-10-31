@@ -10,7 +10,7 @@ public class Student extends User {
     private ArrayList<Review> reviews;
 
     public Student(String username, String password, String studentID, String firstName, String lastName, String email) {
-        super(username, password, 's', studentID);
+        super(username, password, "s", studentID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -20,7 +20,7 @@ public class Student extends User {
     }
 
     public Student(String username, String password, String studentID, String firstName, String lastName, String email, ArrayList<Resume> resumes, ArrayList<Review> reviews, ArrayList<JobListing> wishList)  {
-        super(username, password, 's', studentID);
+        super(username, password, "s", studentID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -53,7 +53,7 @@ public class Student extends User {
     }
 
     public void reviewEmployer(int rating, String review, User reviewee) {
-        new Review(rating, review, this, reviewee);
+        new Review(rating, review, getUUID(), reviewee.getUUID());
     }
 
     public String toString() {
@@ -86,6 +86,14 @@ public class Student extends User {
 
     public ArrayList<Review> getReviews() {
         return this.reviews;
+    }
+
+    public void setResumes(ArrayList<Resume> resumes) {
+        this.resumes = resumes;
+    }
+
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
     }
  
 }

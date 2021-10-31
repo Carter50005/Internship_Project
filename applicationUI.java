@@ -290,6 +290,8 @@ public class applicationUI {
         String account = scanner.nextLine();
         String type = String.valueOf(account.charAt(0));
         application.createAccount(username, password, type);
+        application.login(username, password);
+        mainMenu();
     }
 
     public static void main(String[] args) {
