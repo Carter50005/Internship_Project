@@ -15,7 +15,7 @@ public class Experience {
     public String toString() {
         return title+"\nStart Date: "+startdate+"\nEnd Date: "+endDate+"\nDescription: "+description;
     }
-
+    
     public String getTitle() {
         return this.title;
     }
@@ -31,5 +31,4 @@ public class Experience {
     public String getDescription() {
         return this.description;
     }
-    
 }

@@ -1,19 +1,16 @@
 import java.util.ArrayList;
-
+import java.util.Enumeration;
 
 public class JobListingsList {
     
     private ArrayList<JobListing> jobListings;
-    private static JobListingsList jobListingList = new JobListingsList();
+    private static JobListingList jobListingList = new JobListingsList();
 
     public JobListingsList() {
-        jobListings = DataLoader.getJobListings();
+        //jobListings = DataLoader.getJobListings();
     }
 
-    public static JobListingsList getInstance() {
-        if(jobListingList == null) {
-            return new JobListingsList();
-        }
+    public static JobListingList getInstance() {
         return jobListingList;
     }
     public ArrayList<JobListing> getJobListings() {
@@ -36,6 +33,11 @@ public class JobListingsList {
         return ret;
     }
 
+    public ArrayList<JobListing> sortListings(SortType sortType) {
+       
+        
+    }
+
     public boolean contains(JobListing jobListing) {
         for(int i=0;i<jobListings.size();i++) {
             if(jobListings.get(i) == jobListing) {
@@ -52,7 +54,7 @@ public class JobListingsList {
         return false;
     }
 
-    public void removeListing(JobListing jobListing) {
+    public void deleteListing(JobListing jobListing) {
         jobListings.remove(jobListing);
     }
 }
