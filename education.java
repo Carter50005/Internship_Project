@@ -1,11 +1,11 @@
-public class Education {
+public class education {
     private String school;
     private int classYear;
     private String major;
     private String minor;
     private double gpa;
 
-    public Education(String school, int classYear, String major, String minor, double gpa) {
+    public education(String school, int classYear, String major, String minor, double gpa) {
         this.school = school;
         this.classYear = classYear;
         this.major = major;
