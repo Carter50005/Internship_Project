@@ -50,7 +50,7 @@ public class User {
 
     public String getType() {
         return this.type;
-    }
+    }    
 
     public String createUUID() {
         String alphabet = "abcdefghijklmnopqrstuvwxyz";

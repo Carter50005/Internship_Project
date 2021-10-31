@@ -46,11 +46,5 @@ public class Review {
 
     public void remove(Review review) {
         review.remove(review);
-    public int getRating() {
-        return this.rating;
-    }
-
-    public String getReview() {
-        return this.review;
-    }
+    } 
 }
