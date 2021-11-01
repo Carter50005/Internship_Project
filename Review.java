@@ -36,15 +36,7 @@ public class Review {
 
     }
 
-    public void removeReview(Student review) {
-        review.remove(review);
-    }
-
-    public void removeReview(Employer review) {
-        review.remove(review);
-    }
-
     public void remove(Review review) {
-        review.remove(review);
+        
     } 
 }

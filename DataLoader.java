@@ -162,7 +162,7 @@ public class DataLoader extends DataConstants{
 			JSONObject resume = (JSONObject)resumes.get(i);
 
 			JSONArray educationsArray = (JSONArray)resume.get(RESUME_EDUCATIONS);
-			ArrayList<education> educations = new ArrayList<education>();
+			ArrayList<Education> educations = new ArrayList<Education>();
 			for(int j=0;j<educationsArray.size();j++) {
 				JSONObject education = (JSONObject)educationsArray.get(j);
 				String school = (String)education.get(EDUCATIONS_SCHOOL);
@@ -170,7 +170,7 @@ public class DataLoader extends DataConstants{
 				String major = (String)education.get(EDUCATIONS_MAJOR);
 				String minor = (String)education.get(EDUCATIONS_MINOR);
 				double gpa = Double.parseDouble((String)education.get(EDUCATIONS_GPA));
-				educations.add(new education(school, classYear, major, minor, gpa));
+				educations.add(new Education(school, classYear, major, minor, gpa));
 			}
 
 			ArrayList<String> skills = new ArrayList<String>();

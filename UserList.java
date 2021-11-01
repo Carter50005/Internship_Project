@@ -103,13 +103,16 @@ public class UserList {
     }
 
     public void addStudent(Student student) {
-        this.users.add(student);
-        this.students.add(student);
+        users.add(student);
+        for(User user : users) {
+            System.out.println(user);
+        }
+        students.add(student);
     }
 
     public void addEmployer(Employer employer) {
-        this.users.add(employer);
-        this.employers.add(employer);
+        users.add(employer);
+        employers.add(employer);
     }
 
 }

@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class Resume {
     private Student student;
-    private ArrayList<education> educations;
+    private ArrayList<Education> educations;
     private ArrayList<String> skills;
     private ArrayList<Experience> workExperiences;
     private ArrayList<Experience> extraCurriculars;
 
-    public Resume(Student student, ArrayList<education> educations, ArrayList<String> skills, ArrayList<Experience> workExperiences, ArrayList<Experience> extraCurriculars) {
+    public Resume(Student student, ArrayList<Education> educations, ArrayList<String> skills, ArrayList<Experience> workExperiences, ArrayList<Experience> extraCurriculars) {
         this.educations = educations;
         this.skills = skills;
         this.workExperiences = workExperiences;
@@ -15,7 +15,7 @@ public class Resume {
         this.student = student;
     }
 
-    public ArrayList<education> getEducations() {
+    public ArrayList<Education> getEducations() {
         return this.educations;
     }
 
@@ -39,7 +39,7 @@ public class Resume {
         extraCurriculars.add(experience);
     }
 
-    public void addEducation(education education) {
+    public void addEducation(Education education) {
         educations.add(education);
     }
 
