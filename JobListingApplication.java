@@ -18,9 +18,6 @@ public class JobListingApplication {
     public boolean createStudentAccount(String username, String password, String studentID, String firstName, String lastName, String email) {
         if(!users.findAccount(username,password)) {
             users.addStudent(new Student(username, password, studentID, firstName, lastName, email));
-            for(User user : users.getUsers()) {
-                System.out.println(user);
-            }
             return true;
         } else {
             return false;
@@ -55,12 +52,15 @@ public class JobListingApplication {
     public void setChild(User user) {
         if(user.getType().equalsIgnoreCase("s") && (loginStudent(user) != null)) {
             this.user = loginStudent(user);
+            this.studentUser = loginStudent(user);
         }
         else if(user.getType().equalsIgnoreCase("e") && (loginEmployer(user) != null)) {
             this.user = loginEmployer(user);
+            this.employerUser = loginEmployer(user);
         }
         else if(user.getType().equalsIgnoreCase("a") && (loginAdmin(user) != null)) {
             this.user = loginAdmin(user);
+            this.adminUser = loginAdmin(user);
         }
     }
 

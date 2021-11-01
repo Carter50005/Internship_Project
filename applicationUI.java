@@ -312,8 +312,9 @@ public class applicationUI {
             String aLocation = scanner.nextLine();
             application.createEmployerAccount(username, password, aName, aDescription, aLocation);
         }
-        application.login(username, password);
-        mainMenu();
+        if(application.login(username, password)) {
+            mainMenu();
+        }
     }
 
     private void logout() {
