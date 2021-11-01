@@ -33,7 +33,14 @@ public class JobListingApplication {
         users.addResume(studentUser, resume);
     }
 
+    public JobListing createListing(String title, String postedDate, String expirationDate, String location, String jobPay) {
+        return new JobListing(title, postedDate, expirationDate, location, Integer.parseInt(jobPay), employerUser.getUUID());
+    }
 
+    public void addJobListing(JobListing listing) {
+        employerUser.addListing(listing);
+        jobs.addListing(listing);
+    }
 
     public boolean createEmployerAccount(String username, String password, String aName, String aDescription, String aLocation) {
         if(!users.findAccount(username,password)) {
@@ -109,9 +116,19 @@ public class JobListingApplication {
         return null;
     }
 
+    public ArrayList<JobListing> searchListings(String keyword) {
+        return jobs.searchListings(keyword);
+    }
+
     public void logout() {
         DataWriter.saveUsers(users.getUsers());
+        DataWriter.saveJobListing(jobs.getJobListings());
         System.exit(0);
+    }
+
+    public void applyStudent(JobListing listing) {
+        listing.apply(studentUser);
+        jobs.updateListing(listing);
     }
 
 }

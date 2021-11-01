@@ -7,6 +7,7 @@ import java.util.Random;
  public class JobListing {
 
     private String id;
+    private String title;
     private String postedDate;
     private String expirationDate;
     private ArrayList<String> desiredSkills;
@@ -18,8 +19,9 @@ import java.util.Random;
     private Employer employer;
 
     //Constructors
-    public JobListing(String id, String postedDate, String expirationDate, String location, int jobPay, String employerID) {
+    public JobListing(String id, String title, String postedDate, String expirationDate, String location, int jobPay, String employerID) {
         this.id = id;
+        this.title = title;
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
         this.location = location;
@@ -30,8 +32,22 @@ import java.util.Random;
         applicantIDS = new ArrayList<String>();
     }
 
-    public JobListing(String postedDate, String expirationDate, ArrayList<String> desiredSkills, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
+    public JobListing(String title, String postedDate, String expirationDate, String location, int jobPay, String employerID) {
         this.id = createID();
+        this.title = title;
+        this.postedDate = postedDate;
+        this.expirationDate = expirationDate;
+        this.desiredSkills = new ArrayList<String>();
+        this.location = location;
+        this.jobPay = jobPay;
+        this.employerID = employerID;
+        this.applicantIDS = new ArrayList<String>();
+        this.applicants = new ArrayList<Student>();
+    }
+
+    public JobListing(String title, String postedDate, String expirationDate, ArrayList<String> desiredSkills, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
+        this.id = createID();
+        this.title = title;
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
         this.desiredSkills = desiredSkills;
@@ -41,8 +57,9 @@ import java.util.Random;
         this.employerID = employerID;
     }
 
-    public JobListing(String id, String postedDate, String expirationDate, ArrayList<String> desiredSkills, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
+    public JobListing(String title, String id, String postedDate, String expirationDate, ArrayList<String> desiredSkills, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
         this.id = id;
+        this.title = title;
         this.postedDate = postedDate;
         this.expirationDate = expirationDate;
         this.desiredSkills = desiredSkills;
@@ -62,7 +79,7 @@ import java.util.Random;
         return this.id;
     }
     public String getPostedDate() {
-        return this.getPostedDate();
+        return this.postedDate;
     }
     public String getExpirationDate() {
         return this.expirationDate;
@@ -84,11 +101,8 @@ import java.util.Random;
     }
 
     public void apply(Student student) {
-
-        if(student!=null && !(applicants.contains(student))) {
-          applicants.add(student);
-          applicantIDS.add(student.getUUID());
-        }
+        applicants.add(student);
+        applicantIDS.add(student.getUUID());
     }
 
     public String toString() {
@@ -100,6 +114,10 @@ import java.util.Random;
             }
         }
         return "Employer: "+this.employer.getCompanyName()+"\nLocation: "+this.location+"Job Pay: "+this.jobPay+"\nExpiration Date: "+this.expirationDate+"\nPosted Date: "+this.postedDate+"Desired Skills: "+desiredSkillsString;
+    }
+
+    public String getTitle() {
+        return this.title;
     }
 
     public ArrayList<Student> sortApplicants(ApplicantSortType sortType) {
@@ -193,5 +211,9 @@ import java.util.Random;
 
     public String getEmployerID() {
         return this.employerID;
+    }
+
+    public void addDesiredSkill(String skill) {
+        desiredSkills.add(skill);
     }
  }

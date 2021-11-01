@@ -40,6 +40,57 @@ public class DataWriter extends DataConstants {
         }
     }
 
+    public static void saveJobListing(ArrayList<JobListing> listings) {
+        JSONArray jobListingsJSON = new JSONArray();
+
+        for(JobListing listing : listings) {
+            jobListingsJSON.add(getListingJSON(listing));
+        }
+
+        try (FileWriter file = new FileWriter(LISTING_FILE_NAME)) {
+ 
+            file.write(jobListingsJSON.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static JSONObject getListingJSON(JobListing listing) {
+        JSONObject listingJSON = new JSONObject();
+        listingJSON.put(JOB_LISTING_ID, listing.getId().toString());
+        listingJSON.put(JOB_LISTING_TITLE, listing.getTitle().toString());
+        listingJSON.put(JOB_POSTED_DATE, listing.getPostedDate().toString());
+        listingJSON.put(JOB_EXPIRATION_DATE, listing.getExpirationDate().toString());
+        listingJSON.put(JOB_DESIRED_SKILLS, getDesiredSkillsJSON(listing));
+        listingJSON.put(JOB_LOCATION, listing.getLocation());
+        listingJSON.put(JOB_PAY, String.valueOf(listing.getJobPay()));
+        listingJSON.put(JOB_APPLICANT_IDS, getApplicantIDSJSON(listing));
+        listingJSON.put(JOB_EMPLOYER_ID, listing.getEmployerID().toString());
+        return listingJSON;
+    }
+
+    private static JSONArray getApplicantIDSJSON(JobListing listing) {
+        JSONArray applicantIDSJSON = new JSONArray();
+        for(String id : listing.getApplicantIDS()) {
+            JSONObject applicantIDJSON = new JSONObject();
+            applicantIDJSON.put(APPLICANT_ID, id);
+            applicantIDSJSON.add(applicantIDJSON);
+        }
+        return applicantIDSJSON;
+    }
+
+    private static JSONArray getDesiredSkillsJSON(JobListing listing) {
+        JSONArray skillsJSON = new JSONArray();
+        for(String skill : listing.getDesiredSkills()) {
+            JSONObject skillJSON = new JSONObject();
+            skillJSON.put(SKILLS_SKILL, skill.toString());
+            skillsJSON.add(skillJSON);
+        }
+        return skillsJSON;
+    }
+
     private static Student getStudent(User user) {
         for(int i=0;i<students.size();i++) {
             if(students.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
