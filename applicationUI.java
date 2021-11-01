@@ -231,15 +231,48 @@ public class applicationUI {
     }
 
     private void addWorkExperience() {
-
+        System.out.println("What was the title of your experience: ");
+        String title = scanner.nextLine();
+        System.out.println("What was the start date:");
+        String startDate = scanner.nextLine();
+        System.out.println("What was the end date:");
+        String endDate = scanner.nextLine();
+        System.out.println("Enter a description of the Experience");
+        String description = scanner.nextLine(); 
+        editWorkExperience();
     }
 
     private void deleteWorkExperience() {
-
+        
     }
 
     private void editWorkExperienceItem() {
+        System.out.println("Which Item would you like to edit:");
+        String[] workExperience = {". Title",". Start date", ". End date", ". Description", "Go Back"};
+        for(int i = 0; i < workExperience.length; i++) {
+            System.out.println((i+1) + workExperience[i]);
+        }
+        String option = scanner.nextLine();
+        int num = Integer.parseInt(option);
+        if(num == 1) {
+            System.out.println("What is the title of the position: ");
+            String title = scanner.nextLine();
+        } else if(num ==2) {
+            System.out.println("What was the start date of the position: ");
+            String startDate = scanner.nextLine();
+        } else if(num == 3) {
+            System.out.println("What was the end date of the position");
+            String endDate = scanner.nextLine();
+        } else if(num == 4) {
+            System.out.println("What is the description of the position: ");
+            String description = scanner.nextLine();
+        } else if(num == 5) {
+            editWorkExperience();
+        } else {
+            System.exit(0);
+        }
 
+        System.out.println("");
     }
 
     private void editExtracuriculars() {
@@ -257,7 +290,7 @@ public class applicationUI {
     }
 
     private void addExtraCurricular() {
-
+        System.out.println("Would you ");
     }
 
     private void deleteExtraCurricular() {
