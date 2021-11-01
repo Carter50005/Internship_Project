@@ -33,6 +33,10 @@ public class Student extends User {
         
     }
 
+    public void removeReview(Review review) {
+        reviews.remove(review);
+    }
+
     public void applyForJob() {
 
     }
@@ -57,7 +61,7 @@ public class Student extends User {
     }
 
     public String toString() {
-        return "";
+        return "bruh";
     }
 
     public String getFirstName() {
@@ -94,6 +98,10 @@ public class Student extends User {
 
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public void addResume(Resume resume) {
+        resumes.add(resume);
     }
  
 }

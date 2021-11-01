@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Enumeration;
 
 public class JobListingsList {
     
@@ -33,10 +32,10 @@ public class JobListingsList {
         return ret;
     }
 
-    public ArrayList<JobListing> sortListings(SortType sortType) {
-       
+    /*public ArrayList<JobListing> sortListings(SortType sortType) {
+       TODO
         
-    }
+    }*/
 
     public boolean contains(JobListing jobListing) {
         for(int i=0;i<jobListings.size();i++) {

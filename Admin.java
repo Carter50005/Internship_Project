@@ -26,23 +26,24 @@ public class Admin extends User {
         }
         else if(user.getType().equalsIgnoreCase("e")) {
             for(int i = 0; i<listings.getJobListings().size(); i++) {
-                listings.removeListing(listings.getJobListings().get(i));
+                listings.deleteListing(listings.getJobListings().get(i));
             }
         }
     }
 
-    public void deleteReview(User user, Review review) {
-        if(user.getType().equalsIgnoreCase("s")) {
-            if(review.getReview().contains(review)) {
-                Student.remove(review);
-            }
-        }
-        if(user.getType().equalsIgnoreCase("e")) {
-            if(review.getReview().contains(review)) {
-                Employer.remove(review);
+    public void deleteReview(Student student, Review review) {
+        if(student.getReviews().contains(review)) {
+            student.removeReview(review);
         }
     }
-}
+            
+    public void deleteReview(Employer employer, Review review) {
+        if(employer.getReviews().contains(review)) {
+                employer.deleteReview(review);
+        } 
+    }
+    
+
 
     public void editUser(User user, User editedUser) {
         user = editedUser;

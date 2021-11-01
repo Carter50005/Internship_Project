@@ -84,12 +84,16 @@ public class Employer extends User{
             companyListings.remove(listing);
         }
         if(JobListingsList.getInstance().contains(listing)) {
-            JobListingsList.getInstance().removeListing(listing);
+            JobListingsList.getInstance().deleteListing(listing);
         }
     }
 
     public String getUUID() {
         return this.uUID;
+    }
+
+    public void deleteReview(Review review) {
+        reviews.remove(review);
     }
 
     public void remove(Employer review) {

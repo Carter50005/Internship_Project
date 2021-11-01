@@ -11,9 +11,8 @@ public class DataWriter extends DataConstants {
     private static ArrayList<Employer> employers;
     private static ArrayList<Admin> admins;
 
-    public static void saveUsers() {
+    public static void saveUsers(ArrayList<User> users) {
         
-        users = UserList.getInstance().getUsers();
         students = UserList.getInstance().getStudents();
         employers = UserList.getInstance().getEmployers();
         admins = UserList.getInstance().getAdmins();

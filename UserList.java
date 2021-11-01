@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class UserList {
     private static UserList userList;
-    private ArrayList<User> users;
-    private ArrayList<Student> students;
-    private ArrayList<Employer> employers;
-    private ArrayList<Admin> admins;
+    private static ArrayList<User> users;
+    private static ArrayList<Student> students;
+    private static ArrayList<Employer> employers;
+    private static ArrayList<Admin> admins;
 
     private UserList() {
         if(DataLoader.getUsers() != null) {
@@ -98,6 +98,14 @@ public class UserList {
         return this.employers;
     }
 
+    public void addResume(Student student, Resume resume) {
+        for(Student aStudent : students) {
+            if(aStudent.getUUID().equalsIgnoreCase(student.getUUID())) {
+                aStudent.addResume(resume);
+            }
+        }
+    }
+
     public ArrayList<Admin> getAdmins() {
         return this.admins;
     }
@@ -113,6 +121,12 @@ public class UserList {
     public void addEmployer(Employer employer) {
         users.add(employer);
         employers.add(employer);
+        test();
+    }
+    public void test() {
+        for(User user : users) {
+            System.out.println(user);
+        }
     }
 
 }

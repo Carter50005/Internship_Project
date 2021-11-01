@@ -15,6 +15,18 @@ public class Resume {
         this.student = student;
     }
 
+    public Resume(Student student) {
+        this.student = student;
+        this.educations = new ArrayList<Education>();
+        this.skills = new ArrayList<String>();
+        this.workExperiences = new ArrayList<Experience>();
+        this.extraCurriculars = new ArrayList<Experience>();
+    }
+
+    public void addSkill(String skill) {
+        skills.add(skill);
+    }
+
     public ArrayList<Education> getEducations() {
         return this.educations;
     }

@@ -4,7 +4,7 @@ public class JobListingApplication {
 
     private UserList users;
     private JobListingsList jobs;
-    private User user;
+    private  User user;
     private Student studentUser;
     private Employer employerUser;
     private Admin adminUser;
@@ -23,6 +23,17 @@ public class JobListingApplication {
             return false;
         }
     }
+
+    public Resume createResume() {
+        return new Resume(studentUser);
+    }
+
+    public void addResume(Resume resume) {
+        studentUser.addResume(resume);
+        users.addResume(studentUser, resume);
+    }
+
+
 
     public boolean createEmployerAccount(String username, String password, String aName, String aDescription, String aLocation) {
         if(!users.findAccount(username,password)) {
@@ -97,4 +108,10 @@ public class JobListingApplication {
         }
         return null;
     }
+
+    public void logout() {
+        DataWriter.saveUsers(users.getUsers());
+        System.exit(0);
+    }
+
 }

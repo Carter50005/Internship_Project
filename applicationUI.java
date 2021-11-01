@@ -15,24 +15,18 @@ public class applicationUI {
     }
 
     public void run() {
+        System.out.println(WELCOME_MESSAGE);
+        System.out.println("(L)og In, (C)reate Account, (Q)uit:");
+        String option = scanner.nextLine();
 
-        while(true) {
-            System.out.println(WELCOME_MESSAGE);
-            System.out.println("(L)og In, (C)reate Account, (Q)uit:");
-            String option = scanner.nextLine();
-
-            if(option.equalsIgnoreCase("L")){
-                login();
-            } else if(option.equalsIgnoreCase("C")) {
-                createAccount();
-                login();
-            } else if(option.equals("Q")) {
-                break;
-            } else {
-                break;
-            }
+        if(option.equalsIgnoreCase("L")){
+            login();
+        } else if(option.equalsIgnoreCase("C")) {
+            createAccount();
+            login();
+        } else if(option.equals("Q")) {
+            application.logout();
         }
-
     }
 
     private void login() {
@@ -60,57 +54,59 @@ public class applicationUI {
     }
 
     private void mainMenu() {
-        if(application.findAccountType().equalsIgnoreCase("s")) {
-            displayMainMenu(studentOptions);
-            int option = selectOption();
-            if(selectOption() == 1){
-                editAccount();
-            } else if(option == 2) {
-                applyForJob();
-            } else if(option == 3) {
-                createResume();
-            } else if(option == 4) {
-                addReveiw();
-            } else if(option == 5) {
-                searchJobs();
-            } else if(option == 6) {
-                logout();
-            }else {
-                mainMenu();
+        boolean running = true;
+        while(running) {
+            if(application.findAccountType().equalsIgnoreCase("s")) {
+                displayMainMenu(studentOptions);
+                int option = selectOption();
+                if(option == 1){
+                    editAccount();
+                } else if(option == 2) {
+                    applyForJob();
+                } else if(option == 3) {
+                    createResume();
+                } else if(option == 4) {
+                    addReveiw();
+                } else if(option == 5) {
+                    searchJobs();
+                } else if(option == 6) {
+                    application.logout();
+                }else {
+                    mainMenu();
+                }
+            } if(application.findAccountType().equalsIgnoreCase("a")) {
+                displayMainMenu(adminOptions);
+                int option = selectOption();
+                if(option == 1){
+
+                } else if(option == 2) {
+
+                } else if(option == 3) {
+
+                } else if(option == 4) {
+                    application.logout();
+                }else {
+                    mainMenu();
+                }
+            } if(application.findAccountType().equalsIgnoreCase("e")) {
+                displayMainMenu(employerOptions);
+                int option = selectOption();
+                if(option == 1){
+
+                } else if(option == 2) {
+
+                } else if(option == 3) {
+
+                } else if(option == 4) {
+
+                } else if(option == 5) {
+                    application.logout();
+                }else {
+                    mainMenu();
+                }
             }
-        } if(application.findAccountType().equalsIgnoreCase("a")) {
-            displayMainMenu(adminOptions);
-            int option = selectOption();
-            if(option == 1){
-
-            } else if(option == 2) {
-
-            } else if(option == 3) {
-
-            } else if(option == 4) {
-                logout();
-            }else {
-                mainMenu();
-            }
-        } if(application.findAccountType().equalsIgnoreCase("e")) {
-            displayMainMenu(employerOptions);
-            int option = selectOption();
-            if(option == 1){
-
-            } else if(option == 2) {
-
-            } else if(option == 3) {
-
-            } else if(option == 4) {
-
-            } else if(option == 5) {
-                logout();
-            }else {
-                mainMenu();
-            }
-        }
+        }   
     }
-
     
     private int selectOption() {
         System.out.println("Select an option: ");
@@ -234,6 +230,40 @@ public class applicationUI {
 
     }
 
+    private void addWorkExperience(Resume resume) {
+        System.out.println("Enter title:");
+        String title = scanner.nextLine();
+        System.out.println("Enter start date:");
+        String startDate = scanner.nextLine();
+        System.out.println("Enter end date:");
+        String endDate = scanner.nextLine();
+        System.out.println("Enter description: ");
+        String description  = scanner.nextLine();
+        resume.addWorkExperience(new Experience(title, startDate, endDate, description));;
+        System.out.println("Add another work experience? y/n");
+        String answer = scanner.nextLine();
+        if(answer.equalsIgnoreCase("y")) {
+            addWorkExperience(resume);
+        }
+    }
+
+    private void addExtracurricular(Resume resume) {
+        System.out.println("Enter title:");
+        String title = scanner.nextLine();
+        System.out.println("Enter start date:");
+        String startDate = scanner.nextLine();
+        System.out.println("Enter end date:");
+        String endDate = scanner.nextLine();
+        System.out.println("Enter description: ");
+        String description  = scanner.nextLine();
+        resume.addExtraCurricular(new Experience(title, startDate, endDate, description));;
+        System.out.println("Add another extracurricular? y/n");
+        String answer = scanner.nextLine();
+        if(answer.equalsIgnoreCase("y")) {
+            addExtracurricular(resume);
+        }
+    }
+
     private void deleteWorkExperience() {
 
     }
@@ -273,7 +303,51 @@ public class applicationUI {
     }
 
     private void createResume() {
+        Resume resume = application.createResume();
+        System.out.println("Add an education:");
+        addEducation(resume);
+        System.out.println("Add skills:");
+        addSkills(resume);
+        System.out.println("Add a work experience:");
+        addWorkExperience(resume);
+        System.out.println("Add an extracurricular:");
+        addExtracurricular(resume);
+        application.addResume(resume);
+        System.out.println("Add another resume? y/n");
+        String answer = scanner.nextLine();
+        if(answer.equalsIgnoreCase("y")) {
+            createResume();
+        }
+    }
 
+    private void addSkills(Resume resume) {
+        System.out.println("Enter skill:");
+        String skill = scanner.nextLine();
+        resume.addSkill(skill);
+        System.out.println("Add another skill? y/n");
+        String answer = scanner.nextLine();
+        if(answer.equalsIgnoreCase("y")) {
+            addSkills(resume);
+        }
+    }
+
+    private void addEducation(Resume resume) {
+        System.out.println("Enter your school:");
+        String school = scanner.nextLine();
+        System.out.println("Enter your class year:");
+        String classYear = scanner.nextLine();
+        System.out.println("Enter your major:");
+        String major = scanner.nextLine();
+        System.out.println("Enter your minor");
+        String minor = scanner.nextLine();
+        System.out.println("Enter your gpa");
+        String gpa = scanner.nextLine();
+        resume.addEducation(new Education(school, Integer.parseInt(classYear), major, minor, Double.parseDouble(gpa)));
+        System.out.println("Add another education? y/n");
+        String answer = scanner.nextLine();
+        if(answer.equalsIgnoreCase("y")) {
+            addEducation();
+        }
     }
 
     private void addReveiw() {
@@ -299,7 +373,7 @@ public class applicationUI {
             String firstName = scanner.nextLine();
             System.out.println("Enter last name:");
             String lastName = scanner.nextLine();
-            System.out.println("Enter email");
+            System.out.println("Enter email:");
             String email = scanner.nextLine();
             application.createStudentAccount(username, password, id, firstName, lastName, email);
         }
@@ -315,11 +389,6 @@ public class applicationUI {
         if(application.login(username, password)) {
             mainMenu();
         }
-    }
-
-    private void logout() {
-        DataWriter.saveUsers();
-        System.exit(0);
     }
 
     public static void main(String[] args) {
