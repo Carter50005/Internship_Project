@@ -60,11 +60,6 @@ public class JobListingsList {
         return ret;
     }
 
-    /*public ArrayList<JobListing> sortListings(SortType sortType) {
-       TODO
-        
-    }*/
-
     public boolean contains(JobListing jobListing) {
         for(int i=0;i<jobListings.size();i++) {
             if(jobListings.get(i) == jobListing) {
