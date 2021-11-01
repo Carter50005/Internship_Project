@@ -10,6 +10,7 @@ public class applicationUI {
     private String[] adminOptions = {"Edit Account", "Edit Reveiw", "Delete Account", "logout"};
     private String[] studentAccount = {"Name","Email Adress","Education", "Work Experience", "Extracurricular Activities", "Go back"};
     private String[] employerAccount = {"Company Name","Company Description","Company Location","Job Listing","Go Back"};
+    private String[] adminAccount = {"Name"}
 
     applicationUI() {
         scanner = new Scanner(System.in);
@@ -80,11 +81,11 @@ public class applicationUI {
                 displayMainMenu(adminOptions);
                 int option = selectOption();
                 if(option == 1){
-
+                    editAdminAccount();
                 } else if(option == 2) {
-
+                    editReview();
                 } else if(option == 3) {
-
+                    deleteAccount();
                 } else if(option == 4) {
                     application.logout();
                 }else {
@@ -94,13 +95,13 @@ public class applicationUI {
                 displayMainMenu(employerOptions);
                 int option = selectOption();
                 if(option == 1){
-
+                    editEmployerAccount();
                 } else if(option == 2) {
                     addListing();
                 } else if(option == 3) {
-
+                    searchApplicants();
                 } else if(option == 4) {
-
+                    viewListing();
                 } else if(option == 5) {
                     application.logout();
                 }else {
@@ -506,7 +507,7 @@ public class applicationUI {
     private void editEmployerAccount() {
         System.out.println("Which part of your account would you like to edit");
         for(int i = 0; i < employerAccount.length; i++) {
-            System.out.println((i+1) + studentAccount[i]);
+            System.out.println((i+1) + employerAccount[i]);
             if(selectOption() == 1) {
                 editCompanyName();
             } else if(selectOption() == 2) {
@@ -514,8 +515,6 @@ public class applicationUI {
             } else if(selectOption() == 3) {
                 editCompanyLocation();
             } else if(selectOption() == 4) {
-                editJobListings();
-            } else if(selectOption() == 5) {
                 mainMenu();
             }
         }
@@ -539,10 +538,33 @@ public class applicationUI {
             editCompanyDescription();
     }
 
-    private void editJobListings() {
+   private void searchApplicants() {
+
+   }
+
+   private void viewListing() {
+
+   }
+
+   private void editAdminAccount() {
+    System.out.println("Which part of your account would you like to edit");
+    for(int i = 0; i < adminAccount.length; i++) {
+        System.out.println((i+1) + adminAccount[i]);
+        if(selectOption() == 1) {
+            editName();
+        } else if(selectOption() == 2) {
+            mainMenu();
+        }
+    }
+}
+
+    private void editReview() {
 
     }
 
+    private void deleteAccount() {
+        
+    }
     public static void main(String[] args) {
         applicationUI start = new applicationUI();
         start.run();
