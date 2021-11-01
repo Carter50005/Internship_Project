@@ -8,6 +8,7 @@ public class applicationUI {
     private String[] employerOptions = {"Edit Account", "Add Listing", "Search Applicats", "Veiw Listings", "logout"};
     private String[] adminOptions = {"Edit Account", "Edit Reveiw", "Delete Account", "logout"};
     private String[] studentAccount = {"Name","Email Adress","Education", "Work Experience", "Extracurricular Activities", "Go back"};
+    private String[] employerAccount = {"Company Name","Company Description","Company Location","Job Listing","Go Back"};
 
     applicationUI() {
         scanner = new Scanner(System.in);
@@ -50,7 +51,7 @@ public class applicationUI {
             System.out.println((i+1) + ". " + options[i]);
         }
         System.out.println("\n");
-        
+
     }
 
     private void mainMenu() {
@@ -105,9 +106,9 @@ public class applicationUI {
                     mainMenu();
                 }
             }
-        }   
+        }
     }
-    
+
     private int selectOption() {
         System.out.println("Select an option: ");
         int option = scanner.nextInt();
@@ -227,7 +228,15 @@ public class applicationUI {
     }
 
     private void addWorkExperience() {
-
+        System.out.println("What was the title of your experience: ");
+        String title = scanner.nextLine();
+        System.out.println("What was the start date:");
+        String startDate = scanner.nextLine();
+        System.out.println("What was the end date:");
+        String endDate = scanner.nextLine();
+        System.out.println("Enter a description of the Experience");
+        String description = scanner.nextLine();
+        editWorkExperience();
     }
 
     private void addWorkExperience(Resume resume) {
@@ -269,7 +278,32 @@ public class applicationUI {
     }
 
     private void editWorkExperienceItem() {
+        System.out.println("Which Item would you like to edit:");
+        String[] workExperience = {". Title",". Start date", ". End date", ". Description", "Go Back"};
+        for(int i = 0; i < workExperience.length; i++) {
+            System.out.println((i+1) + workExperience[i]);
+        }
+        String option = scanner.nextLine();
+        int num = Integer.parseInt(option);
+        if(num == 1) {
+            System.out.println("What is the title of the position: ");
+            String title = scanner.nextLine();
+        } else if(num ==2) {
+            System.out.println("What was the start date of the position: ");
+            String startDate = scanner.nextLine();
+        } else if(num == 3) {
+            System.out.println("What was the end date of the position");
+            String endDate = scanner.nextLine();
+        } else if(num == 4) {
+            System.out.println("What is the description of the position: ");
+            String description = scanner.nextLine();
+        } else if(num == 5) {
+            editWorkExperience();
+        } else {
+            System.exit(0);
+        }
 
+        System.out.println("");
     }
 
     private void editExtracuriculars() {
@@ -287,7 +321,14 @@ public class applicationUI {
     }
 
     private void addExtraCurricular() {
-
+        System.out.println("What was the title of your Extra Curricular Activity");
+        String title = scanner.nextLine();
+        System.out.println("What was the start date of your Extra Curricular Activity");
+        String startDate = scanner.nextLine();
+        System.out.println("What was the end date of your Extra Curricular Activity");
+        String endDate = scanner.nextLine();
+        System.out.println("What is the description of the Extra Curricular Activity");
+        String description = scanner.nextLine();
     }
 
     private void deleteExtraCurricular() {
@@ -295,11 +336,32 @@ public class applicationUI {
     }
 
     private void editExtraCurricularItem() {
-        
+        System.out.println("Which Item would you like to edit");
+        String[] extraCurriculars = {". Title",". Start Date",". End Date",". Description",". Go Back"};
+        for(int i = 0; i < extraCurriculars.length; i++) {
+            System.out.println((i+1) + extraCurriculars[i]);
+        }
+        String action = scanner.nextLine();
+        int num = Integer.parseInt(action);
+        if(num == 1) {
+            System.out.println("What is the title");
+            String title = scanner.nextLine();
+        } else if(num == 2) {
+            System.out.println("What is the start date");
+            String startDate = scanner.nextLine();
+        } else if(num == 3) {
+            System.out.println("What is the end date");
+            String endDate = scanner.nextLine();
+        } else if(num == 4) {
+            System.out.println("What is the description");
+            String description = scanner.nextLine();
+        } else if(num == 5) {
+            editExtracuriculars();
+        }
     }
 
     private void applyForJob() {
-        
+
     }
 
     private void createResume() {
@@ -389,6 +451,41 @@ public class applicationUI {
         if(application.login(username, password)) {
             mainMenu();
         }
+    }
+
+    private void editEmployerAccount() {
+        System.out.println("Which part of your account would you like to edit");
+        for(int i = 0; i < employerAccount.length; i++) {
+            System.out.println((i+1) + studentAccount[i]);
+            if(selectOption() == 1) {
+                editCompanyName();
+            } else if(selectOption() == 2) {
+                editCompanyDescription();
+            } else if(selectOption() == 3) {
+                editCompanyLocation();
+            } else if(selectOption() == 4) {
+                editJobListings();
+            } else if(selectOption() == 5) {
+                mainMenu();
+            }
+        }
+    }
+
+    private void editCompanyName() {
+            System.out.println("What is the company name: ");
+            editCompanyName();
+        }
+
+    private void editCompanyDescription () {
+
+    }
+
+    private void editCompanyLocation () {
+
+    }
+
+    private void editJobListings() {
+
     }
 
     public static void main(String[] args) {
