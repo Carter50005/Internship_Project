@@ -35,6 +35,7 @@ public class DataConstants {
 
     protected static final String LISTING_FILE_NAME = "listings.json";
     protected static final String JOB_LISTING_ID = "id";
+    protected static final String JOB_LISTING_TITLE = "title";
     protected static final String JOB_POSTED_DATE = "postedDate";
     protected static final String JOB_EXPIRATION_DATE = "expirationDate";
     protected static final String JOB_DESIRED_SKILLS = "desiredSkills";

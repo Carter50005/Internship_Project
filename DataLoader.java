@@ -73,7 +73,6 @@ public class DataLoader extends DataConstants{
 
 	public static ArrayList<JobListing> getJobListings() {
 		ArrayList<JobListing> listings = new ArrayList<JobListing>();
-		
 		try {
 			FileReader reader = new FileReader(LISTING_FILE_NAME);
 			JSONParser parser = new JSONParser();
@@ -81,13 +80,13 @@ public class DataLoader extends DataConstants{
 			for(int i=0;i<listingsJSON.size();i++) {
 				JSONObject listingJSON = (JSONObject)listingsJSON.get(i);
 				String listingID = (String)listingJSON.get(JOB_LISTING_ID);
+				String title = (String)listingJSON.get(JOB_LISTING_TITLE);
 				String postedDate = (String)listingJSON.get(JOB_POSTED_DATE);
 				String expirationDate = (String)listingJSON.get(JOB_EXPIRATION_DATE);
 				String location = (String)listingJSON.get(JOB_LOCATION);
 				int pay = Integer.parseInt((String)listingJSON.get(JOB_PAY));
 				String employerID = (String)listingJSON.get(JOB_EMPLOYER_ID);
-				JobListing listing = new JobListing(listingID, postedDate, expirationDate, location, pay, employerID);
-
+				JobListing listing = new JobListing(title, listingID, postedDate, expirationDate, location, pay, employerID);
 				//gets desired skills
 				ArrayList<String> desiredSkills = new ArrayList<String>();
 				JSONArray skillsArray = (JSONArray)listingJSON.get(JOB_DESIRED_SKILLS);
@@ -107,7 +106,6 @@ public class DataLoader extends DataConstants{
 					applicantIDS.add(applicantID);
 				}
 				listing.setApplicantIDS(applicantIDS);
-
 				for(int j=0;j<applicantIDS.size();j++) {
 					for(int k=0;k<students.size();k++) {
 						if(students.get(k).getUUID() == applicantIDS.get(j)) {
@@ -117,7 +115,6 @@ public class DataLoader extends DataConstants{
 				}
 				listings.add(listing);
 			}
-
 			return listings;
 
 		} catch (Exception e) {
@@ -146,7 +143,7 @@ public class DataLoader extends DataConstants{
 		String name = (String)personJSON.get(EMPLOYER_NAME);
 		String description = (String)personJSON.get(EMPLOYER_DESCRIPTION);
 		String location = (String)personJSON.get(EMPLOYER_LOCATION);
-		return new Employer(username, password, name, description, location);
+		return new Employer(uUID, username, password, name, description, location);
 	} 
 
 	/**

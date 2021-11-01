@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Employer extends User{
 
@@ -16,6 +17,17 @@ public class Employer extends User{
         this.companyLocation = aLocation;
         this.companyRating = 0;
         this.companyListings = new ArrayList<JobListing>();
+        this.reviews = new ArrayList<Review>();
+    }
+
+    public Employer(String uUID, String username, String password, String aName, String aDescription, String aLocation) {
+        super(username, password, "e", uUID);
+        this.companyName = aName;
+        this.companyDescription = aDescription;
+        this.companyLocation = aLocation;
+        this.companyRating = 0;
+        this.companyListings = new ArrayList<JobListing>();
+        this.reviews = new ArrayList<Review>();
     }
 
     public Employer(String uUID, String username, String password, String aName, String aDescription, String aLocation, int aRating) {

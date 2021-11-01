@@ -2,14 +2,34 @@ import java.util.ArrayList;
 
 public class JobListingsList {
     
-    private ArrayList<JobListing> jobListings;
-    private static JobListingsList jobListingList = new JobListingsList();
+    private static ArrayList<JobListing> jobListings;
+    private static JobListingsList jobListingList;
 
     public JobListingsList() {
-        jobListings = DataLoader.getJobListings();
+        if(DataLoader.getJobListings() != null) {
+            jobListings = DataLoader.getJobListings();
+        }
+        else {
+            jobListings = new ArrayList<JobListing>();
+        }
+        setEmployers();
+        
+    }
+
+    private void setEmployers() {
+        for(JobListing listing : jobListings) {
+            for(Employer employer : UserList.getInstance().getEmployers()) {
+                if(listing.getEmployerID().equalsIgnoreCase(employer.getUUID())) {
+                    listing.setEmployer(employer);
+                }
+            }
+        }
     }
 
     public static JobListingsList getInstance() {
+        if(jobListingList == null) {
+            return new JobListingsList();
+        }
         return jobListingList;
     }
     public ArrayList<JobListing> getJobListings() {
@@ -19,6 +39,14 @@ public class JobListingsList {
     public void addListing(JobListing jobListing) {
         if(!contains(jobListing)) {
             jobListings.add(jobListing);
+        }
+    }
+
+    public void updateListing(JobListing listing) {
+        for(JobListing jobListing : jobListings) {
+            if(jobListing.getUUID().equalsIgnoreCase(listing.getUUID())) {
+                jobListing = listing;
+            }
         }
     }
 

@@ -112,21 +112,12 @@ public class UserList {
 
     public void addStudent(Student student) {
         users.add(student);
-        for(User user : users) {
-            System.out.println(user);
-        }
         students.add(student);
     }
 
     public void addEmployer(Employer employer) {
         users.add(employer);
         employers.add(employer);
-        test();
-    }
-    public void test() {
-        for(User user : users) {
-            System.out.println(user);
-        }
     }
 
 }

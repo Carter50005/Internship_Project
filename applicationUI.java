@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class applicationUI {
     private Scanner scanner;
@@ -95,7 +96,7 @@ public class applicationUI {
                 if(option == 1){
 
                 } else if(option == 2) {
-
+                    addListing();
                 } else if(option == 3) {
 
                 } else if(option == 4) {
@@ -106,6 +107,39 @@ public class applicationUI {
                     mainMenu();
                 }
             }
+        }
+    }
+
+    private void addListing() {
+        System.out.println("Create new job listing:");
+        System.out.println("Enter title:");
+        String title = scanner.nextLine();
+        System.out.println("Enter posted date:");
+        String postedDate = scanner.nextLine();
+        System.out.println("Enter expiration date:");
+        String expirationDate = scanner.nextLine();
+        System.out.println("Enter location:");
+        String location = scanner.nextLine();
+        System.out.println("Enter job pay:");
+        String jobPay = scanner.nextLine();
+        JobListing listing = application.createListing(title, postedDate, expirationDate, location, jobPay);
+        addDesiredSkill(listing);
+        application.addJobListing(listing);
+        System.out.println("Add another job listing? y/n");
+        String answer = scanner.nextLine();
+        if(answer.equalsIgnoreCase("y")) {
+            addListing();
+        }
+    }
+
+    private void addDesiredSkill(JobListing listing) {
+        System.out.println("Add desired skill:");
+        String skill = scanner.nextLine();
+        listing.addDesiredSkill(skill);
+        System.out.println("Add another desired skill? y/n");
+        String answer = scanner.nextLine();
+        if(answer.equalsIgnoreCase("y")) {
+            addDesiredSkill(listing);
         }
     }
 
@@ -361,7 +395,23 @@ public class applicationUI {
     }
 
     private void applyForJob() {
+        System.out.println("Enter keyword for search:");
+        String keyword = scanner.nextLine();
+        ArrayList<JobListing> listings = application.searchListings(keyword);
+        for(int i=0;i<listings.size();i++) {
+            System.out.println(listings.get(i));
+            System.out.println("(A)pply, (N)ext, (B)ack, or (E)xit:");
+            String answer = scanner.nextLine();
+            if(answer.equalsIgnoreCase("a")) {
+                application.applyStudent(listings.get(i));
+            }
+            else if(answer.equalsIgnoreCase("b")) {
 
+            }
+            else if(answer.equalsIgnoreCase("e")) {
+                break;
+            }
+        }
     }
 
     private void createResume() {
