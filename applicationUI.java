@@ -8,6 +8,7 @@ public class applicationUI {
     private String[] employerOptions = {"Edit Account", "Add Listing", "Search Applicats", "Veiw Listings", "logout"};
     private String[] adminOptions = {"Edit Account", "Edit Reveiw", "Delete Account", "logout"};
     private String[] studentAccount = {"Name","Email Adress","Education", "Work Experience", "Extracurricular Activities", "Go back"};
+    private String[] employerAccount = {"Company Name","Company Description","Company Location","Job Listing","Go Back"};
 
     applicationUI() {
         scanner = new Scanner(System.in);
@@ -82,7 +83,7 @@ public class applicationUI {
             displayMainMenu(adminOptions);
             int option = selectOption();
             if(option == 1){
-
+                
             } else if(option == 2) {
 
             } else if(option == 3) {
@@ -96,7 +97,7 @@ public class applicationUI {
             displayMainMenu(employerOptions);
             int option = selectOption();
             if(option == 1){
-
+                editEmployerAccount();
             } else if(option == 2) {
 
             } else if(option == 3) {
@@ -349,6 +350,42 @@ public class applicationUI {
             mainMenu();
         }
     }
+
+    private void editEmployerAccount() {
+        System.out.println("Which part of your account would you like to edit");
+        for(int i = 0; i < employerAccount.length; i++) {
+            System.out.println((i+1) + studentAccount[i]);
+            if(selectOption() == 1) {
+                editCompanyName();
+            } else if(selectOption() == 2) {
+                editCompanyDescription();
+            } else if(selectOption() == 3) {
+                editCompanyLocation();
+            } else if(selectOption() == 4) {
+                editJobListings();
+            } else if(selectOption() == 5) {
+                mainMenu();
+            }
+        }
+    }
+    
+    private void editCompanyName() {
+            System.out.println("What is the company name: ");
+            editCompanyName();
+        }
+    
+    private void editCompanyDescription () {
+
+    }
+
+    private void editCompanyLocation () {
+
+    }
+
+    private void editJobListings() {
+
+    }
+
 
     private void logout() {
         DataWriter.saveUsers();
