@@ -472,16 +472,21 @@ public class applicationUI {
     }
 
     private void editCompanyName() {
+            String CompanyName = scanner.nextLine();
             System.out.println("What is the company name: ");
             editCompanyName();
         }
 
     private void editCompanyDescription () {
-
+            String companyDescription = scanner.nextLine();
+            System.out.println("What is the company description: ");
+            editCompanyDescription();
     }
 
     private void editCompanyLocation () {
-
+            String companyLocation = scanner.nextLine();
+            System.out.println("What is the company location: ");
+            editCompanyDescription();
     }
 
     private void editJobListings() {
