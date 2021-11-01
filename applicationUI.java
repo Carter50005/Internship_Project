@@ -291,15 +291,43 @@ public class applicationUI {
     }
 
     private void addExtraCurricular() {
-        System.out.println("Would you ");
+        System.out.println("What was the title of your Extra Curricular Activity");
+        String title = scanner.nextLine();
+        System.out.println("What was the start date of your Extra Curricular Activity");
+        String startDate = scanner.nextLine();
+        System.out.println("What was the end date of your Extra Curricular Activity");
+        String endDate = scanner.nextLine();
+        System.out.println("What is the description of the Extra Curricular Activity");
+        String description = scanner.nextLine();
     }
 
     private void deleteExtraCurricular() {
-
+        
     }
 
     private void editExtraCurricularItem() {
-        
+        System.out.println("Which Item would you like to edit");
+        String[] extraCurriculars = {". Title",". Start Date",". End Date",". Description",". Go Back"};
+        for(int i = 0; i < extraCurriculars.length; i++) {
+            System.out.println((i+1) + extraCurriculars[i]);
+        }
+        String action = scanner.nextLine();
+        int num = Integer.parseInt(action);
+        if(num == 1) {
+            System.out.println("What is the title");
+            String title = scanner.nextLine();
+        } else if(num == 2) {
+            System.out.println("What is the start date");
+            String startDate = scanner.nextLine();
+        } else if(num == 3) {
+            System.out.println("What is the end date");
+            String endDate = scanner.nextLine();
+        } else if(num == 4) {
+            System.out.println("What is the description");
+            String description = scanner.nextLine();
+        } else if(num == 5) {
+            editExtracuriculars();
+        }
     }
 
     private void applyForJob() {
