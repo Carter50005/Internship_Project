@@ -66,7 +66,7 @@ public class Resume {
     }
 
     public String toString() {
-        return student.getFirstName() + " " + student.getLastName() + "\n" + student.getEmail() + " " + 
+        return student.getFirstName() + " " + student.getLastName() + "\nEmail: " + student.getEmail() + "\nPhone number: " + 
         student.getPhoneNumber() + "\nEducation:\n" + printEducation() + "Work Experience:\n" + 
         printExperiences(workExperiences) + "Extra Curriculars:\n" + printExperiences(extraCurriculars);
     }
