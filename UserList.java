@@ -87,15 +87,15 @@ public class UserList {
     }
 
     public ArrayList<User> getUsers() {
-        return this.users;
+        return users;
     }
 
     public ArrayList<Student> getStudents() {
-        return this.students;
+        return students;
     }
 
     public ArrayList<Employer> getEmployers() {
-        return this.employers;
+        return employers;
     }
 
     public void addResume(Student student, Resume resume) {
@@ -107,7 +107,7 @@ public class UserList {
     }
 
     public ArrayList<Admin> getAdmins() {
-        return this.admins;
+        return admins;
     }
 
     public void addStudent(Student student) {

@@ -7,7 +7,6 @@ public class JobListingApplication {
     private  User user;
     private Student studentUser;
     private Employer employerUser;
-    private Admin adminUser;
     private static JobListingApplication jobListingApplication;
 
     private JobListingApplication() {
@@ -40,6 +39,7 @@ public class JobListingApplication {
     public void addJobListing(JobListing listing) {
         employerUser.addListing(listing);
         jobs.addListing(listing);
+        jobs.setEmployers();
     }
 
     public boolean createEmployerAccount(String username, String password, String aName, String aDescription, String aLocation) {
@@ -75,10 +75,6 @@ public class JobListingApplication {
         else if(user.getType().equalsIgnoreCase("e") && (loginEmployer(user) != null)) {
             this.user = loginEmployer(user);
             this.employerUser = loginEmployer(user);
-        }
-        else if(user.getType().equalsIgnoreCase("a") && (loginAdmin(user) != null)) {
-            this.user = loginAdmin(user);
-            this.adminUser = loginAdmin(user);
         }
     }
 

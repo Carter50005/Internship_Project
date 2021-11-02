@@ -125,7 +125,7 @@ import java.util.Random;
             applicants = sortAToZHelper(applicants);
         }
         else if (sortType.equals("nameZToA")) {
-            applicants = sortAToZHelper(applicants);
+            applicants = sortZToAHelper(applicants);
         }
         return applicants;
     }
