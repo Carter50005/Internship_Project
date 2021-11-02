@@ -127,6 +127,7 @@ public class JobListingApplication {
     public ArrayList<JobListing> searchListings(String keyword) {
         return jobs.searchListings(keyword);
     }
+    
 
     public void logout() {
         DataWriter.saveUsers(users.getUsers());

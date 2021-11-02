@@ -5,7 +5,7 @@ public class applicationUI {
     private Scanner scanner;
     private JobListingApplication application;
     private static final String WELCOME_MESSAGE = "***Welcome to our Internship Finder***";
-    private String[] studentOptions = {"Edit Account", "Apply for Job", "Create Resume", "Add Reveiw", "Search Jobs", "logout"};
+    private String[] studentOptions = {"Edit Account", "Apply for Job", "Create Resume", "Add Reveiw", "Search Jobs","Print Resume", "logout"};
     private String[] employerOptions = {"Edit Account", "Add Listing", "Search Applicats", "Veiw Listings", "logout"};
     private String[] adminOptions = {"Edit Account", "Edit Reveiw", "Delete Account", "logout"};
     private String[] studentAccount = {"Name","Email Adress","Education", "Work Experience", "Extracurricular Activities", "Go back"};
@@ -550,9 +550,9 @@ public class applicationUI {
             editCompanyDescription();
     }
 
-<<<<<<< HEAD
     private void searchApplicants() {
-
+        System.out.println("Enter Applicant Name:");
+        String keyword = scanner.nextLine();
     }
 
     private void viewListing() {
@@ -588,20 +588,6 @@ public class applicationUI {
             }
         }
     }
-=======
-   private void searchApplicants() {
-
-   }
-
-   private void viewListing() {
-    System.out.println("Enter title of job:");
-    String keyword = scanner.nextLine();
-    ArrayList<JobListing> listings = application.searchListings(keyword);
-    for(int i=0;i<listings.size();i++) {
-    System.out.println(listings.get(i));
-    }
-   }
->>>>>>> 4210e94fd5b402ee9fad1d464b06bbd5d0d7663f
 
    private void editAdminAccount() {
     System.out.println("Which part of your account would you like to edit");
