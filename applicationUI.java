@@ -10,7 +10,7 @@ public class applicationUI {
     private String[] adminOptions = {"Edit Account", "Edit Reveiw", "Delete Account", "logout"};
     private String[] studentAccount = {"Name","Email Adress","Education", "Work Experience", "Extracurricular Activities", "Go back"};
     private String[] employerAccount = {"Company Name","Company Description","Company Location","Job Listing","Go Back"};
-    private String[] adminAccount = {"Name","Email Adress"};
+    private String[] adminAccount = {"Name","Email Address"};
 
     applicationUI() {
         scanner = new Scanner(System.in);

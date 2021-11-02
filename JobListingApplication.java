@@ -23,8 +23,6 @@ public class JobListingApplication {
         }
     }
 
-    
-
     public void editStudentName(String firstName, String lastName) {
         studentUser.setFirstName(firstName);
         studentUser.setLastName(lastName);
