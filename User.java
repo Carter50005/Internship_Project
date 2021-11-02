@@ -1,3 +1,6 @@
+/**
+ *  Instance of a User 
+ */
 import java.util.Random;
 
 public class User {
@@ -8,6 +11,7 @@ public class User {
     protected String uUID;
     private Random random = new Random();
 
+    //Constructors
     public User(String username, String password, String type) {
         this.username = username;
         this.password = password;
@@ -22,6 +26,11 @@ public class User {
         this.uUID = uUID;
     }
 
+    /**
+     * returns true if the username is correct
+     * @param username
+     * @return boolean
+     */
     public boolean verifyUsername(String username) {
         if(this.username == username) {
             return true;
@@ -29,6 +38,19 @@ public class User {
         return false;
     }
 
+    /**
+     * retruns true if password is correct
+     * @param password
+     * @return boolean
+     */
+    public boolean verifyPassowrd(String password) {
+        if(this.password == password) {
+            return true;
+        }
+        return false;
+    }
+
+    //getters
     public String getUUID() {
         return this.uUID;
     }
@@ -37,12 +59,6 @@ public class User {
         return this.username;
     }
 
-    public boolean verifyPassowrd(String password) {
-        if(this.password == password) {
-            return true;
-        }
-        return false;
-    }
 
     public String getPassword() {
         return this.password;
@@ -52,11 +68,19 @@ public class User {
         return this.type;
     }    
 
+    /**
+     * creates a random user ID
+     * @return String
+     */
     public String createUUID() {
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
         return String.valueOf(alphabet.charAt(random.nextInt(alphabet.length())))+uUIDNumbers();
     }
 
+    /**
+     * Create random numbers for the UUID
+     * @return String
+     */
     private String uUIDNumbers() {
         String ret = "";
         for(int i=0;i<6;i++) {
@@ -65,10 +89,10 @@ public class User {
         return ret;
     }
 
-    public boolean contains(JobListing listing) {
-        return false;
-    } 
-
+    /**
+     * Returns a String of the Username, password, and UUID
+     * @returns String
+     */
     public String toString() {
         return "Username"+this.username+"\nPassword"+this.password+"\nuUID"+this.uUID;
     }
