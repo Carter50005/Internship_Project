@@ -23,6 +23,19 @@ public class JobListingApplication {
         }
     }
 
+    
+
+    public void editStudentName(String firstName, String lastName) {
+        studentUser.setFirstName(firstName);
+        studentUser.setLastName(lastName);
+        for(Student student : users.getStudents()) {
+            if(student.getUUID().equalsIgnoreCase(studentUser.getUUID())) {
+                student.setFirstName(firstName);
+                student.setLastName(lastName);
+            }
+        }
+    }
+
     public Resume createResume() {
         return new Resume(studentUser);
     }
@@ -30,6 +43,10 @@ public class JobListingApplication {
     public void addResume(Resume resume) {
         studentUser.addResume(resume);
         users.addResume(studentUser, resume);
+    }
+
+    public ArrayList<Resume> getStudentResumes() {
+        return studentUser.getResumes();
     }
 
     public JobListing createListing(String title, String postedDate, String expirationDate, String location, String jobPay) {

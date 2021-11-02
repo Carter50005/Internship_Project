@@ -5,7 +5,7 @@ public class applicationUI {
     private Scanner scanner;
     private JobListingApplication application;
     private static final String WELCOME_MESSAGE = "***Welcome to our Internship Finder***";
-    private String[] studentOptions = {"Edit Account", "Apply for Job", "Create Resume", "Add Reveiw", "Search Jobs","Print Resume", "logout"};
+    private String[] studentOptions = {"Edit Account", "Apply for Job", "Create Resume", "Add Reveiw", "Search Jobs", "Get Resume", "logout"};
     private String[] employerOptions = {"Edit Account", "Add Listing", "Search Applicats", "Veiw Listings", "logout"};
     private String[] adminOptions = {"Edit Account", "Edit Reveiw", "Delete Account", "logout"};
     private String[] studentAccount = {"Name","Email Adress","Education", "Work Experience", "Extracurricular Activities", "Go back"};
@@ -43,7 +43,7 @@ public class applicationUI {
             System.out.println("---Loging In---");
             mainMenu();
         } else {
-            System.out.println("Wong Password");
+            System.out.println("Wrong Password");
             run();
         }
     }
@@ -114,7 +114,23 @@ public class applicationUI {
         }
     }
     private void outResume() {
+        System.out.println("Select which resume you want to print: ");
+        ArrayList<Resume> resumes = application.getStudentResumes();
+        for(Resume resume : resumes) {
+            System.out.println(resume+"\n(S)elect resume, (N)ext, or(E)xit");
+            String option = scanner.nextLine();
+            if(option.equalsIgnoreCase("s")) {
+                try {
+                    resume.printResume();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
 
+            }
+            else if(option.equalsIgnoreCase("e")) {
+                return;
+            }
+        }
     }
 
     private void addListing() {
