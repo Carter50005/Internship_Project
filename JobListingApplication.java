@@ -14,9 +14,9 @@ public class JobListingApplication {
         jobs = JobListingsList.getInstance();
     }
 
-    public boolean createStudentAccount(String username, String password, String studentID, String firstName, String lastName, String email) {
+    public boolean createStudentAccount(String username, String password, String studentID, String firstName, String lastName, String email, String phoneNumber) {
         if(!users.findAccount(username,password)) {
-            users.addStudent(new Student(username, password, studentID, firstName, lastName, email));
+            users.addStudent(new Student(username, password, studentID, firstName, lastName, email, phoneNumber));
             return true;
         } else {
             return false;
@@ -39,7 +39,6 @@ public class JobListingApplication {
     public void addJobListing(JobListing listing) {
         employerUser.addListing(listing);
         jobs.addListing(listing);
-        jobs.setEmployers();
     }
 
     public boolean createEmployerAccount(String username, String password, String aName, String aDescription, String aLocation) {
@@ -75,6 +74,15 @@ public class JobListingApplication {
         else if(user.getType().equalsIgnoreCase("e") && (loginEmployer(user) != null)) {
             this.user = loginEmployer(user);
             this.employerUser = loginEmployer(user);
+            setEmployerUserListings();
+        }
+    }
+
+    private void setEmployerUserListings() {
+        for(JobListing listing : jobs.getJobListings()) {
+            if(listing.getEmployerID().equalsIgnoreCase(employerUser.getUUID())) {
+                employerUser.addListing(listing);
+            }
         }
     }
 
@@ -90,6 +98,10 @@ public class JobListingApplication {
             }
         }
         return null;
+    }
+
+    public ArrayList<JobListing> getUserListings() {
+        return employerUser.getCompanyListings();
     }
 
     public Employer loginEmployer(User user) {
@@ -127,4 +139,7 @@ public class JobListingApplication {
         jobs.updateListing(listing);
     }
 
+    public ArrayList<Student> getStudents() {
+        return users.getStudents();
+    }
 }

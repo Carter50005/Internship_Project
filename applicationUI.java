@@ -44,6 +44,7 @@ public class applicationUI {
             mainMenu();
         } else {
             System.out.println("Wong Password");
+            run();
         }
     }
 
@@ -153,21 +154,22 @@ public class applicationUI {
 
     private void editAccount() {
         System.out.println("Which part of your account would you like to edit");
-        for(int i = 0; i < studentAccount.length; i++) {
-            System.out.println((i+1) + studentAccount[i]);
-            if(selectOption() == 1) {
-                editName();
-            } else if(selectOption() == 2) {
-                editEmailAdress();
-            } else if(selectOption() == 3) {
-                editEducation();
-            } else if(selectOption() == 4) {
-                editWorkExperience();
-            } else if(selectOption() == 5) {
-                editExtracuriculars();
-            } else if(selectOption() == 6) {
-                mainMenu();
-            }
+        for(int i=0;i<studentAccount.length;i++) {
+            System.out.println((i+1)+". "+studentAccount[i]);
+        }
+        String option = String.valueOf(selectOption());
+        if(option == "1") {
+            editName();
+        } else if(option == "2") {
+            editEmailAdress();
+        } else if(option == "3") {
+            editEducation();
+        } else if(option == "4") {
+            editWorkExperience();
+        } else if(option == "5") {
+            editExtracuriculars();
+        } else if(option == "6") {
+            mainMenu();
         }
     }
 
@@ -488,7 +490,9 @@ public class applicationUI {
             String lastName = scanner.nextLine();
             System.out.println("Enter email:");
             String email = scanner.nextLine();
-            application.createStudentAccount(username, password, id, firstName, lastName, email);
+            System.out.println("Enter phone number:");
+            String phoneNumber = scanner.nextLine();
+            application.createStudentAccount(username, password, id, firstName, lastName, email, phoneNumber);
         }
         else if(type.equalsIgnoreCase("e")) {
             System.out.println("Enter company name:");
@@ -538,13 +542,43 @@ public class applicationUI {
             editCompanyDescription();
     }
 
-   private void searchApplicants() {
+    private void searchApplicants() {
 
-   }
+    }
 
-   private void viewListing() {
+    private void viewListing() {
+        ArrayList<JobListing> listings = application.getUserListings();
+        for(JobListing listing : listings) {
+            System.out.println(listing+"\n(V)iew applicants, (N)ext, or (E)xit?");
+            String answer = scanner.nextLine();
+            if(answer.equalsIgnoreCase("v")) {
+                viewApplicants(application.getStudents(), listing);
+            }
+            else if(answer.equalsIgnoreCase("e")) {
+                return;
+            }
+        }
+    }
 
-   }
+    private void viewApplicants(ArrayList<Student> students, JobListing listing) {
+        for(Student student : students) {
+            for(String id : listing.getApplicantIDS()) {
+                if(student.getUUID().equalsIgnoreCase(id)) {
+                    System.out.println(student+"\n(V)iew resume, (N)ext, or (E)xit?");
+                    String answer = scanner.nextLine();
+                    if(answer.equalsIgnoreCase("v")) {
+                        for(Resume resume : student.getResumes()) {
+                            System.out.println(resume);
+                            break;
+                        }
+                    }  
+                    else if(answer.equalsIgnoreCase("e")) {
+                        return;
+                    }
+                }
+            }
+        }
+    }
 
    private void editAdminAccount() {
     System.out.println("Which part of your account would you like to edit");

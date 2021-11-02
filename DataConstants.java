@@ -8,6 +8,7 @@ public class DataConstants {
     protected static final String STUDENT_FIRST_NAME = "firstName";
     protected static final String STUDENT_LAST_NAME = "lastName";
     protected static final String STUDENT_EMAIL = "email";
+    protected static final String STUDENT_PHONE = "phoneNumber";
     protected static final String STUDENT_RESUMES = "resumes";
     protected static final String RESUME_EDUCATIONS = "educations";
     protected static final String EDUCATIONS_SCHOOL = "school";

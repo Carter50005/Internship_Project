@@ -12,13 +12,12 @@ public class JobListingsList {
         else {
             jobListings = new ArrayList<JobListing>();
         }
-        setEmployers();
-        
+        setEmployers(DataLoader.getEmployers());
     }
 
-    public void setEmployers() {
-        for(JobListing listing : jobListings) {
-            for(Employer employer : UserList.getInstance().getEmployers()) {
+    public void setEmployers(ArrayList<Employer> employers) {
+        for(Employer employer : employers) {
+            for(JobListing listing : jobListings) {
                 if(listing.getEmployerID().equalsIgnoreCase(employer.getUUID())) {
                     listing.setEmployer(employer);
                 }

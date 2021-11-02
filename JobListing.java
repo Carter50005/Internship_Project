@@ -113,7 +113,7 @@ import java.util.Random;
                 desiredSkillsString+=", ";
             }
         }
-        return "Employer: "+this.employer.getCompanyName()+"\nLocation: "+this.location+"Job Pay: "+this.jobPay+"\nExpiration Date: "+this.expirationDate+"\nPosted Date: "+this.postedDate+"Desired Skills: "+desiredSkillsString;
+        return title+"\nEmployer: "+this.employer.getCompanyName()+"\nLocation: "+this.location+"\nJob Pay: "+this.jobPay+"\nExpiration Date: "+this.expirationDate+"\nPosted Date: "+this.postedDate+"\nDesired Skills: "+desiredSkillsString;
     }
 
     public String getTitle() {

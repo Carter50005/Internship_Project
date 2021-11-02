@@ -9,11 +9,12 @@ public class Student extends User {
     private ArrayList<Resume> resumes;
     private ArrayList<Review> reviews;
 
-    public Student(String username, String password, String studentID, String firstName, String lastName, String email) {
+    public Student(String username, String password, String studentID, String firstName, String lastName, String email, String phoneNumber) {
         super(username, password, "s", studentID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.resumes = new ArrayList<Resume>();
         this.reviews = new ArrayList<Review>();
         this.wishList = new ArrayList<JobListing>();
@@ -61,7 +62,7 @@ public class Student extends User {
     }
 
     public String toString() {
-        return "bruh";
+        return "First name: "+firstName+"\nLast name: "+lastName+"\nEmail: "+email+"\nPhone number: "+phoneNumber;
     }
 
     public String getFirstName() {
