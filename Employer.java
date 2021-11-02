@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class Employer extends User{
 
@@ -40,7 +39,7 @@ public class Employer extends User{
         this.reviews = new ArrayList<Review>();
     }
 
-    public Employer(String uUID, String username, String password, String aName, String aDescription, String aLocation, int aRating, ArrayList<JobListing> aListings, ArrayList<Review> aReviews) {
+    /*public Employer(String uUID, String username, String password, String aName, String aDescription, String aLocation, int aRating, ArrayList<JobListing> aListings, ArrayList<Review> aReviews) {
         super(username, password, "e", uUID);
         this.companyName = aName;
         this.companyDescription = aDescription;
@@ -48,7 +47,7 @@ public class Employer extends User{
         this.companyRating = aRating;
         this.companyListings = aListings;
         this.reviews = aReviews;
-    }
+    }*/
 
     public String getCompanyName() {
         return this.companyName;

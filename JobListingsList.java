@@ -16,7 +16,7 @@ public class JobListingsList {
         
     }
 
-    private void setEmployers() {
+    public void setEmployers() {
         for(JobListing listing : jobListings) {
             for(Employer employer : UserList.getInstance().getEmployers()) {
                 if(listing.getEmployerID().equalsIgnoreCase(employer.getUUID())) {
@@ -33,7 +33,7 @@ public class JobListingsList {
         return jobListingList;
     }
     public ArrayList<JobListing> getJobListings() {
-        return this.jobListings;
+        return jobListings;
     }
 
     public void addListing(JobListing jobListing) {
@@ -53,7 +53,7 @@ public class JobListingsList {
     public ArrayList<JobListing> searchListings(String keyWord) {
         ArrayList<JobListing> ret = new ArrayList<JobListing>();
         for(int i=0;i<jobListings.size();i++) {
-            if(jobListings.get(i).toString().contains(keyWord)) {
+            if(jobListings.get(i).toString().toLowerCase().contains(keyWord.toLowerCase())) {
                 ret.add(jobListings.get(i));
             }
         }
