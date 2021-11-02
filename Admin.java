@@ -1,4 +1,5 @@
 /**
+ * @author Carter Chandler
  * Holds the Characteristics of an Admin
  */
 
