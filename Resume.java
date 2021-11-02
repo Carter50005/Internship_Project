@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Resume {
     private Student student;
@@ -45,6 +48,13 @@ public class Resume {
 
     public void addWorkExperience(Experience experience) {
         workExperiences.add(experience);
+    }
+
+    public void printResume() throws IOException{
+        FileWriter file = new FileWriter("Resume.txt");
+        PrintWriter output = new PrintWriter(file);
+        output.println(toString());
+        output.close();
     }
 
     public void addExtraCurricular(Experience experience) {
