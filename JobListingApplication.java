@@ -15,9 +15,9 @@ public class JobListingApplication {
         jobs = JobListingsList.getInstance();
     }
 
-    public boolean createStudentAccount(String username, String password, String studentID, String firstName, String lastName, String email) {
+    public boolean createStudentAccount(String username, String password, String studentID, String firstName, String lastName, String email, String phoneNumber) {
         if(!users.findAccount(username,password)) {
-            users.addStudent(new Student(username, password, studentID, firstName, lastName, email));
+            users.addStudent(new Student(username, password, studentID, firstName, lastName, email, phoneNumber));
             return true;
         } else {
             return false;

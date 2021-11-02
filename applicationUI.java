@@ -10,7 +10,7 @@ public class applicationUI {
     private String[] adminOptions = {"Edit Account", "Edit Reveiw", "Delete Account", "logout"};
     private String[] studentAccount = {"Name","Email Adress","Education", "Work Experience", "Extracurricular Activities", "Go back"};
     private String[] employerAccount = {"Company Name","Company Description","Company Location","Job Listing","Go Back"};
-    private String[] adminAccount = {"Name"}
+    private String[] adminAccount = {"Name"};
 
     applicationUI() {
         scanner = new Scanner(System.in);
@@ -160,7 +160,7 @@ public class applicationUI {
             } else if(selectOption() == 2) {
                 editEmailAdress();
             } else if(selectOption() == 3) {
-                editEducation();
+                editPhoneNumber();
             } else if(selectOption() == 4) {
                 editWorkExperience();
             } else if(selectOption() == 5) {
@@ -183,6 +183,10 @@ public class applicationUI {
         System.out.println("What is your email adress: ");
         String email = scanner.nextLine();
         editAccount();
+    }
+
+    private void editPhoneNumber() {
+        System.out.println("what is your phone number: ");
     }
 
     private void editEducation() {
@@ -488,7 +492,9 @@ public class applicationUI {
             String lastName = scanner.nextLine();
             System.out.println("Enter email:");
             String email = scanner.nextLine();
-            application.createStudentAccount(username, password, id, firstName, lastName, email);
+            System.out.println("Enter phone number:");
+            String phoneNumber = scanner.nextLine();
+            application.createStudentAccount(username, password, id, firstName, lastName, email, phoneNumber);
         }
         else if(type.equalsIgnoreCase("e")) {
             System.out.println("Enter company name:");

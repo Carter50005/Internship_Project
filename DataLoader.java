@@ -136,7 +136,8 @@ public class DataLoader extends DataConstants{
 		String firstName = (String)personJSON.get(STUDENT_FIRST_NAME);
 		String lastName = (String)personJSON.get(STUDENT_LAST_NAME);
 		String email = (String)personJSON.get(STUDENT_EMAIL);
-		return new Student(username, password, uUID, firstName, lastName, email);
+		String phoneNumber = (String)personJSON.get(STUDENT_PHONE_NUMBER);
+		return new Student(username, password, uUID, firstName, lastName, email, phoneNumber);
 	} 
 
 	private static Employer loadEmployer(String username, String password, String uUID, JSONObject personJSON) {

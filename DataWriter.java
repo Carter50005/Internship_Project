@@ -131,6 +131,7 @@ public class DataWriter extends DataConstants {
         studentJSON.put(STUDENT_FIRST_NAME, student.getFirstName().toString());
         studentJSON.put(STUDENT_LAST_NAME, student.getLastName().toString());
         studentJSON.put(STUDENT_EMAIL, student.getEmail().toString());
+        studentJSON.put(STUDENT_PHONE_NUMBER, student.getPhoneNumber().toString());
         studentJSON.put(STUDENT_RESUMES, getStudentResumesJSON(student));
         studentJSON.put(USER_REVIEWS, getStudentReviews(student));
         return studentJSON;
