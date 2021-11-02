@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 [{"jobPay":"12","employerID":"c332736","location":"loc","applicantIDS":[{"applicantID":"mitch"}],"id":"c142824","desiredSkills":[{"skill":"skill"}],"title":"title","postedDate":"984275y","expirationDate":"902755"},{"jobPay":"20","employerID":"k884511","location":"delaware","applicantIDS":[],"id":"Engineer","desiredSkills":[{"skill":"javascript"}],"title":"h110813","postedDate":"2021","expirationDate":"2021"}]
+=======
+[{"jobPay":"12","employerID":"c332736","location":"loc","applicantIDS":[{"applicantID":"mitch"}],"id":"c142824","desiredSkills":[{"skill":"skill"}],"title":"title","postedDate":"984275y","expirationDate":"902755"},{"jobPay":"15","employerID":"c332736","location":"Columbia, SC","applicantIDS":[{"applicantID":"mitch"}],"id":"x703036","desiredSkills":[{"skill":"JavaScript"},{"skill":"HTML"},{"skill":"CSS"}],"title":"Web Developer","postedDate":"11\/1\/2021","expirationDate":"12\/1\/2021"}]
+>>>>>>> faa677cc4830f1d6a05abddd8c4887f59234c238
