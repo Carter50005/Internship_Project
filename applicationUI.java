@@ -10,7 +10,11 @@ public class applicationUI {
     private String[] adminOptions = {"Edit Account", "Edit Reveiw", "Delete Account", "logout"};
     private String[] studentAccount = {"Name","Email Adress","Education", "Work Experience", "Extracurricular Activities", "Go back"};
     private String[] employerAccount = {"Company Name","Company Description","Company Location","Job Listing","Go Back"};
+<<<<<<< HEAD
     private String[] adminAccount = {"Name"};
+=======
+    private String[] adminAccount = {"Name","Email Adress"};
+>>>>>>> faa677cc4830f1d6a05abddd8c4887f59234c238
 
     applicationUI() {
         scanner = new Scanner(System.in);
@@ -558,7 +562,9 @@ public class applicationUI {
         System.out.println((i+1) + adminAccount[i]);
         if(selectOption() == 1) {
             editName();
-        } else if(selectOption() == 2) {
+        }else if(selectOption() == 2) {
+            editEmailAdress();
+        } else if(selectOption() == 3) {
             mainMenu();
         }
     }
@@ -569,7 +575,7 @@ public class applicationUI {
     }
 
     private void deleteAccount() {
-        
+
     }
     public static void main(String[] args) {
         applicationUI start = new applicationUI();
