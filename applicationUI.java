@@ -500,7 +500,9 @@ public class applicationUI {
             String lastName = scanner.nextLine();
             System.out.println("Enter email:");
             String email = scanner.nextLine();
-            application.createStudentAccount(username, password, id, firstName, lastName, email);
+            System.out.println("Enter phone number: ");
+            String phoneNumber = scanner.nextLine();
+            application.createStudentAccount(username, password, id, firstName, lastName, email, phoneNumber);
         }
         else if(type.equalsIgnoreCase("e")) {
             System.out.println("Enter company name:");
@@ -549,8 +551,6 @@ public class applicationUI {
             System.out.println("What is the company location: ");
             editCompanyDescription();
     }
-
-<<<<<<< HEAD
     private void searchApplicants() {
 
     }
@@ -588,34 +588,20 @@ public class applicationUI {
             }
         }
     }
-=======
-   private void searchApplicants() {
 
-   }
-
-   private void viewListing() {
-    System.out.println("Enter title of job:");
-    String keyword = scanner.nextLine();
-    ArrayList<JobListing> listings = application.searchListings(keyword);
-    for(int i=0;i<listings.size();i++) {
-    System.out.println(listings.get(i));
-    }
-   }
->>>>>>> 4210e94fd5b402ee9fad1d464b06bbd5d0d7663f
-
-   private void editAdminAccount() {
-    System.out.println("Which part of your account would you like to edit");
-    for(int i = 0; i < adminAccount.length; i++) {
-        System.out.println((i+1) + adminAccount[i]);
-        if(selectOption() == 1) {
-            editName();
-        }else if(selectOption() == 2) {
-            editEmailAdress();
-        } else if(selectOption() == 3) {
-            mainMenu();
+    private void editAdminAccount() {
+        System.out.println("Which part of your account would you like to edit");
+        for(int i = 0; i < adminAccount.length; i++) {
+            System.out.println((i+1) + adminAccount[i]);
+            if(selectOption() == 1) {
+                editName();
+            }else if(selectOption() == 2) {
+                editEmailAdress();
+            } else if(selectOption() == 3) {
+                mainMenu();
+            }
         }
     }
-}
 
     private void editReview() {
 
