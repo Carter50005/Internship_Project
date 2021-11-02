@@ -73,6 +73,8 @@ public class applicationUI {
                 } else if(option == 5) {
                     searchJobs();
                 } else if(option == 6) {
+                    outResume();
+                } else if(option == 7) {
                     application.logout();
                 }else {
                     mainMenu();
