@@ -44,10 +44,6 @@ public class Student extends User {
         wishList.add(jobListing);
     }
 
-    public boolean removeFromWishList() {
-        return true;
-    }
-
     public void removeFromWishList(JobListing jobListing) {
         wishList.remove(jobListing);
     }
