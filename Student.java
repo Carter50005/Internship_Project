@@ -99,5 +99,13 @@ public class Student extends User {
     public void addResume(Resume resume) {
         resumes.add(resume);
     }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
  
 }

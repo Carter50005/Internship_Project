@@ -113,7 +113,14 @@ import java.util.Random;
                 desiredSkillsString+=", ";
             }
         }
-        return title+"\nEmployer: "+this.employer.getCompanyName()+"\nLocation: "+this.location+"\nJob Pay: "+this.jobPay+"\nExpiration Date: "+this.expirationDate+"\nPosted Date: "+this.postedDate+"\nDesired Skills: "+desiredSkillsString;
+        String pay = "\n";
+        if(this.jobPay == 0) {
+            pay += "Internship";
+        }
+        else if(this.jobPay > 0) {
+            pay += "Job pay: "+jobPay;
+        }
+        return title+"\nEmployer: "+this.employer.getCompanyName()+"\nLocation: "+this.location+pay+"\nExpiration Date: "+this.expirationDate+"\nPosted Date: "+this.postedDate+"\nDesired Skills: "+desiredSkillsString;
     }
 
     public String getTitle() {
