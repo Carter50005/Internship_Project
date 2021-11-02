@@ -8,7 +8,7 @@ public class applicationUI {
     private String[] studentOptions = {"Edit Account", "Apply for Job", "Create Resume", "Add Reveiw", "Search Jobs", "logout"};
     private String[] employerOptions = {"Edit Account", "Add Listing", "Search Applicats", "Veiw Listings", "logout"};
     private String[] adminOptions = {"Edit Account", "Edit Reveiw", "Delete Account", "logout"};
-    private String[] studentAccount = {"Name","Email Adress","Education", "Work Experience", "Extracurricular Activities", "Go back"};
+    private String[] studentAccount = {"Name","Email Adress","Phone Number", "Go back"};
     private String[] employerAccount = {"Company Name","Company Description","Company Location","Job Listing","Go Back"};
     private String[] adminAccount = {"Name"};
 
@@ -162,10 +162,6 @@ public class applicationUI {
             } else if(selectOption() == 3) {
                 editPhoneNumber();
             } else if(selectOption() == 4) {
-                editWorkExperience();
-            } else if(selectOption() == 5) {
-                editExtracuriculars();
-            } else if(selectOption() == 6) {
                 mainMenu();
             }
         }
@@ -189,94 +185,8 @@ public class applicationUI {
         System.out.println("what is your phone number: ");
     }
 
-    private void editEducation() {
-        System.out.println("Would you like to (A)dd, (D)elete, or (E)dit your education list((G)o back): ");
-        String action = scanner.nextLine();
-        if(action.equalsIgnoreCase("a")) {
-            addEducation();
-        } else if(action.equalsIgnoreCase("d")) {
-            deleteEducation();
-        } else if(action.equalsIgnoreCase("e")){
-            editEducationItem();
-        } else if(action.equalsIgnoreCase("g")) {
-            editAccount();
-        }
-    }
 
-    private void addEducation() {
-        System.out.println("What is the name of the school: ");
-        String name = scanner.nextLine();
-        System.out.println("What is your class year: ");
-        String year = scanner.nextLine();
-        int classYear = Integer.parseInt(year);
-        System.out.println("What is your major:");
-        String major = scanner.nextLine();
-        System.out.println("What is your minor:");
-        String minor = scanner.nextLine();
-        System.out.println("What is your gpa:");
-        String gpa = scanner.nextLine();
-        double GPA = Double.parseDouble(gpa);
-    }
 
-    private void deleteEducation() {
-
-    }
-
-    private void editEducationItem() {
-        System.out.println("What Item would you Like to edit");
-        String[] educationItems = {". School Name", ". Class Year", ". Major", ". Minor", ". Gpa", ". Go Back"};
-        for(int i = 0; i < educationItems.length; i++) {
-            System.out.println((i+1) + educationItems[i]);
-        }
-        String option = scanner.nextLine();
-        int num = Integer.parseInt(option);
-        if(num == 1) {
-            System.out.println("What is your School Name: ");
-            String name = scanner.nextLine();
-        } else if(num == 2) {
-            System.out.println("What is your class year: ");
-            String classYear = scanner.nextLine();
-            int ClassYear = Integer.parseInt(classYear);
-        } else if(num == 3) {
-            System.out.println("What is your major: ");
-            String major = scanner.nextLine();
-        } else if(num == 4) {
-            System.out.println("What is your minor: ");
-            String minor = scanner.nextLine();
-        } else if(num == 5) {
-            System.out.println("What is your gpa: ");
-            String gpa = scanner.nextLine();
-            Double GPA = Double.parseDouble(gpa);
-        } else if(num == 6) {
-            editEducation();
-        }
-    }
-
-    private void editWorkExperience() {
-        System.out.println("Would you like to (A)dd, (D)elete, or (E)dit your work experience list((G)o back): ");
-        String action = scanner.nextLine();
-        if(action.equalsIgnoreCase("a")) {
-            addWorkExperience();
-        } else if(action.equalsIgnoreCase("d")) {
-            deleteWorkExperience();
-        } else if(action.equalsIgnoreCase("e")){
-            editWorkExperienceItem();
-        } else if(action.equalsIgnoreCase("g")) {
-            editAccount();
-        }
-    }
-
-    private void addWorkExperience() {
-        System.out.println("What was the title of your experience: ");
-        String title = scanner.nextLine();
-        System.out.println("What was the start date:");
-        String startDate = scanner.nextLine();
-        System.out.println("What was the end date:");
-        String endDate = scanner.nextLine();
-        System.out.println("Enter a description of the Experience");
-        String description = scanner.nextLine();
-        editWorkExperience();
-    }
 
     private void addWorkExperience(Resume resume) {
         System.out.println("Enter title:");
@@ -311,94 +221,6 @@ public class applicationUI {
             addExtracurricular(resume);
         }
     }
-
-    private void deleteWorkExperience() {
-
-    }
-
-    private void editWorkExperienceItem() {
-        System.out.println("Which Item would you like to edit:");
-        String[] workExperience = {". Title",". Start date", ". End date", ". Description", "Go Back"};
-        for(int i = 0; i < workExperience.length; i++) {
-            System.out.println((i+1) + workExperience[i]);
-        }
-        String option = scanner.nextLine();
-        int num = Integer.parseInt(option);
-        if(num == 1) {
-            System.out.println("What is the title of the position: ");
-            String title = scanner.nextLine();
-        } else if(num ==2) {
-            System.out.println("What was the start date of the position: ");
-            String startDate = scanner.nextLine();
-        } else if(num == 3) {
-            System.out.println("What was the end date of the position");
-            String endDate = scanner.nextLine();
-        } else if(num == 4) {
-            System.out.println("What is the description of the position: ");
-            String description = scanner.nextLine();
-        } else if(num == 5) {
-            editWorkExperience();
-        } else {
-            System.exit(0);
-        }
-
-        System.out.println("");
-    }
-
-    private void editExtracuriculars() {
-        System.out.println("Would you like to (A)dd, (D)elete, or (E)dit your Extra Curriculars list((G)o back): ");
-        String action = scanner.nextLine();
-        if(action.equalsIgnoreCase("a")) {
-            addExtraCurricular();
-        } else if(action.equalsIgnoreCase("d")) {
-            deleteExtraCurricular();
-        } else if(action.equalsIgnoreCase("e")){
-            editExtraCurricularItem();
-        } else if(action.equalsIgnoreCase("g")) {
-            editAccount();
-        }
-    }
-
-    private void addExtraCurricular() {
-        System.out.println("What was the title of your Extra Curricular Activity");
-        String title = scanner.nextLine();
-        System.out.println("What was the start date of your Extra Curricular Activity");
-        String startDate = scanner.nextLine();
-        System.out.println("What was the end date of your Extra Curricular Activity");
-        String endDate = scanner.nextLine();
-        System.out.println("What is the description of the Extra Curricular Activity");
-        String description = scanner.nextLine();
-    }
-
-    private void deleteExtraCurricular() {
-
-    }
-
-    private void editExtraCurricularItem() {
-        System.out.println("Which Item would you like to edit");
-        String[] extraCurriculars = {". Title",". Start Date",". End Date",". Description",". Go Back"};
-        for(int i = 0; i < extraCurriculars.length; i++) {
-            System.out.println((i+1) + extraCurriculars[i]);
-        }
-        String action = scanner.nextLine();
-        int num = Integer.parseInt(action);
-        if(num == 1) {
-            System.out.println("What is the title");
-            String title = scanner.nextLine();
-        } else if(num == 2) {
-            System.out.println("What is the start date");
-            String startDate = scanner.nextLine();
-        } else if(num == 3) {
-            System.out.println("What is the end date");
-            String endDate = scanner.nextLine();
-        } else if(num == 4) {
-            System.out.println("What is the description");
-            String description = scanner.nextLine();
-        } else if(num == 5) {
-            editExtracuriculars();
-        }
-    }
-
     private void applyForJob() {
         System.out.println("Enter keyword for search:");
         String keyword = scanner.nextLine();
@@ -463,7 +285,7 @@ public class applicationUI {
         System.out.println("Add another education? y/n");
         String answer = scanner.nextLine();
         if(answer.equalsIgnoreCase("y")) {
-            addEducation();
+            addEducation(resume);
         }
     }
 
