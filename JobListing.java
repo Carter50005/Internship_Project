@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 /**
+ * @author Carter Chandler
  * Class that creates objects for job listings
  */
 
@@ -18,7 +19,16 @@ import java.util.Random;
     private String employerID;
     private Employer employer;
 
-    //Constructors
+    /**
+     * A constructor
+     * @param id The listing's id
+     * @param title The title of the listing
+     * @param postedDate The posted date of the listing
+     * @param expirationDate The expiration date of the listing
+     * @param location The location of the listing
+     * @param jobPay The pay of the listing
+     * @param employerID The id for the employer who posted the listing
+     */
     public JobListing(String id, String title, String postedDate, String expirationDate, String location, int jobPay, String employerID) {
         this.id = id;
         this.title = title;
@@ -32,6 +42,15 @@ import java.util.Random;
         applicantIDS = new ArrayList<String>();
     }
 
+    /**
+     * A constructor
+     * @param title The title of the listing
+     * @param postedDate The posted date of the listing
+     * @param expirationDate The expiration date of the listing
+     * @param location The location of the listing
+     * @param jobPay The pay of the listing
+     * @param employerID The id for the employer who posted the listing
+     */
     public JobListing(String title, String postedDate, String expirationDate, String location, int jobPay, String employerID) {
         this.id = createID();
         this.title = title;
@@ -45,6 +64,17 @@ import java.util.Random;
         this.applicants = new ArrayList<Student>();
     }
 
+    /**
+     * A constructor
+     * @param title The title of the listing
+     * @param postedDate The posted date of the listing
+     * @param expirationDate The expiration date of the listing
+     * @param desiredSkills The desired skills for the listing
+     * @param applicantIDS The ids of the students who have applied for the job
+     * @param location The location of the listing
+     * @param jobPay The pay of the listing
+     * @param employerID The id for the employer who posted the listing
+     */
     public JobListing(String title, String postedDate, String expirationDate, ArrayList<String> desiredSkills, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
         this.id = createID();
         this.title = title;
@@ -57,6 +87,18 @@ import java.util.Random;
         this.employerID = employerID;
     }
 
+    /**
+     * A constructor
+     * @param title The title of the listing
+     * @param id The listing's id
+     * @param postedDate The posted date of the listing
+     * @param expirationDate The expiration date of the listing
+     * @param desiredSkills The desired skills for the listing
+     * @param applicantIDS The ids of the students who have applied for the job
+     * @param location The location of the listing
+     * @param jobPay The pay of the listing
+     * @param employerID The id for the employer who posted the listing
+     */
     public JobListing(String title, String id, String postedDate, String expirationDate, ArrayList<String> desiredSkills, ArrayList<String> applicantIDS, String location, int jobPay, String employerID) {
         this.id = id;
         this.title = title;
