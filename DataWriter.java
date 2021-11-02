@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class DataWriter extends DataConstants { 
+public class DataWriter extends DataConstants {
 
     private static ArrayList<User> users;
     private static ArrayList<Student> students;
@@ -12,7 +12,7 @@ public class DataWriter extends DataConstants {
     private static ArrayList<Admin> admins;
 
     public static void saveUsers(ArrayList<User> users) {
-        
+
         students = UserList.getInstance().getStudents();
         employers = UserList.getInstance().getEmployers();
         admins = UserList.getInstance().getAdmins();
@@ -30,10 +30,10 @@ public class DataWriter extends DataConstants {
             }
 
             try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
- 
+
                 file.write(jsonUsers.toJSONString());
                 file.flush();
-     
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -48,10 +48,10 @@ public class DataWriter extends DataConstants {
         }
 
         try (FileWriter file = new FileWriter(LISTING_FILE_NAME)) {
- 
+
             file.write(jobListingsJSON.toJSONString());
             file.flush();
- 
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -121,7 +121,7 @@ public class DataWriter extends DataConstants {
     public static JSONObject getStudentJSON(User user) {
         if(getStudent(user) == null) {
             return null;
-        }   
+        }
         Student student = getStudent(user);
         JSONObject studentJSON = new JSONObject();
         studentJSON.put(USER_USERNAME, student.getUsername().toString());
@@ -217,7 +217,7 @@ public class DataWriter extends DataConstants {
         employerJSON.put(USER_REVIEWS, getEmployerReviews(employer));
         return employerJSON;
     }
-    
+
     private static JSONArray getEmployerReviews(Employer employer) {
         JSONArray reviewsJSON = new JSONArray();
         for(int i=0;i<employer.getReviews().size();i++) {

@@ -20,26 +20,21 @@ public class Student extends User {
         this.wishList = new ArrayList<JobListing>();
     }
 
-    public Student(String username, String password, String studentID, String firstName, String lastName, String email, ArrayList<Resume> resumes, ArrayList<Review> reviews, ArrayList<JobListing> wishList)  {
+    public Student(String username, String password, String studentID, String firstName, String lastName, String email, String phoneNumber, ArrayList<Resume> resumes, ArrayList<Review> reviews, ArrayList<JobListing> wishList)  {
         super(username, password, "s", studentID);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.resumes = resumes;
         this.reviews = reviews;
         this.wishList = wishList;
     }
 
-    public void editAccount() {
-        
-    }
+
 
     public void removeReview(Review review) {
         reviews.remove(review);
-    }
-
-    public void applyForJob() {
-
     }
 
     public void addToWishList(JobListing jobListing) {

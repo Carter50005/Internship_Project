@@ -6,7 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class DataLoader extends DataConstants{
-    
+
 	private static ArrayList<Student> students = new ArrayList<Student>();
 	private static ArrayList<Employer> employers = new ArrayList<Employer>();
 	private static ArrayList<Admin> admins = new ArrayList<Admin>();
@@ -49,13 +49,13 @@ public class DataLoader extends DataConstants{
 					admins.add(admin);
 				}
 			}
-			
+
 			return users;
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
     }
 
@@ -125,12 +125,12 @@ public class DataLoader extends DataConstants{
 	}
 
 	/**
-	 * retuens student 
-	 * @param username 
+	 * retuens student
+	 * @param username
 	 * @param password
 	 * @param uUID
 	 * @param personJSON array of users
-	 * @return instance of student 
+	 * @return instance of student
 	 */
 	private static Student loadStudent(String username, String password, String uUID, JSONObject personJSON) {
 		String firstName = (String)personJSON.get(STUDENT_FIRST_NAME);
@@ -138,14 +138,14 @@ public class DataLoader extends DataConstants{
 		String email = (String)personJSON.get(STUDENT_EMAIL);
 		String phoneNumber = (String)personJSON.get(STUDENT_PHONE);
 		return new Student(username, password, uUID, firstName, lastName, email, phoneNumber);
-	} 
+	}
 
 	private static Employer loadEmployer(String username, String password, String uUID, JSONObject personJSON) {
 		String name = (String)personJSON.get(EMPLOYER_NAME);
 		String description = (String)personJSON.get(EMPLOYER_DESCRIPTION);
 		String location = (String)personJSON.get(EMPLOYER_LOCATION);
 		return new Employer(uUID, username, password, name, description, location);
-	} 
+	}
 
 	/**
 	 * Loads resumes

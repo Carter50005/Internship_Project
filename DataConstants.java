@@ -1,5 +1,5 @@
 public class DataConstants {
-    
+
     protected static final String USER_FILE_NAME = "users.json";
     protected static final String USER_USERNAME = "username";
     protected static final String USER_PASSWORD = "password";
@@ -46,5 +46,5 @@ public class DataConstants {
     protected static final String JOB_APPLICANT_IDS = "applicantIDS";
     protected static final String APPLICANT_ID = "applicantID";
     protected static final String JOB_EMPLOYER_ID = "employerID";
-    
+
 }
