@@ -5,26 +5,46 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * Loads data from JSON file
+ * @author Mitchell Carroll
+ */
 public class DataLoader extends DataConstants{
 
+	/**
+	 * Variables
+	 */
 	private static ArrayList<Student> students = new ArrayList<Student>();
 	private static ArrayList<Employer> employers = new ArrayList<Employer>();
 	private static ArrayList<Admin> admins = new ArrayList<Admin>();
 
+	/**
+	 * gets arraylist of users
+	 * @return arraylist of users
+	 */
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<User>();
 
         try {
+			/**
+			 * parses json file into array
+			 */
 			FileReader reader = new FileReader(USER_FILE_NAME);
 			JSONParser parser = new JSONParser();
 			JSONArray peopleJSON = (JSONArray)parser.parse(reader);
 
+			/**
+			 * iterates over array and add users to list 
+			 */
 			for(int i=0;i<peopleJSON.size();i++) {
 				JSONObject personJSON = (JSONObject)peopleJSON.get(i);
 				String username = (String)personJSON.get(USER_USERNAME);
 				String password = (String)personJSON.get(USER_PASSWORD);
 				String userType = (String)personJSON.get(USER_TYPE);
 				String uUID = (String)personJSON.get(USER_UUID);
+				/**
+				 * adds student to user list
+				 */
 				if(userType.equalsIgnoreCase("s")) {
 					Student student = loadStudent(username, password, uUID, personJSON);
 					student.setResumes(loadResumes(personJSON, student));
@@ -32,6 +52,9 @@ public class DataLoader extends DataConstants{
 					users.add(student);
 					students.add(student);
 				}
+				/**
+				 * adds employer to user list
+				 */
 				else if(userType.equalsIgnoreCase("e")) {
 					Employer employer = loadEmployer(username, password, uUID, personJSON);
 					ArrayList<JobListing> listings = getJobListings();
@@ -43,13 +66,15 @@ public class DataLoader extends DataConstants{
 					users.add(employer);
 					employers.add(employer);
 				}
+				/**
+				 * adds admin to user list
+				 */
 				else if(userType.equalsIgnoreCase("a")) {
 					Admin admin = new Admin(username, password, uUID);
 					users.add(admin);
 					admins.add(admin);
 				}
 			}
-
 			return users;
 
 		} catch (Exception e) {
@@ -59,18 +84,34 @@ public class DataLoader extends DataConstants{
 		return null;
     }
 
+	/**
+	 * return arraylist of students
+	 * @return students
+	 */
 	public static ArrayList<Student> getStudents() {
 		return students;
 	}
 
+	/**
+	 * return arraylist of employers
+	 * @return employers
+	 */
 	public static ArrayList<Employer> getEmployers() {
 		return employers;
 	}
 
+	/**
+	 * return admins
+	 * @return admins
+	 */
 	public static ArrayList<Admin> getAdmins() {
 		return admins;
 	}
 
+	/**
+	 * parses job listings from json file
+	 * @return arraylist of job listings
+	 */
 	public static ArrayList<JobListing> getJobListings() {
 		ArrayList<JobListing> listings = new ArrayList<JobListing>();
 		try {
@@ -105,6 +146,7 @@ public class DataLoader extends DataConstants{
 					String applicantID = (String)applicantIDJSON.get(APPLICANT_ID);
 					applicantIDS.add(applicantID);
 				}
+				//sets applicants
 				listing.setApplicantIDS(applicantIDS);
 				for(int j=0;j<applicantIDS.size();j++) {
 					for(int k=0;k<students.size();k++) {
@@ -129,7 +171,7 @@ public class DataLoader extends DataConstants{
 	 * @param username
 	 * @param password
 	 * @param uUID
-	 * @param personJSON array of users
+	 * @param personJSON JSON object
 	 * @return instance of student
 	 */
 	private static Student loadStudent(String username, String password, String uUID, JSONObject personJSON) {
@@ -140,6 +182,14 @@ public class DataLoader extends DataConstants{
 		return new Student(username, password, uUID, firstName, lastName, email, phoneNumber);
 	}
 
+	/**
+	 * retuens employer
+	 * @param username
+	 * @param password
+	 * @param uUID
+	 * @param personJSON JSON object
+	 * @return instance of Employer
+	 */
 	private static Employer loadEmployer(String username, String password, String uUID, JSONObject personJSON) {
 		String name = (String)personJSON.get(EMPLOYER_NAME);
 		String description = (String)personJSON.get(EMPLOYER_DESCRIPTION);
@@ -205,6 +255,11 @@ public class DataLoader extends DataConstants{
 		return ret;
 	}
 
+	/**
+	 * gets reviews for employer or student
+	 * @param personJSON JSON object
+	 * @return arraylist of reviews
+	 */
 	private static ArrayList<Review> loadReviews(JSONObject personJSON) {
 		ArrayList<Review> ret = new ArrayList<Review>();
 		JSONArray reviewsArray = (JSONArray)personJSON.get(USER_REVIEWS);

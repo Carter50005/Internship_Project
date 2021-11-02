@@ -3,21 +3,37 @@ import java.io.IOException;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
+/**
+ * Writes data to json file
+ * @author Mitchell Carroll
+ */
 public class DataWriter extends DataConstants {
 
+    /**
+     * Variables
+     */
     private static ArrayList<User> users;
     private static ArrayList<Student> students;
     private static ArrayList<Employer> employers;
     private static ArrayList<Admin> admins;
 
+    /**
+     * Saves users given an arraylist of users
+     * @param users arraylist of users
+     */
     public static void saveUsers(ArrayList<User> users) {
 
+        /**
+         * variables
+         */
         students = UserList.getInstance().getStudents();
         employers = UserList.getInstance().getEmployers();
         admins = UserList.getInstance().getAdmins();
         JSONArray jsonUsers  = new JSONArray();
 
+        /**
+         * loops through users, gets their type, and adds them to JSONArray
+         */
         for(User user : users) {
             if(user.getType().equalsIgnoreCase("s")) {
                 jsonUsers.add(getStudentJSON(user));
@@ -40,6 +56,10 @@ public class DataWriter extends DataConstants {
         }
     }
 
+    /**
+     * saves an arraylist of job listings
+     * @param listings arraylist of job listings
+     */
     public static void saveJobListing(ArrayList<JobListing> listings) {
         JSONArray jobListingsJSON = new JSONArray();
 
@@ -57,6 +77,11 @@ public class DataWriter extends DataConstants {
         }
     }
 
+    /**
+     * makes JSONObject of a listing
+     * @param listing a listing
+     * @return listing as JSONObject
+     */
     private static JSONObject getListingJSON(JobListing listing) {
         JSONObject listingJSON = new JSONObject();
         listingJSON.put(JOB_LISTING_ID, listing.getId().toString());
@@ -71,6 +96,11 @@ public class DataWriter extends DataConstants {
         return listingJSON;
     }
 
+    /**
+     * loops through applicants of a listing and adds them to a JSONArray
+     * @param listing a job listing
+     * @return JSONArray of applicants
+     */
     private static JSONArray getApplicantIDSJSON(JobListing listing) {
         JSONArray applicantIDSJSON = new JSONArray();
         for(String id : listing.getApplicantIDS()) {
@@ -81,6 +111,11 @@ public class DataWriter extends DataConstants {
         return applicantIDSJSON;
     }
 
+    /**
+     * loops through skills of a listing and adds them to a JSONArray
+     * @param listing a job listing
+     * @return JSONArray of skills
+     */
     private static JSONArray getDesiredSkillsJSON(JobListing listing) {
         JSONArray skillsJSON = new JSONArray();
         for(String skill : listing.getDesiredSkills()) {
@@ -91,6 +126,11 @@ public class DataWriter extends DataConstants {
         return skillsJSON;
     }
 
+    /**
+     * gets instance of a student given a user
+     * @param user a user
+     * @return a student
+     */
     private static Student getStudent(User user) {
         for(int i=0;i<students.size();i++) {
             if(students.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
@@ -100,6 +140,11 @@ public class DataWriter extends DataConstants {
         return null;
     }
 
+    /**
+     * gets instance of an employer given a user
+     * @param user a user
+     * @return an employer
+     */
     private static Employer getEmployer(User user) {
         for(int i=0;i<employers.size();i++) {
             if(employers.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
@@ -109,6 +154,11 @@ public class DataWriter extends DataConstants {
         return null;
     }
 
+    /**
+     * gets instance of an admin given a user
+     * @param user a user
+     * @return an admin
+     */
     private static Admin getAdmin(User user) {
         for(int i=0;i<admins.size();i++) {
             if(admins.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
@@ -118,6 +168,11 @@ public class DataWriter extends DataConstants {
         return null;
     }
 
+    /**
+     * makes JSONObject of a student
+     * @param user a user
+     * @return student as JSONObject
+     */
     public static JSONObject getStudentJSON(User user) {
         if(getStudent(user) == null) {
             return null;
@@ -137,6 +192,11 @@ public class DataWriter extends DataConstants {
         return studentJSON;
     }
 
+    /**
+     * makes JSONArray of resumes given a student
+     * @param student a student
+     * @return resumes as JSONArray
+     */
     private static JSONArray getStudentResumesJSON(Student student) {
         JSONArray studentResumesJSON = new JSONArray();
         for(int i=0;i<student.getResumes().size();i++) {
@@ -151,6 +211,11 @@ public class DataWriter extends DataConstants {
         return studentResumesJSON;
     }
 
+    /**
+     * makes JSONArray of educations given a resume
+     * @param resume a resume
+     * @return educations as JSONArray
+     */
     public static JSONArray getResumeEducations(Resume resume) {
         JSONArray educationsJSON = new JSONArray();
         for(int i=0;i<resume.getEducations().size();i++) {
@@ -166,6 +231,11 @@ public class DataWriter extends DataConstants {
         return educationsJSON;
     }
 
+    /**
+     * makes JSONArray of skills given a resume
+     * @param resume a resume
+     * @return skills as JSONArray
+     */
     private static JSONArray getResumeSkills(Resume resume) {
         JSONArray skillsJSON = new JSONArray();
         for(int i=0;i<resume.getSkills().size();i++) {
@@ -176,6 +246,11 @@ public class DataWriter extends DataConstants {
         return skillsJSON;
     }
 
+    /**
+     * makes a JSONArray of experiences given an arraylist of experiences
+     * @param experiences an arraylist of experiences
+     * @return JSONArray of experiences
+     */
     public static JSONArray getResumeExperiences(ArrayList<Experience> experiences) {
         JSONArray experiencesJSON = new JSONArray();
         for(int i=0;i<experiences.size();i++) {
@@ -190,6 +265,11 @@ public class DataWriter extends DataConstants {
         return experiencesJSON;
     }
 
+    /**
+     * makes a JSONArray of reviews given a student
+     * @param student a student 
+     * @return JSONArray of reviews
+     */
     public static JSONArray getStudentReviews(Student student) {
         JSONArray reviewsJSON = new JSONArray();
         for(int i=0;i<student.getReviews().size();i++) {
@@ -204,6 +284,11 @@ public class DataWriter extends DataConstants {
         return reviewsJSON;
     }
 
+    /**
+     * makes JSONObject of employer given a user
+     * @param user a user
+     * @return JSONObject of employer
+     */
     private static JSONObject getEmployerJSON(User user) {
         JSONObject employerJSON = new JSONObject();
         Employer employer = getEmployer(user);
@@ -218,6 +303,11 @@ public class DataWriter extends DataConstants {
         return employerJSON;
     }
 
+    /**
+     * makes JSONArray of reviews given an employer
+     * @param employer an employer 
+     * @return JSONArray of reviews 
+     */
     private static JSONArray getEmployerReviews(Employer employer) {
         JSONArray reviewsJSON = new JSONArray();
         for(int i=0;i<employer.getReviews().size();i++) {
@@ -232,6 +322,11 @@ public class DataWriter extends DataConstants {
         return reviewsJSON;
     }
 
+    /**
+     * makes JSONObject of admin given a user
+     * @param user a user
+     * @return JSONObject of admin
+     */
     private static JSONObject getAdminJSON(User user) {
         JSONObject adminJSON = new JSONObject();
         Admin admin = getAdmin(user);

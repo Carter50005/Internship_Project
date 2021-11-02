@@ -41,12 +41,15 @@ public class JobListingApplication {
         }
     }
 
+<<<<<<< HEAD
     
     /**
      * edits the student name
      * @param firstName
      * @param lastName
      */
+=======
+>>>>>>> f60c289be692c794ce6ceef7cee235ba138b9a4b
     public void editStudentName(String firstName, String lastName) {
         studentUser.setFirstName(firstName);
         studentUser.setLastName(lastName);
