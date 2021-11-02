@@ -500,7 +500,9 @@ public class applicationUI {
             String lastName = scanner.nextLine();
             System.out.println("Enter email:");
             String email = scanner.nextLine();
-            application.createStudentAccount(username, password, id, firstName, lastName, email);
+            System.out.println("Enter phone number: ");
+            String phoneNumber = scanner.nextLine();
+            application.createStudentAccount(username, password, id, firstName, lastName, email, phoneNumber);
         }
         else if(type.equalsIgnoreCase("e")) {
             System.out.println("Enter company name:");
@@ -549,7 +551,6 @@ public class applicationUI {
             System.out.println("What is the company location: ");
             editCompanyDescription();
     }
-
     private void searchApplicants() {
         System.out.println("Enter Applicant Name:");
         String keyword = scanner.nextLine();
@@ -589,19 +590,19 @@ public class applicationUI {
         }
     }
 
-   private void editAdminAccount() {
-    System.out.println("Which part of your account would you like to edit");
-    for(int i = 0; i < adminAccount.length; i++) {
-        System.out.println((i+1) + adminAccount[i]);
-        if(selectOption() == 1) {
-            editName();
-        }else if(selectOption() == 2) {
-            editEmailAdress();
-        } else if(selectOption() == 3) {
-            mainMenu();
+    private void editAdminAccount() {
+        System.out.println("Which part of your account would you like to edit");
+        for(int i = 0; i < adminAccount.length; i++) {
+            System.out.println((i+1) + adminAccount[i]);
+            if(selectOption() == 1) {
+                editName();
+            }else if(selectOption() == 2) {
+                editEmailAdress();
+            } else if(selectOption() == 3) {
+                mainMenu();
+            }
         }
     }
-}
 
     private void editReview() {
 
