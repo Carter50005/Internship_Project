@@ -120,7 +120,12 @@ public class applicationUI {
             System.out.println(resume+"\n(S)elect resume, (N)ext, or(E)xit");
             String option = scanner.nextLine();
             if(option.equalsIgnoreCase("s")) {
-                resume.printResume();
+                try {
+                    resume.printResume();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                
             }
             else if(option.equalsIgnoreCase("e")) {
                 return;
