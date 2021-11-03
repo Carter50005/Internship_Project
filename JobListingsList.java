@@ -1,4 +1,5 @@
 /**
+ * @author Lauren Hadlow, Colton Anderson, Mitchell Carroll
  * Creates the Job Listing List
  */
 import java.util.ArrayList;

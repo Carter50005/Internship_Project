@@ -1,4 +1,5 @@
 /**
+ * @author Lauren Hadlow, Colton Anderson, Mitchell Carroll
  * Instance of a Reveiw
  */
 public class Review {

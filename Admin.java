@@ -1,5 +1,5 @@
 /**
- * @author Carter Chandler
+ * @author Carter Chandler, Lauren Hadlow
  * Holds the Characteristics of an Admin
  */
 

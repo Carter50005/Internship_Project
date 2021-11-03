@@ -1,4 +1,5 @@
 /**
+ * @author Lauren Hadlow, Colton Anderson, Mitchell Carroll
  * Creates the User List
  */
 import java.util.ArrayList;

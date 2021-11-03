@@ -1,4 +1,4 @@
 public enum ApplicantSortType {
     nameAToZ,
-    nameZToY,
+    nameZToA,
 }

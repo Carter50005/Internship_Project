@@ -8,7 +8,7 @@ public class JobListingApplication {
 
     private UserList users;
     private JobListingsList jobs;
-    private  User user;
+    private User user;
     private Student studentUser;
     private Employer employerUser;
     private static JobListingApplication jobListingApplication;

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 /**
- * @author Carter Chandler
+ * @author Carter Chandler, Lauren Hadlow
  * Class that creates objects for job listings
  */
 

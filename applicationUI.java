@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 /**
+ * @author Lauren Hadlow, Colton Anderson, Mitchell Carroll
  * A class which controls the console ui
  */
 public class applicationUI {
