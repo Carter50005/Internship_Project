@@ -1,3 +1,7 @@
+/**
+ * @author Lauren Hadlow, Colton Anderson, Mitchell Carroll
+ * Instance of a Reveiw
+ */
 public class Review {
 
     private int rating;
@@ -5,6 +9,13 @@ public class Review {
     private String reviewerID;
     private String revieweeID;
 
+    /**
+     * constructor
+     * @param rating
+     * @param review
+     * @param reviewer
+     * @param reviewee
+     */
     public Review(int rating, String review, String reviewer, String reviewee) {
         this.rating = rating;
         this.review = review;
@@ -12,10 +23,17 @@ public class Review {
         this.revieweeID = reviewee;
     }
 
+    /**
+     * Returns a string with the information stored in a reveiw
+     */
     public String toString() {
         return "Rating: "+rating+"\nReview: "+review;
     }
 
+    /**
+     * getters
+     * @return
+     */
     public String getReviewerID() {
         return this.reviewerID;
     }
@@ -32,10 +50,17 @@ public class Review {
         return this.review;
     }
 
+    /**
+     * adds a reveiw
+     */
     public void addReview() {
 
     }
 
+    /**
+     * removes a reveiw
+     * @param review
+     */
     public void remove(Review review) {
         
     } 

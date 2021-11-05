@@ -1,3 +1,7 @@
+/**
+ * @author Lauren Hadlow, Colton Anderson, Mitchell Carroll
+ * Creates the User List
+ */
 import java.util.ArrayList;
 
 public class UserList {
@@ -7,6 +11,9 @@ public class UserList {
     private static ArrayList<Employer> employers;
     private static ArrayList<Admin> admins;
 
+    /**
+     * Constructor
+     */
     private UserList() {
         if(DataLoader.getUsers() != null) {
             users = DataLoader.getUsers();
@@ -19,6 +26,10 @@ public class UserList {
         admins = setAdmins();
     }
 
+    /**
+     * loads the users from the json files
+     * @return students
+     */
     private ArrayList<Student> setStudents() {
         if(DataLoader.getStudents() == null) {
             return new ArrayList<Student>();
@@ -53,6 +64,10 @@ public class UserList {
         }
     }
 
+    /**
+     * loads the admin from the json files
+     * @return admin
+     */
     private ArrayList<Admin> setAdmins() {
         if(DataLoader.getAdmins() == null) {
             return new ArrayList<Admin>();
@@ -60,6 +75,10 @@ public class UserList {
         return DataLoader.getAdmins();
     }
 
+    /**
+     * Creates an Instance of the the class
+     * @return
+     */
     public static UserList getInstance() {
         if(userList == null) {
             return new UserList();
@@ -67,6 +86,12 @@ public class UserList {
         return userList;
     }
 
+    /**
+     * Checks if the username and password are matched to ones in the list
+     * @param username
+     * @param password
+     * @return user
+     */
     public User login(String username, String password) {
         for(int i=0;i<users.size();i++) {
             if(users.get(i).getUsername().equalsIgnoreCase(username) && users.get(i).getPassword().equalsIgnoreCase(password)) {
@@ -76,6 +101,11 @@ public class UserList {
         return null;
     }
 
+    /**
+     * finds the User
+     * @param uUID
+     * @return
+     */
     public User findUser(String uUID) {
         for(int i=0;i<users.size();i++) {
             if(users.get(i).getUUID() == uUID) {
@@ -85,10 +115,20 @@ public class UserList {
         return null;
     }
 
+    /**
+     * finds the type of user
+     * @return
+     */
     public User findType() {
         return null;
     }
 
+    /**
+     * finds the account within the userlist
+     * @param username
+     * @param password
+     * @return
+     */
     public boolean findAccount(String username, String password) {
         for (int i = 0; i < users.size(); i++) {
             if(users.get(i).getUsername() == username && users.get(i).getPassword() == password) {
@@ -97,6 +137,12 @@ public class UserList {
         }
         return false;
     }
+
+    /**
+     * Finds if the user is already in the program
+     * @param username
+     * @return
+     */
     public boolean containsUser(String username) {
         for(int i=0;i<users.size();i++) {
             if(users.get(i).getUsername().equalsIgnoreCase(username)) {
@@ -106,6 +152,7 @@ public class UserList {
         return false;
     }
 
+    //getters
     public ArrayList<User> getUsers() {
         return users;
     }
@@ -118,6 +165,15 @@ public class UserList {
         return employers;
     }
 
+    public ArrayList<Admin> getAdmins() {
+        return admins;
+    }
+
+    /**
+     * adds a resume to a student account
+     * @param student
+     * @param resume
+     */
     public void addResume(Student student, Resume resume) {
         for(Student aStudent : students) {
             if(aStudent.getUUID().equalsIgnoreCase(student.getUUID())) {
@@ -126,15 +182,19 @@ public class UserList {
         }
     }
 
-    public ArrayList<Admin> getAdmins() {
-        return admins;
-    }
-
+    /**
+     * adds a student to the list of users and the list of students
+     * @param student
+     */
     public void addStudent(Student student) {
         users.add(student);
         students.add(student);
     }
 
+    /**
+     * adds an employer to the list of users and the list of employers
+     * @param employer
+     */
     public void addEmployer(Employer employer) {
         users.add(employer);
         employers.add(employer);

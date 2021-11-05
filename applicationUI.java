@@ -1,6 +1,10 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * @author Lauren Hadlow, Colton Anderson, Mitchell Carroll
+ * A class which controls the console ui
+ */
 public class applicationUI {
     private static Scanner scanner;
     private static JobListingApplication application;
@@ -12,11 +16,17 @@ public class applicationUI {
     private String[] employerAccount = {"Company Name","Company Description","Company Location","Job Listing","Go Back"};
     private String[] adminAccount = {"userame","Email Address"};
 
+    /**
+     * A constructor
+     */
     applicationUI() {
         scanner = new Scanner(System.in);
         application = JobListingApplication.getInstance();
     }
 
+    /**
+     * A method which is called from main to run the app
+     */
     public void run() {
         System.out.println(WELCOME_MESSAGE);
         System.out.println("(L)og In, (C)reate Account, (Q)uit:");
@@ -31,6 +41,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls loggin in
+     */
     private void login() {
         System.out.print("Enter your username: ");
         String username = scanner.nextLine();
@@ -45,6 +58,10 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which displays the main menu
+     * @param options The options to display
+     */
     private void displayMainMenu(String[] options) {
         System.out.println("*****Main Menu*****");
         for(int i = 0; i < options.length; i++) {
@@ -54,6 +71,9 @@ public class applicationUI {
 
     }
 
+    /**
+     * A method which controls user input on the main menu
+     */
     private void mainMenu() {
         boolean running = true;
         while(running) {
@@ -110,6 +130,9 @@ public class applicationUI {
             }
         }
     }
+    /**
+     * A method which prints a resume
+     */
     private void outResume() {
         System.out.println("Select which resume you want to print: ");
         ArrayList<Resume> resumes = application.getStudentResumes();
@@ -122,7 +145,7 @@ public class applicationUI {
                 } catch (Exception e) {
                     System.out.println(e);
                 }
-                
+
             }
             else if(option.equalsIgnoreCase("e")) {
                 return;
@@ -130,6 +153,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which adds a listing
+     */
     private void addListing() {
         System.out.println("Create new job listing:");
         System.out.println("Enter title:");
@@ -153,6 +179,10 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which adds a desired skill
+     * @param listing The listing to add a desired skill to
+     */
     private void addDesiredSkill(JobListing listing) {
         System.out.println("Add desired skill:");
         String skill = scanner.nextLine();
@@ -164,6 +194,10 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which alows the user to select an option
+     * @return The selected option
+     */
     private int selectOption() {
         System.out.println("Select an option: ");
         int option = scanner.nextInt();
@@ -171,6 +205,9 @@ public class applicationUI {
         return option;
     }
 
+    /**
+     * A method which controls account editing
+     */
     private void editAccount() {
         System.out.println("Which part of your account would you like to edit");
         for(int i=0;i<studentAccount.length;i++) {
@@ -192,6 +229,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls editing an account nam
+     */
     private void editName() {
         System.out.println("What is your first name: ");
         String firstName = scanner.nextLine();
@@ -200,12 +240,18 @@ public class applicationUI {
         editAccount();
     }
 
+    /**
+     * A method which controls editing an account email address
+     */
     private void editEmailAdress() {
         System.out.println("What is your email adress: ");
         String email = scanner.nextLine();
         editAccount();
     }
 
+    /**
+     * A method which controls editing an account's education
+     */
     private void editEducation() {
         System.out.println("Would you like to (A)dd, (D)elete, or (E)dit your education list((G)o back): ");
         String action = scanner.nextLine();
@@ -220,6 +266,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls adding an education to an account
+     */
     private void addEducation() {
         System.out.println("What is the name of the school: ");
         String name = scanner.nextLine();
@@ -235,10 +284,16 @@ public class applicationUI {
         double GPA = Double.parseDouble(gpa);
     }
 
+    /**
+     * A method which controls deleting an education
+     */
     private void deleteEducation() {
 
     }
 
+    /**
+     * A method which controls editing an account's education
+     */
     private void editEducationItem() {
         System.out.println("What Item would you Like to edit");
         String[] educationItems = {". School Name", ". Class Year", ". Major", ". Minor", ". Gpa", ". Go Back"};
@@ -269,6 +324,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls editing an account's work experience
+     */
     private void editWorkExperience() {
         System.out.println("Would you like to (A)dd, (D)elete, or (E)dit your work experience list((G)o back): ");
         String action = scanner.nextLine();
@@ -283,6 +341,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which adds a work experience to an account
+     */
     private void addWorkExperience() {
         System.out.println("What was the title of your experience: ");
         String title = scanner.nextLine();
@@ -295,6 +356,10 @@ public class applicationUI {
         editWorkExperience();
     }
 
+    /**
+     * A method which adds a work experience to an account's resume
+     * @param resume The resume to update
+     */
     private void addWorkExperience(Resume resume) {
         System.out.println("Enter title:");
         String title = scanner.nextLine();
@@ -312,6 +377,10 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which adds an extrracurricular to a user's resume
+     * @param resume The resume to update
+     */
     private void addExtracurricular(Resume resume) {
         System.out.println("Enter title:");
         String title = scanner.nextLine();
@@ -329,10 +398,16 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls deleting a work experience
+     */
     private void deleteWorkExperience() {
 
     }
 
+    /**
+     * A method which controls editing a work experience
+     */
     private void editWorkExperienceItem() {
         System.out.println("Which Item would you like to edit:");
         String[] workExperience = {". Title",". Start date", ". End date", ". Description", "Go Back"};
@@ -362,6 +437,9 @@ public class applicationUI {
         System.out.println("");
     }
 
+    /**
+     * A method which controls editing extra curriculars
+     */
     private void editExtracuriculars() {
         System.out.println("Would you like to (A)dd, (D)elete, or (E)dit your Extra Curriculars list((G)o back): ");
         String action = scanner.nextLine();
@@ -376,6 +454,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls adding an extra curricular
+     */
     private void addExtraCurricular() {
         System.out.println("What was the title of your Extra Curricular Activity");
         String title = scanner.nextLine();
@@ -387,10 +468,16 @@ public class applicationUI {
         String description = scanner.nextLine();
     }
 
+    /**
+     * A method which controls deleting an extra curricular
+     */
     private void deleteExtraCurricular() {
 
     }
 
+    /**
+     * A method which controls editing extra curriculars
+     */
     private void editExtraCurricularItem() {
         System.out.println("Which Item would you like to edit");
         String[] extraCurriculars = {". Title",". Start Date",". End Date",". Description",". Go Back"};
@@ -416,6 +503,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls applying for jobs
+     */
     private void applyForJob() {
         System.out.println("Enter keyword for search:");
         String keyword = scanner.nextLine();
@@ -436,6 +526,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls creating resumes
+     */
     private void createResume() {
         Resume resume = application.createResume();
         System.out.println("Add an education:");
@@ -454,6 +547,10 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls adding skills to a resume
+     * @param resume The resume to add skills to
+     */
     private void addSkills(Resume resume) {
         System.out.println("Enter skill:");
         String skill = scanner.nextLine();
@@ -465,6 +562,10 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls adding an education to a resume
+     * @param resume The resume to add an education to
+     */
     private void addEducation(Resume resume) {
         System.out.println("Enter your school:");
         String school = scanner.nextLine();
@@ -484,10 +585,16 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls adding reviews
+     */
     private void addReveiw() {
 
     }
 
+    /**
+     * A method which controls searching for jobs
+     */
     private void searchJobs() {
         System.out.println("Enter title of job:");
         String keyword = scanner.nextLine();
@@ -497,6 +604,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls creating an account
+     */
     private void createAccount() {
         System.out.println("Enter Username: ");
         String username = scanner.nextLine();
@@ -536,6 +646,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls editing an employer's account
+     */
     private void editEmployerAccount() {
         System.out.println("Which part of your account would you like to edit");
         for(int i = 0; i < employerAccount.length; i++) {
@@ -552,27 +665,43 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method that controls editing a company name
+     */
     private void editCompanyName() {
-            String CompanyName = scanner.nextLine();
-            System.out.println("What is the company name: ");
-            editCompanyName();
-        }
+        String CompanyName = scanner.nextLine();
+        System.out.println("What is the company name: ");
+        editCompanyName();
+    }
 
+    /**
+     * A method which controls editing a company description
+     */
     private void editCompanyDescription () {
             String companyDescription = scanner.nextLine();
             System.out.println("What is the company description: ");
             editCompanyDescription();
     }
 
+    /**
+     * A method which controls editing a company location
+     */
     private void editCompanyLocation () {
             String companyLocation = scanner.nextLine();
             System.out.println("What is the company location: ");
             editCompanyDescription();
     }
+    /**
+     * A method which controls searching applicants
+     */
     private void searchApplicants() {
-
+        System.out.println("Enter Applicant Name:");
+        String keyword = scanner.nextLine();
     }
 
+    /**
+     * A method which controls viewing listings
+     */
     private void viewListing() {
         ArrayList<JobListing> listings = application.getUserListings();
         for(JobListing listing : listings) {
@@ -587,6 +716,11 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls viewing applicants
+     * @param students The array list of students
+     * @param listing The listing to view the applicants in
+     */
     private void viewApplicants(ArrayList<Student> students, JobListing listing) {
         for(Student student : students) {
             for(String id : listing.getApplicantIDS()) {
@@ -607,6 +741,9 @@ public class applicationUI {
         }
     }
 
+    /**
+     * A method which controls editing admin accounts
+     */
     private void editAdminAccount() {
         System.out.println("Which part of your account would you like to edit");
         for(int i = 0; i < adminAccount.length; i++) {
@@ -630,6 +767,9 @@ public class applicationUI {
 
     }
 
+    /**
+     * A method which controls deleting accounts
+     */
     private void deleteAccount() {
 
     }
