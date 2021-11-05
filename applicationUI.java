@@ -2,15 +2,15 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class applicationUI {
-    private Scanner scanner;
-    private JobListingApplication application;
+    private static Scanner scanner;
+    private static JobListingApplication application;
     private static final String WELCOME_MESSAGE = "***Welcome to our Internship Finder***";
     private String[] studentOptions = {"Edit Account", "Apply for Job", "Create Resume", "Add Reveiw", "Search Jobs", "Get Resume", "logout"};
-    private String[] employerOptions = {"Edit Account", "Add Listing", "Search Applicats", "Veiw Listings", "logout"};
+    private String[] employerOptions = {"Edit Account", "Add Listing", "View Applicants", "Veiw Listings", "logout"};
     private String[] adminOptions = {"Edit Account", "Edit Reveiw", "Delete Account", "logout"};
     private String[] studentAccount = {"Name","Email Adress","Education", "Work Experience", "Extracurricular Activities", "Go back"};
     private String[] employerAccount = {"Company Name","Company Description","Company Location","Job Listing","Go Back"};
-    private String[] adminAccount = {"Name","Email Address"};
+    private String[] adminAccount = {"userame","Email Address"};
 
     applicationUI() {
         scanner = new Scanner(System.in);
@@ -21,29 +21,26 @@ public class applicationUI {
         System.out.println(WELCOME_MESSAGE);
         System.out.println("(L)og In, (C)reate Account, (Q)uit:");
         String option = scanner.nextLine();
-
         if(option.equalsIgnoreCase("L")){
             login();
         } else if(option.equalsIgnoreCase("C")) {
             createAccount();
             login();
-        } else if(option.equals("Q")) {
-            application.logout();
+        } else if(option.equalsIgnoreCase("Q")) {
+            System.exit(0);
         }
     }
 
     private void login() {
         System.out.print("Enter your username: ");
         String username = scanner.nextLine();
-        System.out.println();
-        System.out.print("Enter your password: ");
+        System.out.print("\nEnter your password: ");
         String password = scanner.nextLine();
-        System.out.println();
         if(application.login(username,password)) {
-            System.out.println("---Loging In---");
+            System.out.println("\n---Loging In---");
             mainMenu();
         } else {
-            System.out.println("Wrong Password");
+            System.out.println("\nWrong Password");
             run();
         }
     }
@@ -76,7 +73,7 @@ public class applicationUI {
                 } else if(option == 6) {
                     outResume();
                 } else if(option == 7) {
-                    application.logout();
+                    logout();
                 }else {
                     mainMenu();
                 }
@@ -90,7 +87,7 @@ public class applicationUI {
                 } else if(option == 3) {
                     deleteAccount();
                 } else if(option == 4) {
-                    application.logout();
+                    logout();
                 }else {
                     mainMenu();
                 }
@@ -106,7 +103,7 @@ public class applicationUI {
                 } else if(option == 4) {
                     viewListing();
                 } else if(option == 5) {
-                    application.logout();
+                    logout();
                 }else {
                     mainMenu();
                 }
@@ -147,6 +144,7 @@ public class applicationUI {
         String jobPay = scanner.nextLine();
         JobListing listing = application.createListing(title, postedDate, expirationDate, location, jobPay);
         addDesiredSkill(listing);
+        listing.setEmployer(application.getEmployerUser());
         application.addJobListing(listing);
         System.out.println("Add another job listing? y/n");
         String answer = scanner.nextLine();
@@ -430,7 +428,7 @@ public class applicationUI {
                 application.applyStudent(listings.get(i));
             }
             else if(answer.equalsIgnoreCase("b")) {
-
+                i = i-2;
             }
             else if(answer.equalsIgnoreCase("e")) {
                 break;
@@ -495,13 +493,17 @@ public class applicationUI {
         String keyword = scanner.nextLine();
         ArrayList<JobListing> listings = application.searchListings(keyword);
         for(int i=0;i<listings.size();i++) {
-        System.out.println(listings.get(i));
+            System.out.println(listings.get(i));
         }
     }
 
     private void createAccount() {
         System.out.println("Enter Username: ");
         String username = scanner.nextLine();
+        if(application.checkForUsername(username)) {
+            System.out.println("Invalid, username already taken");
+            createAccount();
+        }
         System.out.println("Enter Password: ");
         String password = scanner.nextLine();
         System.out.println("Are you a (S)tudent or (E)mployer");
@@ -617,6 +619,11 @@ public class applicationUI {
                 mainMenu();
             }
         }
+    }
+
+    private void logout() {
+        application.logout();
+        run();
     }
 
     private void editReview() {

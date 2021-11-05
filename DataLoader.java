@@ -57,12 +57,6 @@ public class DataLoader extends DataConstants{
 				 */
 				else if(userType.equalsIgnoreCase("e")) {
 					Employer employer = loadEmployer(username, password, uUID, personJSON);
-					ArrayList<JobListing> listings = getJobListings();
-					for(int j=0;j<listings.size();j++) {
-						if(listings.get(j).getEmployerID() == employer.getUUID()) {
-							employer.addListing(listings.get(j));
-						}
-					}
 					users.add(employer);
 					employers.add(employer);
 				}
@@ -127,7 +121,7 @@ public class DataLoader extends DataConstants{
 				String location = (String)listingJSON.get(JOB_LOCATION);
 				int pay = Integer.parseInt((String)listingJSON.get(JOB_PAY));
 				String employerID = (String)listingJSON.get(JOB_EMPLOYER_ID);
-				JobListing listing = new JobListing(title, listingID, postedDate, expirationDate, location, pay, employerID);
+				JobListing listing = new JobListing(listingID, title, postedDate, expirationDate, location, pay, employerID);
 				//gets desired skills
 				ArrayList<String> desiredSkills = new ArrayList<String>();
 				JSONArray skillsArray = (JSONArray)listingJSON.get(JOB_DESIRED_SKILLS);
@@ -155,7 +149,10 @@ public class DataLoader extends DataConstants{
 						}
 					}
 				}
-				listings.add(listing);
+				if(!listings.contains(listing)) {
+					listings.add(listing);
+				}
+				
 			}
 			return listings;
 

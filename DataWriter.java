@@ -10,25 +10,15 @@ import org.json.simple.JSONObject;
 public class DataWriter extends DataConstants {
 
     /**
-     * Variables
-     */
-    private static ArrayList<User> users;
-    private static ArrayList<Student> students;
-    private static ArrayList<Employer> employers;
-    private static ArrayList<Admin> admins;
-
-    /**
      * Saves users given an arraylist of users
      * @param users arraylist of users
      */
-    public static void saveUsers(ArrayList<User> users) {
+    public static void saveUsers(ArrayList<User> users, ArrayList<Employer> employers, ArrayList<Student> students) {
 
         /**
          * variables
          */
-        students = UserList.getInstance().getStudents();
-        employers = UserList.getInstance().getEmployers();
-        admins = UserList.getInstance().getAdmins();
+        ArrayList<Admin> admins = UserList.getInstance().getAdmins();
         JSONArray jsonUsers  = new JSONArray();
 
         /**
@@ -36,13 +26,19 @@ public class DataWriter extends DataConstants {
          */
         for(User user : users) {
             if(user.getType().equalsIgnoreCase("s")) {
-                jsonUsers.add(getStudentJSON(user));
+                if(!jsonUsers.contains(getStudentJSON(user, students))) {
+                    jsonUsers.add(getStudentJSON(user, students));
+                }
             }
             else if(user.getType().equalsIgnoreCase("e")) {
-                jsonUsers.add(getEmployerJSON(user));
+                if(!jsonUsers.contains(getEmployerJSON(user, employers))) {
+                    jsonUsers.add(getEmployerJSON(user, employers));
+                }
             }
             else if(user.getType().equalsIgnoreCase("a")) {
-                jsonUsers.add(getAdminJSON(user));
+                if(!jsonUsers.contains(getAdmin(user, admins))) {
+                    jsonUsers.add(getAdminJSON(user, admins));
+                }
             }
 
             try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
@@ -64,7 +60,9 @@ public class DataWriter extends DataConstants {
         JSONArray jobListingsJSON = new JSONArray();
 
         for(JobListing listing : listings) {
-            jobListingsJSON.add(getListingJSON(listing));
+            if((!jobListingsJSON.contains(listing))) {
+                jobListingsJSON.add(getListingJSON(listing));
+            }
         }
 
         try (FileWriter file = new FileWriter(LISTING_FILE_NAME)) {
@@ -131,7 +129,7 @@ public class DataWriter extends DataConstants {
      * @param user a user
      * @return a student
      */
-    private static Student getStudent(User user) {
+    private static Student getStudent(User user, ArrayList<Student> students) {
         for(int i=0;i<students.size();i++) {
             if(students.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
                 return students.get(i);
@@ -145,7 +143,7 @@ public class DataWriter extends DataConstants {
      * @param user a user
      * @return an employer
      */
-    private static Employer getEmployer(User user) {
+    private static Employer getEmployer(User user, ArrayList<Employer> employers) {
         for(int i=0;i<employers.size();i++) {
             if(employers.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
                 return employers.get(i);
@@ -159,7 +157,7 @@ public class DataWriter extends DataConstants {
      * @param user a user
      * @return an admin
      */
-    private static Admin getAdmin(User user) {
+    private static Admin getAdmin(User user, ArrayList<Admin> admins) {
         for(int i=0;i<admins.size();i++) {
             if(admins.get(i).getUUID().equalsIgnoreCase(user.getUUID())) {
                 return admins.get(i);
@@ -173,11 +171,11 @@ public class DataWriter extends DataConstants {
      * @param user a user
      * @return student as JSONObject
      */
-    public static JSONObject getStudentJSON(User user) {
-        if(getStudent(user) == null) {
+    public static JSONObject getStudentJSON(User user, ArrayList<Student> students) {
+        if(getStudent(user, students) == null) {
             return null;
         }
-        Student student = getStudent(user);
+        Student student = getStudent(user, students);
         JSONObject studentJSON = new JSONObject();
         studentJSON.put(USER_USERNAME, student.getUsername().toString());
         studentJSON.put(USER_PASSWORD, student.getPassword().toString());
@@ -289,9 +287,9 @@ public class DataWriter extends DataConstants {
      * @param user a user
      * @return JSONObject of employer
      */
-    private static JSONObject getEmployerJSON(User user) {
+    private static JSONObject getEmployerJSON(User user, ArrayList<Employer> employers) {
         JSONObject employerJSON = new JSONObject();
-        Employer employer = getEmployer(user);
+        Employer employer = getEmployer(user, employers);
         employerJSON.put(USER_USERNAME, employer.getUsername().toString());
         employerJSON.put(USER_PASSWORD, employer.getPassword().toString());
         employerJSON.put(USER_TYPE, employer.getType().toString());
@@ -327,9 +325,9 @@ public class DataWriter extends DataConstants {
      * @param user a user
      * @return JSONObject of admin
      */
-    private static JSONObject getAdminJSON(User user) {
+    private static JSONObject getAdminJSON(User user, ArrayList<Admin> admins) {
         JSONObject adminJSON = new JSONObject();
-        Admin admin = getAdmin(user);
+        Admin admin = getAdmin(user, admins);
         adminJSON.put(USER_USERNAME, admin.getUsername().toString());
         adminJSON.put(USER_PASSWORD, admin.getPassword().toString());
         adminJSON.put(USER_TYPE, admin.getType().toString());

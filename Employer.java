@@ -87,15 +87,14 @@ public class Employer extends User{
     }
     public void addListing(JobListing listing) {
         listing.setEmployer(this);
-        companyListings.add(listing);
-        JobListingsList.getInstance().addListing(listing);
+        if(!companyListings.contains(listing)) {
+            companyListings.add(listing);
+        }
     }
+
     public void removeListing(JobListing listing) {
         if(companyListings.contains(listing)) {
             companyListings.remove(listing);
-        }
-        if(JobListingsList.getInstance().contains(listing)) {
-            JobListingsList.getInstance().deleteListing(listing);
         }
     }
 

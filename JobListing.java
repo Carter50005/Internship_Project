@@ -152,14 +152,6 @@ import java.util.Random;
         }
         return applicantsString;
     }
-    public String viewApplicant(Student student) {
-        for(int i=0; i<applicants.size();i++) {
-            if(applicants.get(i) == student) {
-                return student.toString();
-            }
-        }
-        return "Not an applicant";
-    }
 
     public String createID() {
         Random random = new Random();

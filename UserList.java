@@ -26,11 +26,31 @@ public class UserList {
         return DataLoader.getStudents();
     }
 
+    public void addListing(JobListing listing) {
+        for(Employer employer : employers) {
+            if(listing.getEmployerID().equals(employer.getUUID())) {
+                employer.addListing(listing);
+            }
+        }
+    }
+
     private ArrayList<Employer> setEmployers() {
         if(DataLoader.getEmployers() == null) {
             return new ArrayList<Employer>();
         }
-        return DataLoader.getEmployers();
+        ArrayList<Employer> aemployers = DataLoader.getEmployers();
+        setEmployerListings(aemployers);
+        return aemployers;
+    }
+
+    private void setEmployerListings(ArrayList<Employer> aemployers) {
+        for(JobListing listing : DataLoader.getJobListings()) {
+            for(Employer employer : aemployers) {
+                if(listing.getEmployerID().equalsIgnoreCase(employer.getUUID())) {
+                    employer.addListing(listing);
+                }
+            }
+        }
     }
 
     private ArrayList<Admin> setAdmins() {
@@ -79,7 +99,7 @@ public class UserList {
     }
     public boolean containsUser(String username) {
         for(int i=0;i<users.size();i++) {
-            if(users.get(i).getUsername() == username) {
+            if(users.get(i).getUsername().equalsIgnoreCase(username)) {
                 return true;
             }
         }

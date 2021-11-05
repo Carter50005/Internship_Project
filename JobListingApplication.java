@@ -4,14 +4,15 @@ public class JobListingApplication {
 
     private UserList users;
     private JobListingsList jobs;
-    private  User user;
+    private User user;
     private Student studentUser;
     private Employer employerUser;
     private static JobListingApplication jobListingApplication;
 
     private JobListingApplication() {
-        users  = UserList.getInstance();
+        users = UserList.getInstance();
         jobs = JobListingsList.getInstance();
+        jobs.setEmployers(users.getEmployers());
     }
 
     public boolean createStudentAccount(String username, String password, String studentID, String firstName, String lastName, String email, String phoneNumber) {
@@ -53,6 +54,7 @@ public class JobListingApplication {
 
     public void addJobListing(JobListing listing) {
         employerUser.addListing(listing);
+        users.addListing(listing);
         jobs.addListing(listing);
     }
 
@@ -89,15 +91,6 @@ public class JobListingApplication {
         else if(user.getType().equalsIgnoreCase("e") && (loginEmployer(user) != null)) {
             this.user = loginEmployer(user);
             this.employerUser = loginEmployer(user);
-            setEmployerUserListings();
-        }
-    }
-
-    private void setEmployerUserListings() {
-        for(JobListing listing : jobs.getJobListings()) {
-            if(listing.getEmployerID().equalsIgnoreCase(employerUser.getUUID())) {
-                employerUser.addListing(listing);
-            }
         }
     }
 
@@ -144,17 +137,30 @@ public class JobListingApplication {
     }
 
     public void logout() {
-        DataWriter.saveUsers(users.getUsers());
+        DataWriter.saveUsers(users.getUsers(), users.getEmployers(), users.getStudents());
         DataWriter.saveJobListing(jobs.getJobListings());
-        System.exit(0);
+        user = null; studentUser = null; employerUser = null;
+    }
+
+    public Employer getEmployerUser() {
+        return employerUser;
     }
 
     public void applyStudent(JobListing listing) {
-        listing.apply(studentUser);
-        jobs.updateListing(listing);
+        if(!listing.getApplicantIDS().contains(studentUser.getUUID())) {
+            listing.apply(studentUser);
+            jobs.updateListing(listing);
+        }
     }
 
     public ArrayList<Student> getStudents() {
         return users.getStudents();
+    }
+
+    public boolean checkForUsername(String username) {
+        if(users.containsUser(username)) {
+            return true;
+        }
+        return false;
     }
 }

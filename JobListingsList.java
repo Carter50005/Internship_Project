@@ -12,7 +12,6 @@ public class JobListingsList {
         else {
             jobListings = new ArrayList<JobListing>();
         }
-        setEmployers(DataLoader.getEmployers());
     }
 
     public void setEmployers(ArrayList<Employer> employers) {
@@ -36,15 +35,14 @@ public class JobListingsList {
     }
 
     public void addListing(JobListing jobListing) {
-        if(!contains(jobListing)) {
-            jobListings.add(jobListing);
-        }
+        jobListings.add(jobListing);
     }
 
-    public void updateListing(JobListing listing) {
-        for(JobListing jobListing : jobListings) {
-            if(jobListing.getUUID().equalsIgnoreCase(listing.getUUID())) {
-                jobListing = listing;
+    public static void updateListing(JobListing listing) {
+        for(int i=0;i<jobListings.size();i++) {
+            if(jobListings.get(i).getUUID().equalsIgnoreCase(listing.getUUID())) {
+                jobListings.remove(jobListings.get(i));
+                jobListings.add(listing);
             }
         }
     }
